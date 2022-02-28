@@ -10,6 +10,7 @@ import { HeaderComponent } from './shared/header/header.component';
 import { HomesListPageComponent } from './properties/homeslistpage/homeslistpage.component';
 import { ListPropertyPageComponent } from './properties/listpropertypage/listpropertypage.component';
 import { HomeComponent } from './properties/home/home.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -21,12 +22,15 @@ import { HomeComponent } from './properties/home/home.component';
     HeaderComponent,
     HomesListPageComponent,
     ListPropertyPageComponent,
-    HomeComponent
+    HomeComponent,
+
 
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

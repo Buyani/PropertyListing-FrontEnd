@@ -1,1 +1,41 @@
-<p>register works!</p>
+<div class="col-md-6 offset-md-3 mt-5">
+    <div class="card">
+        <h4 class="card-header">{{PageTitle}}</h4>
+        <div class="card-body">
+            <form novalidate (ngSubmit)="onSubmit()" [formGroup]="registerForm">
+                <div class="form-group">
+                    <label for="username">ForeNames</label>
+                    <input type="text" placeholder="required" formControlName="foreNames" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label for="username">Surname</label>
+                    <input type="text"  placeholder="required" formControlName="surname" class="form-control"  />
+                </div>
+                <div class="form-group">
+                    <label for="username">Email</label>
+                    <input type="text" placeholder="required" formControlName="email" class="form-control"  />
+
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" placeholder="required" formControlName="password" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label for="password">Confirm Password</label>
+                    <input type="password" placeholder="required" formControlName="passwordConfirm" class="form-control"  />
+                </div>
+                <div class="row">
+                    <button class="btn btn-primary">
+                        Register
+                    </button>
+                    <a href="#" routerLink="/login"class="nav-link">Login</a>
+                </div>
+
+                <div *ngIf="errorMessage" class="alert alert-danger mt-3 mb-0">{{errorMessage}}</div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<br>Dirty:{{registerForm.dirty}} <br> Touched:{{registerForm.touched}}
+<br>Valid:{{registerForm.valid}} <br> Value:{{registerForm.value | json}}
