@@ -18,6 +18,12 @@
           <span>
             <a href="#" class="nav-item nav-link" routerLink="/register"class="nav-link">Register</a>
           </span>
+          <span>
+            <a href="#" class="nav-item nav-link" routerLink="/login"class="nav-link">LogIn</a>
+          </span>
+          <span *ngIf="currentUser">
+            <a href="#" class="nav-item nav-link" (click)="LogOut()"class="nav-link">LogOut</a>
+          </span>
       </div>
     </div>
   </nav>
