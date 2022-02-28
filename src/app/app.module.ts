@@ -7,8 +7,9 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FooterComponent } from './shared/footer/footer.component';
 import { HeaderComponent } from './shared/header/header.component';
-import { HomeslistpageComponent } from './properties/homeslistpage/homeslistpage.component';
-import { ListpropertypageComponent } from './properties/listpropertypage/listpropertypage.component';
+import { HomesListPageComponent } from './properties/homeslistpage/homeslistpage.component';
+import { ListPropertyPageComponent } from './properties/listpropertypage/listpropertypage.component';
+import { HomeComponent } from './properties/home/home.component';
 
 
 @NgModule({
@@ -18,8 +19,9 @@ import { ListpropertypageComponent } from './properties/listpropertypage/listpro
     RegisterComponent,
     FooterComponent,
     HeaderComponent,
-    HomeslistpageComponent,
-    ListpropertypageComponent
+    HomesListPageComponent,
+    ListPropertyPageComponent,
+    HomeComponent
 
   ],
   imports: [
