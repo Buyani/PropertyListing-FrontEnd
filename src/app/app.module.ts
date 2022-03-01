@@ -10,6 +10,8 @@ import { HeaderComponent } from './shared/header/header.component';
 import { HomesListPageComponent } from './properties/homeslistpage/homeslistpage.component';
 import { ListPropertyPageComponent } from './properties/listpropertypage/listpropertypage.component';
 import { HomeComponent } from './properties/home/home.component';
+import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
+import { UserData } from './data/user.data';
 
 
 @NgModule({
@@ -26,7 +28,8 @@ import { HomeComponent } from './properties/home/home.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    InMemoryWebApiModule.forRoot(UserData)
   ],
   providers: [],
   bootstrap: [AppComponent]
