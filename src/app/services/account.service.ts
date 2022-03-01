@@ -28,7 +28,10 @@ export class UserManager {
   private currentUserSubject: BehaviorSubject<User>;
   public currentUser: Observable<User>;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) {
+    this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('currentUser')));
+    this.currentUser = this.currentUserSubject.asObservable();
+}
 
   //register a new user
   registerUser(user: User): Observable<User> {
@@ -54,6 +57,12 @@ export class UserManager {
       
     });
   }
+  //logout the user
+  logout() {
+    // remove user from local storage to log user out
+    localStorage.removeItem('currentUser');
+    this.currentUserSubject.next(null);
+}
 
   //aunthenticates user
   authenticate(user: any) {
