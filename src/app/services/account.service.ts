@@ -57,6 +57,7 @@ export class UserManager {
       })
   }
 
+  //logout user by clearing localstorage and naviagtes to another page
   logout(){
     this.clearuser('currentUser');
     this.router.navigate(['/']);
