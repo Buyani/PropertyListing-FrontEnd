@@ -10,7 +10,7 @@ import { UserManager } from 'src/app/services/account.service';
 })
 export class HeaderComponent implements OnInit {
   currentUser:User;
-  loggedIn:boolean=false;
+
 
   constructor(private userService:UserManager,private router:Router) { }
 
@@ -19,20 +19,12 @@ export class HeaderComponent implements OnInit {
     if(user)
     {
       this.currentUser=JSON.parse(user);
-      console.log("WELCOME ",this.currentUser.forename);
     }
 
   }
-
-  loggedin(){
-    if(this.currentUser)
-    {
-      this.loggedIn=true;
-    }
-  }
+  
   logout(){
     this.userService.clearuser('currentUser');
-    this.loggedIn=false;
     this.router.navigate(['/']);
   }
 

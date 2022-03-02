@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { LogIn } from 'src/app/models/login.model';
 import { User } from 'src/app/models/user.model';
+import { UserManager } from 'src/app/services/account.service';
 
 @Component({
   selector: 'app-homeslistpage',
@@ -11,16 +12,12 @@ export class HomesListPageComponent implements OnInit {
 
   currentUser:User;
 
-  constructor() { }
+  constructor(private userService:UserManager) { 
+    this.userService.currentUser.subscribe(user => this.currentUser = user);
+  }
 
   ngOnInit(): void {
-    let user=""+localStorage.getItem('currentUser');
-    if(user)
-    {
-      this.currentUser=JSON.parse(user);
-    }
-
-    
+    console.log("USER",this.currentUser);
   }
 
 }

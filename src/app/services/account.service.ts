@@ -5,7 +5,7 @@ import {
 } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { catchError, delay, Observable, tap, throwError } from 'rxjs';
+import { BehaviorSubject, catchError, delay, Observable, tap, throwError } from 'rxjs';
 import { LogIn } from '../models/login.model';
 import { User } from '../models/user.model';
 
@@ -16,9 +16,20 @@ import { User } from '../models/user.model';
   })
 export class UserManager {
     private userUrl = 'api/users';
+    private currentUserSubject: BehaviorSubject<User>;
+    public currentUser: Observable<User>;
     
 
-  constructor(private router:Router,private http: HttpClient) {}
+  constructor(private router:Router,private http: HttpClient) {
+    this.currentUserSubject = new BehaviorSubject<User>(
+        JSON.parse(localStorage.getItem('currentUser') || '{}')
+      );
+      this.currentUser = this.currentUserSubject.asObservable();
+  }
+
+  public get currentUserValue(): User {
+	return this.currentUserSubject.value;
+}
 
   //register user
   register(user: User): Observable<User> {
@@ -59,7 +70,8 @@ export class UserManager {
   clearuser(user:string){
     localStorage.removeItem(user);
   }
-  saveUserToLocalStorage(user:LogIn){
+  saveUserToLocalStorage(user:User){
+    this.currentUserSubject.next(user);
     localStorage.setItem('currentUser', JSON.stringify(user));
   }
   //get users
