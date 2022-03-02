@@ -4,72 +4,71 @@ import {
   HttpHeaders,
 } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import {
-  BehaviorSubject,
-  catchError,
-  delay,
-  Observable,
-  tap,
-  throwError,
-} from 'rxjs';
-import { RegisterUser } from '../models/register.model';
+import { Router } from '@angular/router';
+import { catchError, delay, Observable, tap, throwError } from 'rxjs';
+import { LogIn } from '../models/login.model';
 import { User } from '../models/user.model';
 
-const usersUrl = 'api/users';
 
-const httpOptions = {
-  headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
-};
 
 @Injectable({
-  providedIn: 'root',
-})
+    providedIn: 'root'
+  })
 export class UserManager {
-  private currentUserSubject: BehaviorSubject<User>;
-  public currentUser: Observable<User>;
+    private userUrl = 'api/users';
+    
 
-  constructor(private http: HttpClient) {
-    this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('currentUser')));
-    this.currentUser = this.currentUserSubject.asObservable();
-}
+  constructor(private router:Router,private http: HttpClient) {}
 
-  //register a new user
-  registerUser(user: User): Observable<User> {
+  //register user
+  register(user: User): Observable<User> {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-    return this.http.post<User>(usersUrl, user, { headers }).pipe(
+    return this.http.post<User>(this.userUrl, user, { headers }).pipe(
       delay(2000),
-      tap(() => console.log('User registered...')),
+      tap(() => console.log('new user registerd...')),
       catchError(this.handleError)
     );
   }
+
   //login user
   login(username: string, password: string): void {
-    this.http.get<User[]>(usersUrl).subscribe((data) => {
-      let user = data.find(
-        (s) =>
-          s.email.toLowerCase() === username.toLowerCase() &&
-          s.password.toLowerCase() === password.toLowerCase()
-      );
-      if(user)
-      {
-        this.authenticate(user);
-      }
-      
-    });
+      this.getUsers().subscribe((data)=>{
+          let user=data.find(
+            (s) =>
+              s.email.toLowerCase() === username.toLowerCase() &&
+              s.password.toLowerCase() === password.toLowerCase()
+          );
+          if(user){
+              this.authenticate(user);
+          }
+          else{
+              console.log("User does not exist...");
+          }
+      })
   }
-  //logout the user
-  logout() {
-    // remove user from local storage to log user out
-    localStorage.removeItem('currentUser');
-    this.currentUserSubject.next(null);
-}
-
-  //aunthenticates user
-  authenticate(user: any) {
-    //store user credentials on localstorage
+  //aunthenticate user
+  authenticate(user:any){
+      //clear any logged in users first
+      this.clearuser('currentUser');
+      //add user to local storage
+      this.saveUserToLocalStorage(user);
+      //naviagtes the user to proper page
+      this.router.navigate(['/properties']);
+  }
+  //clear current user
+  clearuser(user:string){
+    localStorage.removeItem(user);
+  }
+  saveUserToLocalStorage(user:LogIn){
     localStorage.setItem('currentUser', JSON.stringify(user));
-    this.currentUserSubject.next(user);
-    return user;
+  }
+  //get users
+  getUsers(): Observable<User[]> {
+    return this.http.get<User[]>(this.userUrl).pipe(
+      delay(2000),
+      tap((users) => console.log("")),
+      catchError(this.handleError)
+    );
   }
 
   private handleError(err: HttpErrorResponse): Observable<never> {
