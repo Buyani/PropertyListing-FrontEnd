@@ -10,19 +10,18 @@ import { LogIn } from '../models/login.model';
 import { User } from '../models/user.model';
 
 
-
 @Injectable({
     providedIn: 'root'
   })
 export class UserManager {
     private userUrl = 'api/users';
-    private currentUserSubject: BehaviorSubject<User>;
+    private currentUserSubject: BehaviorSubject<User | null>;
     public currentUser: Observable<User>;
     
 
   constructor(private router:Router,private http: HttpClient) {
     this.currentUserSubject = new BehaviorSubject<User>(
-        JSON.parse(localStorage.getItem('currentUser') || '{}')
+        JSON.parse(localStorage.getItem('currentUser'))
       );
       this.currentUser = this.currentUserSubject.asObservable();
   }
@@ -57,6 +56,11 @@ export class UserManager {
           }
       })
   }
+
+  logout(){
+    this.clearuser('currentUser');
+    this.router.navigate(['/']);
+  }
   //aunthenticate user
   authenticate(user:any){
       //clear any logged in users first
@@ -69,7 +73,10 @@ export class UserManager {
   //clear current user
   clearuser(user:string){
     localStorage.removeItem(user);
+    this.currentUserSubject.next(null);
   }
+
+  //saves current user to local storage and in subject variable
   saveUserToLocalStorage(user:User){
     this.currentUserSubject.next(user);
     localStorage.setItem('currentUser', JSON.stringify(user));

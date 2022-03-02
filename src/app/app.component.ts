@@ -1,7 +1,6 @@
 
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { BehaviorSubject, Observable } from 'rxjs';
 import { User } from './models/user.model';
 import { UserManager } from './services/account.service';
 
@@ -29,4 +28,5 @@ export class AppComponent implements OnInit {
     this.userService.clearuser('currentUser');
     this.router.navigate(['/']);
   }
+
 }
