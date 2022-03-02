@@ -6,7 +6,6 @@ import {
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { BehaviorSubject, catchError, delay, Observable, tap, throwError } from 'rxjs';
-import { LogIn } from '../models/login.model';
 import { User } from '../models/user.model';
 
 
