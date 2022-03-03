@@ -12,7 +12,7 @@ import { ListPropertyPageComponent } from './properties/listpropertypage/listpro
 import { HomeComponent } from './properties/home/home.component';
 import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { UserData } from './data/user.data';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UserManager } from './services/account.service';
 import { HttpClientModule } from '@angular/common/http';
 
@@ -33,6 +33,7 @@ import { HttpClientModule } from '@angular/common/http';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    FormsModule,
     ReactiveFormsModule,
     InMemoryWebApiModule.forRoot(UserData)
   ],

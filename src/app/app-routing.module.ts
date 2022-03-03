@@ -8,7 +8,7 @@ import { HomesListPageComponent } from './properties/homeslistpage/homeslistpage
 import { ListPropertyPageComponent } from './properties/listpropertypage/listpropertypage.component';
 
 const routes: Routes = [
-  {path:'', component:HomeComponent },
+  {path:'home', component:HomeComponent },
   { path:'properties' ,component: HomesListPageComponent},
   //add a guard here to check if user logged in 
   {path :'listproperty',component: ListPropertyPageComponent ,canActivate: [AuthGuard]},
