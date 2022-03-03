@@ -50,6 +50,18 @@
 <div *ngIf="showLoader$ | async as showLoader">
   <app-loader *ngIf="showLoader"></app-loader>
 </div>
+<div class="container">
+  
+  <div
+    class="alert alert-success"
+    *ngIf="successMessage$ | async as successMessage"
+  >
+    {{ successMessage }}
+  </div>
+  <div class="alert alert-danger" *ngIf="errorMessage$ | async as errorMessage">
+    {{ errorMessage }}
+  </div>
+</div>
 <!-- main app container -->
 <div class="container">
     <router-outlet></router-outlet>
