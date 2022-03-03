@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { tap } from 'rxjs';
 import { LoaderHelper } from './helpers/loader.helper';
-import { NotificationHelper } from './helpers/notifications';
+import { NotificationHelper } from './helpers/notifications.helper';
 import { User } from './models/user.model';
 import { UserManager } from './services/account.service';
 
@@ -28,6 +28,7 @@ export class AppComponent implements OnInit {
   successMessage$ = this.notificationHelper.successMessageAction$.pipe(
     tap((message) => {
       if (message) {
+        //if there is a global success message clear it out after 6 seconds
         setTimeout(() => {
           this.notificationHelper.clearAllMessages();
         }, 6000);
@@ -36,6 +37,7 @@ export class AppComponent implements OnInit {
   );
   errorMessage$ = this.notificationHelper.errorMessageAction$.pipe(
     tap((message) => {
+      //if there is a global error message clear it out after 6 seconds
       if (message) {
       setTimeout(() => {
         this.notificationHelper.clearAllMessages();
@@ -51,7 +53,7 @@ export class AppComponent implements OnInit {
       this.currentUser=JSON.parse(user);
     }
   }
-
+//logs out the logged in user
   logout(){
     this.userService.clearuser('currentUser');
     this.router.navigate(['/home']);
