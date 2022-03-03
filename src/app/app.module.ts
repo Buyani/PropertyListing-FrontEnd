@@ -15,6 +15,7 @@ import { UserData } from './data/user.data';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UserManager } from './services/account.service';
 import { HttpClientModule } from '@angular/common/http';
+import { MyadvertsComponent } from './properties/myadverts/myadverts.component';
 
 
 @NgModule({
@@ -26,7 +27,8 @@ import { HttpClientModule } from '@angular/common/http';
     HeaderComponent,
     HomesListPageComponent,
     ListPropertyPageComponent,
-    HomeComponent
+    HomeComponent,
+    MyadvertsComponent
 
   ],
   imports: [

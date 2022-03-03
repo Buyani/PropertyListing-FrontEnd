@@ -59,7 +59,7 @@ export class UserManager {
   //logout user by clearing localstorage and naviagtes to another page
   logout(){
     this.clearuser('currentUser');
-    this.router.navigate(['/']);
+    this.router.navigate(['/home']);
   }
   //aunthenticate user
   authenticate(user:any){
@@ -68,7 +68,7 @@ export class UserManager {
       //add user to local storage
       this.saveUserToLocalStorage(user);
       //naviagtes the user to proper page
-      this.router.navigate(['/properties']);
+      this.router.navigate(['/myadverts']);
   }
   //clear current user
   clearuser(user:string){
