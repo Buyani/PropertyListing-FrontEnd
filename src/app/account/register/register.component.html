@@ -116,7 +116,10 @@
                         </span>
                         <span *ngIf="registerForm.get('confirmpassword').errors['email']">
                             confirmpassword mushave have @ character
-                        </span>                    
+                        </span>
+                        <span *ngIf="registerForm.get('confirmpassword').errors['matching']">
+                           passwords do not match
+                        </span>               
                         </p>
                 </div>
 

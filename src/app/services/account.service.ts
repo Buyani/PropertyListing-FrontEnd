@@ -55,10 +55,11 @@ export class UserManager {
           );
           if(user){
               this.authenticate(user);
-              this.notificationHelper.setSuccessMessage("Hi "+user.forename+" WELCOME BACK");
+              this.notificationHelper.setSuccessMessage("Hi "+user.forename+" welcome back");
           }
           else{
-            this.notificationHelper.setSuccessMessage("Error occured while trying to login");
+            this.notificationHelper.setErrorMessage("ERROR: username or password is incorrect...");
+            return;
           }
       })
   }
