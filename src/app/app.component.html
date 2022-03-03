@@ -1,14 +1,52 @@
-<header class="site-header sticky-top py-1">
-    <nav class="container d-flex flex-column flex-md-row justify-content-between">
-      <a class="py-2" href="#" aria-label="Product">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="d-block mx-auto" role="img" viewBox="0 0 24 24"><title>Product</title><circle cx="12" cy="12" r="10"/><path d="M14.31 8l5.74 9.94M9.69 8h11.48M7.38 12l5.74-9.94M9.69 16L3.95 6.06M14.31 16H2.83m13.79-4l-5.74 9.94"/></svg>
-      </a>
-      <a *ngIf="!currentUser" class="py-2 d-none d-md-inline-block" href="#" routerLink="/register">Register</a>
-      <a *ngIf="!currentUser" class="py-2 d-none d-md-inline-block" href="#" routerLink="/login">LogIn</a>
-      <a *ngIf="currentUser" routerLink="/" (click)="logout()">logout</a>
+<div class="container">
+  <nav class="navbar navbar-expand-lg navbar-light mt-4">
+      <div class="container-fluid">
 
-    </nav>
-  </header>
+          <a class="navbar-brand" routerLink=""><img src="../../assets/Logo.png" class="img-fluid w-75"/></a>
+
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+              data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+              aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item mx-auto px-4">
+                  <a class="nav-link link-style" aria-current="page" routerLink="/">HOME</a>
+              </li>
+                  <li class="nav-item mx-auto px-4">
+                      <a class="nav-link link-style" aria-current="page" routerLink="/properties">HOMES FOR SALE</a>
+                  </li>
+                  <hr>
+                  <li class="nav-item mx-auto px-4">
+                      <a class="nav-link link-style" aria-current="page" routerLink="/listproperty">SELL A HOUSE</a>
+                  </li>
+                  <hr>
+              </ul>
+              <ul class="navbar-nav">
+                  <button type="button" class="btn btn-white mx-5 mx-lg-3 my-2 my-lg-0 px-3 shadow-lg"
+                  *ngIf="!currentUser"  aria-current="page"
+                      routerLink="/register">SIGNUP</button>
+                  <button type="button" class="btn btn-green mx-5 mx-lg-3 my-2 my-lg-0 px-3 shadow-lg"
+                  *ngIf="!currentUser"  aria-current="page"
+                      routerLink="/login">LOGIN</button>
+              </ul>
+
+              <ul class="navbar-nav">
+                  <button type="button" class="btn btn-green mx-5 mx-lg-3 my-2 my-lg-0 px-3 shadow-lg"
+                  *ngIf="currentUser"  aria-current="page" routerLink="/wishlist">MY ADVERTS</button>
+                  <button type="button" class="btn btn-green mx-5 mx-lg-3 my-2 my-lg-0 px-3 shadow-lg"
+                  *ngIf="currentUser"  aria-current="page" routerLink="/bookings">MY PROFILE</button>
+                      <button type="button" class="btn btn-green mx-5 mx-lg-3 my-2 my-lg-0 px-3 shadow-lg"
+                  *ngIf="currentUser" aria-current="page" routerLink="/bookings">BUY A HOUSE</button>
+
+                  <button type="button" class="btn btn-white mx-5 mx-lg-3 my-2 my-lg-0 px-3 shadow-lg"
+                  *ngIf="currentUser" routerLink="/" (click)="logout()"  aria-current="page">LOGOUT</button>
+              </ul>
+          </div>
+      </div>
+  </nav>
+</div>
 <!-- main app container -->
 <div class="container">
     <router-outlet></router-outlet>

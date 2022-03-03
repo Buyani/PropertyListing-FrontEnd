@@ -1,27 +1,55 @@
-<h2>Register</h2>
-<form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
-    <div class="form-group">
-        <label for="firstName">First Name</label>
-        <input type="text" formControlName="forename" class="form-control"  />
+<div class="container-fluid my-5 p-5 card shadow-lg bg-white rounded border-0" style="width: auto;">
+    <div class="row d-flex justify-content-between py-lg-4 px-4">
 
-    </div>
-    <div class="form-group">
-        <label for="lastName">Last Name</label>
-        <input type="text" formControlName="surname" class="form-control"  />
+        <div class="col-lg-6 d-none d-lg-block align-self-stretch">
+            <h2 class="h2">Sign Up to Start Listing Homes</h2>
+            <h6 class="h6 pb-1 mb-lg-4">Have an account?<a routerLink="/login" class="link">Log in</a></h6>
+            <img src="../../assets/signup.png" class="img-fluid h-50 w-100 mt-5" />
+        </div>
 
-    </div>
-    <div class="form-group">
-        <label for="username">Username</label>
-        <input type="text" formControlName="email" class="form-control"  />
+        <div class="col-lg-5 mb-2">
+            <!-- Log in form -->
+            <h2 class="h2 mb-lg-2 d-lg-none">Sign Up to Start And Start Listing Homes</h2>
+            <h4 class="h2 text-center d-none d-lg-block">Sign Up</h4>
+            <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+                <div class="mb-4">
+                    <label for="first-name" class="form-label lsp weig1 mt-5">First Name</label>
+                    <input type="text" class="form-control mt-2 pd py-4 lsp weig3 border-0 brad" id="first-name"
+                        name="forename" formControlName="forename" placeholder="John"
+                        required />
+                </div>
+                <div class="mb-4">
+                    <label for="username" class="form-label lsp weig1">Username</label>
+                    <input type="text" class="form-control mt-2 pd py-4 lsp weig2 border-0 brad" id="username"
+                        name="username" formControlName="surname" placeholder="JohnDoe19"
+                        required />
+                </div>
+                <div class="mb-4">
+                    <label for="last-name" class="form-label lsp weig1">Last Name</label>
+                    <input type="text" class="form-control mt-2 pd py-4 weig2 border-0 brad" id="last-name"
+                        name="lastName" formControlName="email" placeholder="Doe" />
+                </div>
 
-    </div>
-    <div class="form-group">
-        <label for="password">Password</label>
-        <input type="password" formControlName="password" class="form-control"  />
+                <div class="mb-3">
+                    <label for="password" class="form-label lsp weig1">Password</label>
+                    <input type="password" class="form-control mt-2 pd py-4 lsp weig2 border-0 brad" id="password"
+                        name="password" formControlName="password" placeholder="********"
+                        required />
+                </div>
+                <div class="mb-3">
+                    <label for="password" class="form-label lsp weig1">Confirm Password</label>
+                    <input type="password" class="form-control mt-2 pd py-4 lsp weig2 border-0 brad" id="password"
+                        name="password" formControlName="password" placeholder="********"
+                        required />
+                </div>
 
+                <button type="submit" class="btn btncolor px-5 lsp mt-5 shadow-lg" style="margin:auto;display:block">
+                    SIGNUP
+                </button>
+            </form>
+            <h6 class="h6 pb-1 mb-lg-4 d-lg-none text-center">Have an account?<a routerLink="/login" class="link">Log
+                    in</a></h6>
+
+        </div>
     </div>
-    <div class="form-group">
-        <button  class="btn btn-primary">Register</button>
-    
-    </div>
-</form>
+</div>

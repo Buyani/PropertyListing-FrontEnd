@@ -1,16 +1,39 @@
-<h2>Register</h2>
-<form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-    <div class="form-group">
-        <label for="username">Username</label>
-        <input type="text" formControlName="username" class="form-control"  />
-    </div>
-    <div class="form-group">
-        <label for="password">Password</label>
-        <input type="password" formControlName="password" class="form-control"  />
+<div class="container-fluid my-5 p-5 card shadow-lg bg-white rounded border-0" style="width: auto;">
+    <div class="row d-flex justify-content-between align-items-center py-lg-4 px-4">
 
+        <div class="col-lg-6 d-none d-lg-block">
+            <h2 class="h2">Login To Start Listing Properties</h2>
+            <h6 class="h6 pb-2">Dont have an account?<a routerLink="/register" class="link">Signup</a></h6>
+            <img src="../../assets/loginimg.png" class="img-fluid pt-5" />
+        </div>
+
+        <div class="col-lg-4 mb-3">
+            <!-- Log in form -->
+            <h2 class="h2 d-lg-none">Login to Start Buying your</h2>
+            <h2 class="h2 d-lg-none">Dream Home</h2>
+            <h4 class="h2 text-center d-none d-lg-block">Log In</h4>
+            <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+                <div class="mb-4 form-group">
+                    <label for="username" class="form-label lsp weig1 mt-5">Username</label>
+                    <input type="text" class="form-control mt-2 pd py-4 lsp weig2 border-0 brad" id="username"
+                        name="username" formControlName="username" placeholder="JohnDoe19"
+                        required />
+                </div>
+
+                <div class="mb-3 form-group">
+                    <label for="password" class="form-label lsp weig1">Password</label>
+                    <input type="password" class="form-control mt-2 py-4 pd lsp weig2 border-0 brad" id="password"
+                        name="password" formControlName="password" placeholder="********"
+                        required />
+                </div>
+
+                <button type="submit" class="btn color px-5 lsp mt-5 shadow-lg" style="margin:auto;display:block">
+                    LOGIN
+                </button>
+            </form>
+            <h6 class="h6 pb-1 d-lg-none text-center">Dont have an account?<a routerLink="/register" class="link">Signup</a>
+            </h6>
+
+        </div>
     </div>
-    <div class="form-group">
-        <button  class="btn btn-primary">LogIn</button>
-    
-    </div>
-</form>
+</div>
