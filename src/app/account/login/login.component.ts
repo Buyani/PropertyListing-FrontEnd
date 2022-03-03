@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { LoaderHelper } from 'src/app/helpers/loader.helper';
 import { LogIn } from 'src/app/models/login.model';
 import { UserManager } from 'src/app/services/account.service';
 
@@ -15,17 +16,19 @@ export class LoginComponent implements OnInit {
   loading = false;
   submitted = false;
   returnUrl: string;
+  errorMessage:string;
   user:LogIn;
 
   constructor(
       private formBuilder: FormBuilder,
       private router: Router,
-      private userService:UserManager) {}
+      private userService:UserManager,
+      private loaderHelper:LoaderHelper) {}
 
   ngOnInit() {
       this.loginForm = this.formBuilder.group({
-          username: ['', Validators.required],
-          password: ['', Validators.required]
+          username: ['buyanimhlongo@gmail.com', Validators.required],
+          password: ['BSmhlongo@91', Validators.required]
       });
   }
 
@@ -37,9 +40,13 @@ export class LoginComponent implements OnInit {
 
       // stop here if form is invalid
       if (this.loginForm.invalid) {
+          this.errorMessage="Error occured make sure all fields are correct"
           return;
       }
+      this.loading = false;
       const s={ ...this.user, ...this.loginForm.value};
+      this.loaderHelper.showLoader();
       this.userService.login(s.username,s.password);
+      this.loaderHelper.hideLoader();
     }
 }

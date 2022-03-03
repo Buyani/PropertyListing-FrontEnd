@@ -8,48 +8,123 @@
         </div>
 
         <div class="col-lg-5 mb-2">
+            <!-- Log in Error Messages -->
+            <div class="text-danger" *ngIf="errorMessage">
+                <div class="ms-2">{{errorMessage}}</div>
+            </div>
             <!-- Log in form -->
             <h2 class="h2 mb-lg-2 d-lg-none">Sign Up to Start And Start Listing Homes</h2>
             <h4 class="h2 text-center d-none d-lg-block">Sign Up</h4>
             <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
                 <div class="mb-4">
-                    <label for="first-name" class="form-label lsp weig1 mt-5">First Name</label>
+                    <label for="first-name" class="form-label lsp weig1 mt-5">Fore Name</label>
                     <input type="text" class="form-control mt-2 pd py-4 lsp weig3 border-0 brad" id="first-name"
                         name="forename" formControlName="forename" placeholder="John"
                         required />
+                        <p class="small text-danger my-2" *ngIf="registerForm.get('forename').invalid &&
+                        (registerForm.get('forename').dirty ||
+                        registerForm.get('forename').touched)">
+                        <span *ngIf="registerForm.get('forename').errors['required']">
+                            forename is a required field
+                        </span>
+                        <span *ngIf="registerForm.get('forename').errors['minlength']">
+                            forename minimum length is 1
+                        </span>
+                        <span *ngIf="registerForm.get('forename').errors['maxlength']">
+                            forename maximum length is 100
+                        </span>                   
+                        </p>
                 </div>
                 <div class="mb-4">
-                    <label for="username" class="form-label lsp weig1">Username</label>
+                    <label for="username" class="form-label lsp weig1">Surname</label>
                     <input type="text" class="form-control mt-2 pd py-4 lsp weig2 border-0 brad" id="username"
                         name="username" formControlName="surname" placeholder="JohnDoe19"
                         required />
+                        <p class="small text-danger my-2" *ngIf="registerForm.get('surname').invalid &&
+                        (registerForm.get('surname').dirty ||
+                        registerForm.get('surname').touched)">
+                        <span *ngIf="registerForm.get('surname').errors['required']">
+                            surname is a required field
+                        </span>
+                        <span *ngIf="registerForm.get('surname').errors['minlength']">
+                            surname minimum length is 1
+                        </span>
+                        <span *ngIf="registerForm.get('surname').errors['maxlength']">
+                            surname maximum length is 100
+                        </span>                   
+                        </p>
                 </div>
                 <div class="mb-4">
-                    <label for="last-name" class="form-label lsp weig1">Last Name</label>
+                    <label for="last-name" class="form-label lsp weig1">Email Address</label>
                     <input type="text" class="form-control mt-2 pd py-4 weig2 border-0 brad" id="last-name"
-                        name="lastName" formControlName="email" placeholder="Doe" />
+                        name="lastName" formControlName="email" placeholder="njomane@gmail.com" />
+                        <p class="small text-danger my-2" *ngIf="registerForm.get('email').invalid &&
+                        (registerForm.get('email').dirty ||
+                        registerForm.get('email').touched)">
+                        <span *ngIf="registerForm.get('email').errors['required']">
+                            email is a required field
+                        </span>
+                        <span *ngIf="registerForm.get('email').errors['minlength']">
+                            surnemailme minimum length is 1
+                        </span>
+                        <span *ngIf="registerForm.get('email').errors['maxlength']">
+                            email maximum length is 100
+                        </span>
+                        <span *ngIf="registerForm.get('email').errors['email']">
+                            email mushave have @ character
+                        </span>                    
+                        </p>
                 </div>
-
                 <div class="mb-3">
                     <label for="password" class="form-label lsp weig1">Password</label>
                     <input type="password" class="form-control mt-2 pd py-4 lsp weig2 border-0 brad" id="password"
                         name="password" formControlName="password" placeholder="********"
                         required />
+                        <p class="small text-danger my-2" *ngIf="registerForm.get('password').invalid &&
+                        (registerForm.get('password').dirty ||
+                        registerForm.get('password').touched)">
+                        <span *ngIf="registerForm.get('password').errors['required']">
+                            email is a required field
+                        </span>
+                        <span *ngIf="registerForm.get('password').errors['minlength']">
+                            surnemailme minimum length is 1
+                        </span>
+                        <span *ngIf="registerForm.get('password').errors['maxlength']">
+                            email maximum length is 100
+                        </span>
+                        <span *ngIf="registerForm.get('password').errors['email']">
+                            email mushave have @ character
+                        </span>                    
+                        </p>
                 </div>
                 <div class="mb-3">
                     <label for="password" class="form-label lsp weig1">Confirm Password</label>
                     <input type="password" class="form-control mt-2 pd py-4 lsp weig2 border-0 brad" id="password"
                         name="password" formControlName="password" placeholder="********"
                         required />
+                        <p class="small text-danger my-2" *ngIf="registerForm.get('confirmpassword').invalid &&
+                        (registerForm.get('confirmpassword').dirty ||
+                        registerForm.get('confirmpassword').touched)">
+                        <span *ngIf="registerForm.get('confirmpassword').errors['required']">
+                            confirmpassword is a required field
+                        </span>
+                        <span *ngIf="registerForm.get('confirmpassword').errors['minlength']">
+                            confirmpassword minimum length is 1
+                        </span>
+                        <span *ngIf="registerForm.get('confirmpassword').errors['maxlength']">
+                            confirmpassword maximum length is 100
+                        </span>
+                        <span *ngIf="registerForm.get('confirmpassword').errors['email']">
+                            confirmpassword mushave have @ character
+                        </span>                    
+                        </p>
                 </div>
 
-                <button type="submit" class="btn btncolor px-5 lsp mt-5 shadow-lg" style="margin:auto;display:block">
+                <button *ngIf="!loading" type="submit" class="btn  btncolor px-5 lsp mt-5 shadow-lg" style="margin:auto;display:block">
                     SIGNUP
                 </button>
             </form>
-            <h6 class="h6 pb-1 mb-lg-4 d-lg-none text-center">Have an account?<a routerLink="/login" class="link">Log
-                    in</a></h6>
-
+            <h6 class="h6 pb-1 mb-lg-4 d-lg-none text-center ">Have an account ?<a routerLink="/login" class="link">Login</a></h6>
         </div>
     </div>
 </div>

@@ -6,6 +6,7 @@ import {
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { BehaviorSubject, catchError, delay, Observable, tap, throwError } from 'rxjs';
+import { NotificationHelper } from '../helpers/notifications';
 import { User } from '../models/user.model';
 
 
@@ -18,7 +19,12 @@ export class UserManager {
     public currentUser: Observable<User>;
     
 
-  constructor(private router:Router,private http: HttpClient) {
+  constructor(
+    private router:Router,
+    private http: HttpClient,
+    private notificationHelper:NotificationHelper
+    ) {
+
     this.currentUserSubject = new BehaviorSubject<User>(
         JSON.parse(localStorage.getItem('currentUser'))
       );
@@ -34,7 +40,7 @@ export class UserManager {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     return this.http.post<User>(this.userUrl, user, { headers }).pipe(
       delay(2000),
-      tap(() => console.log('new user registerd...')),
+      tap((data) =>this.notificationHelper.setSuccessMessage("account was succefully created...")),
       catchError(this.handleError)
     );
   }
@@ -49,9 +55,10 @@ export class UserManager {
           );
           if(user){
               this.authenticate(user);
+              this.notificationHelper.setSuccessMessage("Hi "+user.forename+" WELCOME BACK");
           }
           else{
-              console.log("User does not exist...");
+            this.notificationHelper.setSuccessMessage("Error occured while trying to login");
           }
       })
   }

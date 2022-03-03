@@ -40,12 +40,15 @@
                       <button type="button" class="btn btn-green mx-5 mx-lg-3 my-2 my-lg-0 px-3 shadow-lg"
                   *ngIf="currentUser" aria-current="page" routerLink="/bookings">BUY A HOUSE</button>
 
-                  <button type="button" class="btn btn-white mx-5 mx-lg-3 my-2 my-lg-0 px-3 shadow-lg"
+                  <button type="button" class="btn btn-white mx-5 mx-lg-3 my-2 my-lg-0 px-3 shadow-lg btn-warning"
                   *ngIf="currentUser" routerLink="/" (click)="logout()"  aria-current="page">LOGOUT</button>
               </ul>
           </div>
       </div>
   </nav>
+</div>
+<div *ngIf="showLoader$ | async as showLoader">
+  <app-loader *ngIf="showLoader"></app-loader>
 </div>
 <!-- main app container -->
 <div class="container">

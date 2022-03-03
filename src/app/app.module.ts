@@ -16,6 +16,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UserManager } from './services/account.service';
 import { HttpClientModule } from '@angular/common/http';
 import { MyadvertsComponent } from './properties/myadverts/myadverts.component';
+import { LoaderComponent } from './shared/loader/loader.component';
 
 
 @NgModule({
@@ -28,7 +29,8 @@ import { MyadvertsComponent } from './properties/myadverts/myadverts.component';
     HomesListPageComponent,
     ListPropertyPageComponent,
     HomeComponent,
-    MyadvertsComponent
+    MyadvertsComponent,
+    LoaderComponent
 
   ],
   imports: [
