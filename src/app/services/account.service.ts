@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
 import { BehaviorSubject, catchError, delay, Observable, tap, throwError } from 'rxjs';
 import { LoaderHelper } from '../helpers/loader.helper';
 import { NotificationHelper } from '../helpers/notifications.helper';
+import { Role } from '../models/role.model';
 import { User } from '../models/user.model';
 
 
@@ -69,6 +70,7 @@ export class UserManager {
 
   //logout user by clearing localstorage and naviagtes to another page
   logout(){
+    console.log("LOGGING OUT");
     this.clearuser('currentUser');
     this.router.navigate(['/home']);
   }
@@ -79,7 +81,13 @@ export class UserManager {
       //add user to local storage
       this.saveUserToLocalStorage(user);
       //naviagtes the user to proper page
-      this.router.navigate(['/myadverts']);
+      if(user.role===Role.Admin){
+        this.router.navigate(['/admin']);
+      }
+      else{
+        this.router.navigate(['/myadverts']);
+      }
+     
   }
   //clear current user
   clearuser(user:string){

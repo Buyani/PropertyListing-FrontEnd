@@ -16,6 +16,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { MyadvertsComponent } from './properties/myadverts/myadverts.component';
 import { LoaderComponent } from './shared/loader/loader.component';
+import { AdminComponent } from './properties/admin/admin.component';
 
 
 @NgModule({
@@ -29,7 +30,8 @@ import { LoaderComponent } from './shared/loader/loader.component';
     ListPropertyPageComponent,
     HomeComponent,
     MyadvertsComponent,
-    LoaderComponent
+    LoaderComponent,
+    AdminComponent
 
   ],
   imports: [
