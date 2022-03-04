@@ -75,52 +75,54 @@
                         </span>                    
                         </p>
                 </div>
-                <div class="mb-3">
-                    <label for="password" class="form-label lsp weig1">Password</label>
-                    <input type="password" class="form-control mt-2 pd py-4 lsp weig2 border-0 brad" id="password"
-                        name="password" formControlName="password" placeholder="********"
-                        required />
-                        <p class="small text-danger my-2" *ngIf="f['password'].invalid &&
-                        (f['password'].dirty ||
-                        f['password'].touched)">
-                        <span *ngIf="f['password'].errors['required']">
-                            email is a required field
-                        </span>
-                        <span *ngIf="f['password'].errors['minlength']">
-                            surnemailme minimum length is 1
-                        </span>
-                        <span *ngIf="f['password'].errors['maxlength']">
-                            email maximum length is 100
-                        </span>
-                        <span *ngIf="f['password'].errors['email']">
-                            email mushave have @ character
-                        </span>                    
-                        </p>
-                </div>
-                <div class="mb-3">
-                    <label for="password" class="form-label lsp weig1">Confirm Password</label>
-                    <input type="password" class="form-control mt-2 pd py-4 lsp weig2 border-0 brad" id="password"
-                        name="password" formControlName="password" placeholder="********"
-                        required />
-                        <p class="small text-danger my-2" *ngIf="f['confirmpassword'].invalid &&
-                        (f['confirmpassword'].dirty ||
-                        f['confirmpassword'].touched)">
-                        <span *ngIf="f['confirmpassword'].errors['required']">
-                            confirmpassword is a required field
-                        </span>
-                        <span *ngIf="f['confirmpassword'].errors['minlength']">
-                            confirmpassword minimum length is 1
-                        </span>
-                        <span *ngIf="f['confirmpassword'].errors['maxlength']">
-                            confirmpassword maximum length is 100
-                        </span>
-                        <span *ngIf="f['confirmpassword'].errors['email']">
-                            confirmpassword mushave have @ character
-                        </span>              
-                        </p>
-                </div>
-
-                <button type="submit" class="btn  btncolor px-5 lsp mt-5 shadow-lg" style="margin:auto;display:block">
+                    <div class="mb-3">
+                        <label for="password" class="form-label lsp weig1">Password</label>
+                        <input type="password" class="form-control mt-2 pd py-4 lsp weig2 border-0 brad" id="password"
+                            name="password" formControlName="password" placeholder="********"
+                            required />
+                            <p class="small text-danger my-2" *ngIf="f['password'].invalid &&
+                            (f['password'].dirty ||
+                            f['password'].touched)">
+                            <span *ngIf="f['password'].errors['required']">
+                                email is a required field
+                            </span>
+                            <span *ngIf="f['password'].errors['minlength']">
+                                surnemailme minimum length is 1
+                            </span>
+                            <span *ngIf="f['password'].errors['maxlength']">
+                                email maximum length is 100
+                            </span>
+                            <span *ngIf="f['password'].errors['pattern']">
+                                no special character allowed for password
+                            </span>                    
+                            </p>
+                    </div>
+                    <div class="mb-3">
+                        <label for="password" class="form-label lsp weig1">Confirm Password</label>
+                        <input type="password" class="form-control mt-2 pd py-4 lsp weig2 border-0 brad" id="password"
+                            name="password" formControlName="confirmpassword" placeholder="********"
+                            required />
+                            <p class="small text-danger my-2" *ngIf="f['confirmpassword'].invalid &&
+                            (f['confirmpassword'].dirty ||
+                            f['confirmpassword'].touched)">
+                            <span *ngIf="f['confirmpassword'].errors['required']">
+                                confirmpassword is a required field
+                            </span>
+                            <span *ngIf="f['confirmpassword'].errors['minlength']">
+                                confirmpassword minimum length is 1
+                            </span>
+                            <span *ngIf="f['confirmpassword'].errors['maxlength']">
+                                confirmpassword maximum length is 100
+                            </span>
+                            <span *ngIf="f['confirmpassword'].errors['pattern']">
+                                no special character allowed for password
+                            </span>    
+                            <span *ngIf="f['confirmpassword'].errors['matching']">
+                                confirmpassword and password must match
+                            </span>           
+                            </p>
+                    </div>
+                <button *ngIf="!loading" type="submit" class="btn  btncolor px-5 lsp mt-5 shadow-lg" style="margin:auto;display:block">
                     SIGNUP
                 </button>
             </form>
