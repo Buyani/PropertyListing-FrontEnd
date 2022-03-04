@@ -6,7 +6,8 @@ import {
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { BehaviorSubject, catchError, delay, Observable, tap, throwError } from 'rxjs';
-import { NotificationHelper } from '../helpers/notifications';
+import { LoaderHelper } from '../helpers/loader.helper';
+import { NotificationHelper } from '../helpers/notifications.helper';
 import { User } from '../models/user.model';
 
 
@@ -22,7 +23,8 @@ export class UserManager {
   constructor(
     private router:Router,
     private http: HttpClient,
-    private notificationHelper:NotificationHelper
+    private notificationHelper:NotificationHelper,
+    private loaderHelper:LoaderHelper
     ) {
 
     this.currentUserSubject = new BehaviorSubject<User>(
@@ -45,7 +47,7 @@ export class UserManager {
     );
   }
 
-  //login user
+  //login user 
   login(username: string, password: string): void {
       this.getUsers().subscribe((data)=>{
           let user=data.find(
@@ -56,6 +58,7 @@ export class UserManager {
           if(user){
               this.authenticate(user);
               this.notificationHelper.setSuccessMessage("Hi "+user.forename+" welcome back");
+              this.loaderHelper.hideLoader();
           }
           else{
             this.notificationHelper.setErrorMessage("ERROR: username or password is incorrect...");

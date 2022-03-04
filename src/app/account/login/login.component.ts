@@ -44,9 +44,9 @@ export class LoginComponent implements OnInit {
           return;
       }
       this.loading = false;
+      //map form values to object values
       const s={ ...this.user, ...this.loginForm.value};
       this.loaderHelper.showLoader();
       this.userService.login(s.username,s.password);
-      this.loaderHelper.hideLoader();
     }
 }
