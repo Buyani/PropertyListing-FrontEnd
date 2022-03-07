@@ -1457,8 +1457,8 @@ a.btn-icon-only {
 }
 
 .table .thead-light th {
-    color: #8898aa;
-    background-color: #f6f9fc;
+    color: rgb(236, 235, 226);
+    background-color: rgb(177, 162, 103);
 }
 
 .table-flush td,
