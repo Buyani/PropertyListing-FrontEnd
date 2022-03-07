@@ -23,8 +23,8 @@
                         <span *ngIf="f['username'].errors['required']">
                             username is a required field
                         </span>
-                        <span *ngIf="f['username'].errors['email']">
-                            email mushave have @ character
+                        <span *ngIf="f['username'].errors['pattern']">
+                            email must be a valid email address
                         </span>
                         </p>
                 </div>
@@ -39,7 +39,7 @@
                         <span *ngIf="f['password'].errors['required']">
                             password is a required field
                         </span>
-                                                  <span *ngIf="f['password'].errors['pattern']">
+                        <span *ngIf="f['password'].errors['pattern']">
                                 no special character allowed for password
                             </span>                    
                         </p>

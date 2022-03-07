@@ -5,7 +5,7 @@ import {
 } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { BehaviorSubject, catchError, delay, Observable, tap, throwError } from 'rxjs';
+import { BehaviorSubject, catchError, delay, observable, Observable, of, tap, throwError } from 'rxjs';
 import { LoaderHelper } from '../helpers/loader.helper';
 import { NotificationHelper } from '../helpers/notifications.helper';
 import { Role } from '../models/role.model';
@@ -49,9 +49,9 @@ export class UserManager {
   }
 
   //login user 
-  login(username: string, password: string): boolean {
+  login(username: string, password: string): Observable<boolean> {
     let results=false;
-      this.getUsers().subscribe((data)=>{
+       this.getUsers().subscribe((data)=>{
           let user=data.find(
             (s) =>
               s.email.toLowerCase() === username.toLowerCase() &&
@@ -70,7 +70,7 @@ export class UserManager {
           }
       })
 
-      return results;
+      return of(results);
   }
 
   //logout user by clearing localstorage and naviagtes to another page

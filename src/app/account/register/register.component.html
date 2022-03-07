@@ -8,16 +8,11 @@
         </div>
 
         <div class="col-lg-5 mb-2">
-            <!-- Log in Error Messages -->
-            <div class="text-danger" *ngIf="errorMessage">
-                <div class="ms-2">{{errorMessage}}</div>
-            </div>
-            <!-- Log in form -->
             <h2 class="h2 mb-lg-2 d-lg-none">Sign Up to Start And Start Listing Homes</h2>
             <h4 class="h2 text-center d-none d-lg-block">Sign Up</h4>
             <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
                 <div class="mb-4">
-                    <label for="first-name" class="form-label lsp weig1 mt-5">Fore Name</label>
+                    <label for="first-name" class="form-label lsp weig1 mt-5">ForeName</label>
                     <input type="text" class="form-control mt-2 pd py-4 lsp weig3 border-0 brad" id="first-name"
                         name="forename" formControlName="forename" placeholder="John"
                         required />
@@ -35,6 +30,9 @@
                         </span>   
                         <span *ngIf="f['forename'].errors['pattern']">
                             forename must be a string
+                        </span>
+                        <span *ngIf="f['forename'].errors['cannotContainSpace']">
+                            no empty spaces allowed
                         </span>                 
                         </p> 
                 </div>
@@ -55,13 +53,16 @@
                         <span *ngIf="f['surname'].errors['maxlength']">
                             surname maximum length is 100
                         </span>   
-                        <span *ngIf="f['forename'].errors['pattern']">
+                        <span *ngIf="f['surname'].errors['pattern']">
                             surname must be a string
-                        </span>                 
+                        </span>
+                        <span *ngIf="f['surname'].errors['cannotContainSpace']">
+                            no empty spaces allowed
+                        </span>                
                         </p>
                 </div>
                 <div class="mb-4">
-                    <label for="email" class="form-label lsp weig1">Email Address</label>
+                    <label for="email" class="form-label lsp weig1">Email</label>
                     <input type="text" class="form-control mt-2 pd py-4 weig2 border-0 brad" id="email"
                         name="email" formControlName="email" placeholder="njomane@gmail.com" />
                         <p class="small text-danger my-2" *ngIf="f['email'].invalid &&
@@ -71,13 +72,13 @@
                             email is a required field
                         </span>
                         <span *ngIf="f['email'].errors['minlength']">
-                            surnemailme minimum length is 1
+                            email minimum length is 1
                         </span>
                         <span *ngIf="f['email'].errors['maxlength']">
                             email maximum length is 100
                         </span>
-                        <span *ngIf="f['email'].errors['email']">
-                            email must have @ character
+                        <span *ngIf="f['email'].errors['pattern']">
+                            email must be a valid email address
                         </span>               
                         </p>
                 </div>
@@ -107,7 +108,7 @@
                             </p>
                     </div>
                     <div class="mb-3">
-                        <label for="confirmpassword" class="form-label lsp weig1">Confirm Password</label>
+                        <label for="confirmpassword" class="form-label lsp weig1">ConfirmPassword</label>
                         <input type="password" class="form-control mt-2 pd py-4 lsp weig2 border-0 brad" id="confirmpassword"
                             name="confirmpassword" formControlName="confirmpassword" placeholder="********"
                             required />

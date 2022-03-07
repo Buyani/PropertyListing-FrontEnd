@@ -58,7 +58,8 @@ export class RegisterComponent implements OnInit {
             Validators.required,
             Validators.maxLength(100),
             Validators.minLength(1),
-            Validators.pattern("[a-zA-Z ]*")
+            Validators.pattern("[a-zA-Z ]*"),
+            Validation.cannotContainSpace
           ],
         ],
         surname: [
@@ -66,7 +67,8 @@ export class RegisterComponent implements OnInit {
           Validators.required,
           Validators.maxLength(100),
           Validators.minLength(3),
-          Validators.pattern("[a-zA-Z ]*")
+          Validators.pattern("[a-zA-Z ]*"),
+          Validation.cannotContainSpace
           ],
         ],
         email: [
@@ -75,7 +77,7 @@ export class RegisterComponent implements OnInit {
             Validators.required,
             Validators.maxLength(100),
             Validators.minLength(6),
-            Validators.email
+            Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')
           ],
         ],
         password: [
