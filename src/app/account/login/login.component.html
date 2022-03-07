@@ -8,11 +8,6 @@
         </div>
 
         <div class="col-lg-4 mb-3">
-                        <!-- Log in Error Messages -->
-                        <div class="text-danger" *ngIf="errorMessage">
-                            <div class="ms-2">{{errorMessage}}</div>
-                        </div>
-            <!-- Log in form -->
             <h2 class="h2 d-lg-none">Login to Start Buying your</h2>
             <h2 class="h2 d-lg-none">Dream Home</h2>
             <h4 class="h2 text-center d-none d-lg-block">Log In</h4>
@@ -22,11 +17,14 @@
                     <input type="text" class="form-control mt-2 pd py-4 lsp weig2 border-0 brad" id="username"
                         name="username" formControlName="username" placeholder="buyani@gmail.com"
                         required />
-                        <p class="small text-danger my-2" *ngIf="loginForm.get('username').invalid &&
-                        (loginForm.get('username').dirty ||
-                        loginForm.get('username').touched)">
-                        <span *ngIf="loginForm.get('username').errors['required']">
+                        <p class="small text-danger my-2" *ngIf="f['username'].invalid &&
+                        (f['username'].dirty ||
+                        f['username'].touched)">
+                        <span *ngIf="f['username'].errors['required']">
                             username is a required field
+                        </span>
+                        <span *ngIf="f['username'].errors['email']">
+                            email mushave have @ character
                         </span>
                         </p>
                 </div>
@@ -35,12 +33,15 @@
                     <input type="password" class="form-control mt-2 py-4 pd lsp weig2 border-0 brad" id="password"
                         name="password" formControlName="password" placeholder="********"
                         required />
-                        <p class="small text-danger my-2" *ngIf="loginForm.get('password').invalid &&
-                        (loginForm.get('password').dirty ||
-                        loginForm.get('password').touched)">
-                        <span *ngIf="loginForm.get('password').errors['required']">
+                        <p class="small text-danger my-2" *ngIf="f['password'].invalid &&
+                        (f['password'].dirty ||
+                        f['password'].touched)">
+                        <span *ngIf="f['password'].errors['required']">
                             password is a required field
-                        </span>                    
+                        </span>
+                                                  <span *ngIf="f['password'].errors['pattern']">
+                                no special character allowed for password
+                            </span>                    
                         </p>
                 </div>
 

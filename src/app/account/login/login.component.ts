@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { LoaderHelper } from 'src/app/helpers/loader.helper';
+import { NotificationHelper } from 'src/app/helpers/notifications.helper';
 import { LogIn } from 'src/app/models/login.model';
 import { UserManager } from 'src/app/services/account.service';
 
@@ -21,14 +22,14 @@ export class LoginComponent implements OnInit {
 
   constructor(
       private formBuilder: FormBuilder,
-      private router: Router,
+      private notitifcationHelper: NotificationHelper,
       private userService:UserManager,
       private loaderHelper:LoaderHelper) {}
 
   ngOnInit() {
       this.loginForm = this.formBuilder.group({
-          username: ['buyanimhlongo@gmail.com', Validators.required],
-          password: ['BSmhlongo@91', Validators.required]
+        username: ['buyanimhlongo@gmail.com', [Validators.required,Validators.email]],
+        password: ['BSmhlongo91', [Validators.required,Validators.pattern("^[a-zA-Z0-9 ]+$")]]
       });
   }
 
@@ -40,7 +41,7 @@ export class LoginComponent implements OnInit {
 
       // stop here if form is invalid
       if (this.loginForm.invalid) {
-          this.errorMessage="Error occured make sure all fields are correct"
+          this.notitifcationHelper.setErrorMessage("Please make sure all fields are correct")
           return;
       }
       this.loading = false;

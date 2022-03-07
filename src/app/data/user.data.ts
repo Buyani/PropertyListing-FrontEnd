@@ -14,7 +14,7 @@ export class UserData implements InMemoryDbService {
                 "forename": "Buyani",
                 "surname": "Mhlongo",
                 "email": "buyanimhlongo@gmail.com",
-                "password": "BSmhlongo@91",
+                "password": "BSmhlongo91",
                 "role":Role.User
             },
             {

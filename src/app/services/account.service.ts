@@ -57,12 +57,15 @@ export class UserManager {
               s.password.toLowerCase() === password.toLowerCase()
           );
           if(user){
+            console.log("SUCCESS")
               this.authenticate(user);
               this.notificationHelper.setSuccessMessage("Hi "+user.forename+" welcome back");
               this.loaderHelper.hideLoader();
           }
           else{
+            console.log("FAIL")
             this.notificationHelper.setErrorMessage("ERROR: username or password is incorrect...");
+            this.loaderHelper.hideLoader();
             return;
           }
       })
