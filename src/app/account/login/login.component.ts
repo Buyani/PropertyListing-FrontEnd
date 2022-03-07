@@ -58,7 +58,10 @@ export class LoginComponent implements OnInit {
     const s = { ...this.user, ...this.loginForm.value };
     this.loaderHelper.showLoader();
     this.userService.login(s.username, s.password).subscribe({
-        next:results=> console.log("RESULTS......",results)
-    })
+      next: value => {
+        if (!value)
+          this.submitted = false;
+      }
+    });
   }
 }

@@ -5,10 +5,9 @@ import {
 } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { BehaviorSubject, catchError, delay, observable, Observable, of, tap, throwError } from 'rxjs';
+import { BehaviorSubject, catchError, delay, Observable, tap, throwError } from 'rxjs';
 import { LoaderHelper } from '../helpers/loader.helper';
 import { NotificationHelper } from '../helpers/notifications.helper';
-import { Role } from '../models/role.model';
 import { User } from '../models/user.model';
 
 
@@ -21,13 +20,10 @@ export class UserManager {
     public currentUser: Observable<User>;
     
 
-  constructor(
-    private router:Router,
+  constructor(private router:Router,
     private http: HttpClient,
     private notificationHelper:NotificationHelper,
-    private loaderHelper:LoaderHelper
-    ) {
-
+    private loaderHelper:LoaderHelper) {
     this.currentUserSubject = new BehaviorSubject<User>(
         JSON.parse(localStorage.getItem('currentUser'))
       );
@@ -43,54 +39,39 @@ export class UserManager {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     return this.http.post<User>(this.userUrl, user, { headers }).pipe(
       delay(2000),
-      tap((data) =>this.notificationHelper.setSuccessMessage("account was succefully created...")),
+      tap(() => console.log('new user registerd...')),
       catchError(this.handleError)
     );
   }
 
-  //login user 
+  //login user
   login(username: string, password: string): Observable<boolean> {
-    let results=false;
-       this.getUsers().subscribe(data=>{
-         
-          let user=data.find(
+    return new Observable(observer => {
+      this.getUsers().subscribe({
+        next: data => {
+          const user = data.find(
             (s) =>
               s.email.toLowerCase() === username.toLowerCase() &&
               s.password.toLowerCase() === password.toLowerCase()
           );
-          if(user){
-              this.authenticate(user);
-              this.notificationHelper.setSuccessMessage("Hi "+user.forename+" welcome back");
-              this.loaderHelper.hideLoader();
-              results=true;
-          }
-          else{
+          console.log(user);
+          if (user) {
+            this.authenticate(user);
+            this.notificationHelper.setSuccessMessage("Hi " + user.forename + " welcome back");
+            this.loaderHelper.hideLoader();
+            observer.next(true);
+          } else {
             this.notificationHelper.setErrorMessage("ERROR: username or password is incorrect...");
             this.loaderHelper.hideLoader();
-            return;
+            observer.next(false);
           }
-      })
-
-      return of(results);
+        }
+      });
+    });
   }
-
-  login2(username:string,password:string):Observable<boolean>{
-    return new Observable(observer => {
-      this.getUsers().subscribe({
-        next: users => 
-        observer.next(true),
-        error:()=>observer.next(false)
-       });
-});
-  }
-
-
-
-
 
   //logout user by clearing localstorage and naviagtes to another page
   logout(){
-    console.log("LOGGING OUT");
     this.clearuser('currentUser');
     this.router.navigate(['/home']);
   }
@@ -101,13 +82,7 @@ export class UserManager {
       //add user to local storage
       this.saveUserToLocalStorage(user);
       //naviagtes the user to proper page
-      if(user.role===Role.Admin){
-        this.router.navigate(['/admin']);
-      }
-      else{
-        this.router.navigate(['/myadverts']);
-      }
-     
+      this.router.navigate(['/myadverts']);
   }
   //clear current user
   clearuser(user:string){
