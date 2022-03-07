@@ -51,7 +51,8 @@ export class UserManager {
   //login user 
   login(username: string, password: string): Observable<boolean> {
     let results=false;
-       this.getUsers().subscribe((data)=>{
+       this.getUsers().subscribe(data=>{
+         
           let user=data.find(
             (s) =>
               s.email.toLowerCase() === username.toLowerCase() &&
@@ -72,6 +73,20 @@ export class UserManager {
 
       return of(results);
   }
+
+  login2(username:string,password:string):Observable<boolean>{
+    return new Observable(observer => {
+      this.getUsers().subscribe({
+        next: users => 
+        observer.next(true),
+        error:()=>observer.next(false)
+       });
+});
+  }
+
+
+
+
 
   //logout user by clearing localstorage and naviagtes to another page
   logout(){
