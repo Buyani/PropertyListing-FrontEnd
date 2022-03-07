@@ -1,4 +1,4 @@
-import { AbstractControl, ValidatorFn } from '@angular/forms';
+import { AbstractControl, ValidationErrors, ValidatorFn } from '@angular/forms';
 
 
 export default class Validation {
@@ -20,4 +20,15 @@ export default class Validation {
       }
     };
   }
+
+
+
+    static cannotContainSpace(control: AbstractControl) : ValidationErrors | null {
+        if((control.value as string).indexOf(' ') >= 0){
+            return {cannotContainSpace: true}
+        }
+        return null;
+
+    }
+
 }

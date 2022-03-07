@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
 import { LoaderHelper } from 'src/app/helpers/loader.helper';
 import { NotificationHelper } from 'src/app/helpers/notifications.helper';
 import { LogIn } from 'src/app/models/login.model';
@@ -14,10 +13,9 @@ import { UserManager } from 'src/app/services/account.service';
 export class LoginComponent implements OnInit {
 
   loginForm: FormGroup;
-  loading = false;
-  submitted = false;
+  submitted:boolean = false;
+  loginresults:boolean;
   returnUrl: string;
-  errorMessage:string;
   user:LogIn;
 
   constructor(
@@ -38,16 +36,20 @@ export class LoginComponent implements OnInit {
 
   onSubmit() {
       this.submitted = true;
-
       // stop here if form is invalid
       if (this.loginForm.invalid) {
           this.notitifcationHelper.setErrorMessage("Please make sure all fields are correct")
+          this.submitted=false;
           return;
       }
-      this.loading = false;
+      
       //map form values to object values
       const s={ ...this.user, ...this.loginForm.value};
       this.loaderHelper.showLoader();
-      this.userService.login(s.username,s.password);
+      this.loginresults=this.userService.login(s.username,s.password);
+      if(!this.loginresults)
+      {
+          this.submitted=false;
+      }
     }
 }

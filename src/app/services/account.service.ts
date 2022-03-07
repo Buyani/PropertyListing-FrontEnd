@@ -49,7 +49,8 @@ export class UserManager {
   }
 
   //login user 
-  login(username: string, password: string): void {
+  login(username: string, password: string): boolean {
+    let results=false;
       this.getUsers().subscribe((data)=>{
           let user=data.find(
             (s) =>
@@ -57,18 +58,19 @@ export class UserManager {
               s.password.toLowerCase() === password.toLowerCase()
           );
           if(user){
-            console.log("SUCCESS")
               this.authenticate(user);
               this.notificationHelper.setSuccessMessage("Hi "+user.forename+" welcome back");
               this.loaderHelper.hideLoader();
+              results=true;
           }
           else{
-            console.log("FAIL")
             this.notificationHelper.setErrorMessage("ERROR: username or password is incorrect...");
             this.loaderHelper.hideLoader();
             return;
           }
       })
+
+      return results;
   }
 
   //logout user by clearing localstorage and naviagtes to another page

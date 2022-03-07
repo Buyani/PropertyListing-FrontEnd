@@ -31,8 +31,11 @@
                             forename minimum length is 1
                         </span>
                         <span *ngIf="f['forename'].errors['maxlength']">
-                            forename maximum length is 100s
-                        </span>                   
+                            forename maximum length is 100
+                        </span>   
+                        <span *ngIf="f['forename'].errors['pattern']">
+                            forename must be a string
+                        </span>                 
                         </p> 
                 </div>
                 <div class="mb-4">
@@ -51,13 +54,16 @@
                         </span>
                         <span *ngIf="f['surname'].errors['maxlength']">
                             surname maximum length is 100
-                        </span>                   
+                        </span>   
+                        <span *ngIf="f['forename'].errors['pattern']">
+                            surname must be a string
+                        </span>                 
                         </p>
                 </div>
                 <div class="mb-4">
-                    <label for="last-name" class="form-label lsp weig1">Email Address</label>
-                    <input type="text" class="form-control mt-2 pd py-4 weig2 border-0 brad" id="last-name"
-                        name="lastName" formControlName="email" placeholder="njomane@gmail.com" />
+                    <label for="email" class="form-label lsp weig1">Email Address</label>
+                    <input type="text" class="form-control mt-2 pd py-4 weig2 border-0 brad" id="email"
+                        name="email" formControlName="email" placeholder="njomane@gmail.com" />
                         <p class="small text-danger my-2" *ngIf="f['email'].invalid &&
                         (f['email'].dirty ||
                         f['email'].touched)">
@@ -71,8 +77,8 @@
                             email maximum length is 100
                         </span>
                         <span *ngIf="f['email'].errors['email']">
-                            email mushave have @ character
-                        </span>                    
+                            email must have @ character
+                        </span>               
                         </p>
                 </div>
                     <div class="mb-3">
@@ -84,23 +90,26 @@
                             (f['password'].dirty ||
                             f['password'].touched)">
                             <span *ngIf="f['password'].errors['required']">
-                                email is a required field
+                                password is a required field
                             </span>
                             <span *ngIf="f['password'].errors['minlength']">
-                                surnemailme minimum length is 1
+                                password minimum length is 8
                             </span>
                             <span *ngIf="f['password'].errors['maxlength']">
-                                email maximum length is 100
+                                password maximum length is 100
                             </span>
                             <span *ngIf="f['password'].errors['pattern']">
                                 no special character allowed for password
-                            </span>                    
+                            </span>
+                            <span *ngIf="f['password'].errors['cannotContainSpace']">
+                                no empty spaces allowed
+                            </span>                  
                             </p>
                     </div>
                     <div class="mb-3">
-                        <label for="password" class="form-label lsp weig1">Confirm Password</label>
-                        <input type="password" class="form-control mt-2 pd py-4 lsp weig2 border-0 brad" id="password"
-                            name="password" formControlName="confirmpassword" placeholder="********"
+                        <label for="confirmpassword" class="form-label lsp weig1">Confirm Password</label>
+                        <input type="password" class="form-control mt-2 pd py-4 lsp weig2 border-0 brad" id="confirmpassword"
+                            name="confirmpassword" formControlName="confirmpassword" placeholder="********"
                             required />
                             <p class="small text-danger my-2" *ngIf="f['confirmpassword'].invalid &&
                             (f['confirmpassword'].dirty ||
@@ -109,16 +118,19 @@
                                 confirmpassword is a required field
                             </span>
                             <span *ngIf="f['confirmpassword'].errors['minlength']">
-                                confirmpassword minimum length is 1
+                                confirm password minimum length is 8
                             </span>
                             <span *ngIf="f['confirmpassword'].errors['maxlength']">
-                                confirmpassword maximum length is 100
+                                confirm password maximum length is 100
                             </span>
                             <span *ngIf="f['confirmpassword'].errors['pattern']">
                                 no special character allowed for password
                             </span>    
                             <span *ngIf="f['confirmpassword'].errors['matching']">
-                                confirmpassword and password must match
+                                confirm password and password do not match
+                            </span>
+                            <span *ngIf="f['confirmpassword'].errors['cannotContainSpace']">
+                                no empty spaces allowed
                             </span>           
                             </p>
                     </div>

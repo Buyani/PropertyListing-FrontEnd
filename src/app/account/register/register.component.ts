@@ -58,7 +58,7 @@ export class RegisterComponent implements OnInit {
             Validators.required,
             Validators.maxLength(100),
             Validators.minLength(1),
-            Validators.pattern(/^(\s+\S+\s*)*(?!\s).*$/)
+            Validators.pattern("[a-zA-Z ]*")
           ],
         ],
         surname: [
@@ -66,7 +66,7 @@ export class RegisterComponent implements OnInit {
           Validators.required,
           Validators.maxLength(100),
           Validators.minLength(3),
-          Validators.pattern(/^(\s+\S+\s*)*(?!\s).*$/)
+          Validators.pattern("[a-zA-Z ]*")
           ],
         ],
         email: [
@@ -75,23 +75,29 @@ export class RegisterComponent implements OnInit {
             Validators.required,
             Validators.maxLength(100),
             Validators.minLength(6),
-            Validators.email,
+            Validators.email
           ],
         ],
         password: [
           '',
           [
             Validators.required,
-            Validators.minLength(6),
+            Validators.minLength(8),
+            Validators.maxLength(100),
             Validators.pattern("^[a-zA-Z0-9 ]+$"),
+            Validators.pattern(/^(\s+\S+\s*)*(?!\s).*$/),
+            Validation.cannotContainSpace,
+            
           ],
         ],
         confirmpassword: [
           '',
           [
             Validators.required,
-            Validators.minLength(6),
+            Validators.minLength(8),
+            Validators.maxLength(100),
             Validators.pattern("^[a-zA-Z0-9 ]+$"),
+            Validation.cannotContainSpace,
           ],
         ],
       },
@@ -109,6 +115,7 @@ export class RegisterComponent implements OnInit {
 
     // stop here if form is invalid
     if (this.registerForm.invalid) {
+      this.registerForm.markAllAsTouched();
       this.errorMessage = 'Error occured make sure all fields are correct';
       return;
     } else {
