@@ -37,7 +37,6 @@ export class MyadvertsComponent implements OnInit {
         error:err=>this.notificationHelper.setErrorMessage(err)
       })
     }
-
   }
 
   //when edit button is clicked ,pass id and navigate
