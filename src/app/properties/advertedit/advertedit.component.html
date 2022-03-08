@@ -1,13 +1,39 @@
-<form [formGroup]="advertForm" (ngSubmit)="onSubmit()">
-    <div class="mb-3">
-        <label class="form-label" for="inputEmail">Email</label>
-        <input type="email" class="form-control" id="inputEmail" placeholder="Email">
+<div class="container-fluid my-5 p-5 card shadow-lg bg-white rounded border-0" style="width: auto;">
+    <div class="row d-flex justify-content-between py-lg-4 px-4">
+            <form [formGroup]="advertForm" (ngSubmit)="onSubmit()">      
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="mb-2">
+                                <label for="headlineText" class="form-label lsp weig1 mt-5">HeadLine Text</label>
+                                <input type="text" class="form-control"formControlName="headlineText" id="headlineText" >
+                              </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="mb-2">
+                                <label for="province" class="form-label lsp weig1 mt-5">Select Province</label>
+                                <input type="text" class="form-control"formControlName="province" id="province" >
+                              </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="mb-2">
+                                <label for="city" class="form-label lsp weig1 mt-5">Select City</label>
+                                <input type="text" class="form-control"formControlName="city" id="city" >
+                              </div>
+                        </div>
+                        <div class="col-md-12">
+                            <label for="details" class="form-label lsp weig1 mt-5">Details</label>
+                            <textarea class="form-control" formControlName="details" id="details" rows="3"></textarea>
+                          </div>
+                    </div>
+              
+        
+            <button  type="submit" class="btn  btncolor px-5 lsp mt-5 shadow-lg" style="margin:auto;display:block">
+                Save
+            </button>
+    
+        </form>
     </div>
-    <div class="mb-3">
-        <label class="form-label" for="inputPassword">HeadlineText</label>
-        <input type="text" class="form-control" formControlName="headlineText" id="headlineText" placeholder="headlineText">
-    </div>
-    <button  type="submit" class="btn  btncolor px-5 lsp mt-5 shadow-lg" style="margin:auto;display:block">
-        Save
-    </button>
-</form>
+</div>
+
+
+
