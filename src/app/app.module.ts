@@ -17,6 +17,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { MyadvertsComponent } from './properties/myadverts/myadverts.component';
 import { LoaderComponent } from './shared/loader/loader.component';
 import { AdminComponent } from './properties/admin/admin.component';
+import { AdverteditComponent } from './properties/advertedit/advertedit.component';
 
 
 @NgModule({
@@ -31,7 +32,8 @@ import { AdminComponent } from './properties/admin/admin.component';
     HomeComponent,
     MyadvertsComponent,
     LoaderComponent,
-    AdminComponent
+    AdminComponent,
+    AdverteditComponent
 
   ],
   imports: [

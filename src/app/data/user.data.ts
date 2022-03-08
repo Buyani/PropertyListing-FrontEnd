@@ -1,14 +1,14 @@
-
 import { InMemoryDbService } from "angular-in-memory-web-api";
 import { Observable } from "rxjs";
+import { Advert } from "../models/advert.model";
 import { Role } from "../models/role.model";
 import { User } from "../models/user.model";
 
 
 export class UserData implements InMemoryDbService {
 
-    createDb():{ users:User[] } {
-        const users:User[]=[
+    createDb(){
+        const users=[
             {
                 "id": 1,
                 "forename": "Buyani",
@@ -22,7 +22,7 @@ export class UserData implements InMemoryDbService {
                 "forename": "Sabelo",
                 "surname": "Shezi",
                 "email": "sabeloshezi@gmail.com",
-                "password": "SabeloMhlongo@91",
+                "password": "SabeloMhlongo91",
                 "role":Role.User
             },
             {
@@ -50,6 +50,21 @@ export class UserData implements InMemoryDbService {
                 "role":Role.Admin
             },
         ]
-        return {users};
+
+        const adverts=[
+            { 'id':1,'headlineText':"5 Bedroom East gate",'province':"Johanesburg",
+            'city':"Sandton",
+            'details':"This are the details",
+            'price':1200000.00,"user_id":1},
+            { 'id':2, 'headlineText':"Mension Durban North",'province':"KwaZulu Natal",
+            'city':"Durban",
+            'details':"This are the details",
+            'price':900000.00,'user_id':1},
+            { 'id':3, 'headlineText':"4 Bedroom House for Sale in Heuwelsig",'province':"Free State",
+            'city':"Heuwelsig, Bloemfontein",
+            'details':"This are the details",
+            'price':1800000.00,'user_id':2}
+        ]
+        return {users,adverts};
     }
 }
