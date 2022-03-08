@@ -11,6 +11,13 @@
                                       {{ province.Name }}
                                     </option>
                                   </select>
+                                  <p class="small text-danger my-2" *ngIf="f['province'].invalid &&
+                                  (f['province'].dirty ||
+                                  f['province'].touched)">
+                                  <span *ngIf="f['province'].errors['required']">
+                                    province is a required field
+                                  </span>               
+                                  </p> 
                               </div>
                         </div>
                         <div class="col-md-4">
@@ -21,6 +28,13 @@
                                       {{ city.Name }}
                                     </option>
                                   </select>
+                                  <p class="small text-danger my-2" *ngIf="f['city'].invalid &&
+                                  (f['city'].dirty ||
+                                  f['city'].touched)">
+                                  <span *ngIf="f['city'].errors['required']">
+                                    city is a required field
+                                  </span>               
+                                  </p> 
                               </div>
                         </div>
                         <div class="cpl-md-6"></div>

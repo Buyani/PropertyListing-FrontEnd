@@ -88,7 +88,6 @@ export class AdverteditComponent implements OnInit {
           Validators.minLength(10),
           Validators.maxLength(100),
           Validators.pattern("[a-zA-Z ]*"),
-          Validation.cannotContainSpace
         ],
       ],
       province: ['', [Validators.required]],
