@@ -3,12 +3,6 @@
         <h4 class="h2 text-center d-none d-lg-block">{{pageTitle}}</h4>
             <form [formGroup]="advertForm" (ngSubmit)="onSubmit()">      
                     <div class="row">
-                        <div class="col-md-12">
-                            <div class="mb-2">
-                                <label for="headlineText" class="form-label lsp weig1 mt-5">HeadLine Text</label>
-                                <input type="text" class="form-control"formControlName="headlineText" id="headlineText" >
-                              </div>
-                        </div>
                         <div class="col-md-4">
                             <div class="mb-2">
                                 <label for="province" class="form-label lsp weig1 mt-5">Select Province</label>
@@ -29,10 +23,79 @@
                                   </select>
                               </div>
                         </div>
+                        <div class="cpl-md-6"></div>
+                        <div class="col-md-6">
+                            <div class="mb-2">
+                                <label for="headlineText" class="form-label lsp weig1 mt-5">HeadLine Text</label>
+                                <input type="text" class="form-control"formControlName="headlineText" id="headlineText" >
+                                <p class="small text-danger my-2" *ngIf="f['headlineText'].invalid &&
+                                (f['headlineText'].dirty ||
+                                f['headlineText'].touched)">
+                                <span *ngIf="f['headlineText'].errors['required']">
+                                    headlineText is a required field
+                                </span>
+                                <span *ngIf="f['headlineText'].errors['minlength']">
+                                    headlineText minimum length is 10
+                                </span>
+                                <span *ngIf="f['headlineText'].errors['maxlength']">
+                                    headlineText maximum length is 100
+                                </span>   
+                                <span *ngIf="f['headlineText'].errors['pattern']">
+                                    headlineText must be a string
+                                </span>
+                                <span *ngIf="f['headlineText'].errors['cannotContainSpace']">
+                                    no empty spaces allowed
+                                </span>                 
+                                </p> 
+                              </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="mb-2">
+                                <label for="price" class="form-label lsp weig1 mt-5">Price</label>
+                                <input type="text" class="form-control"formControlName="price" id="price" >
+                                <p class="small text-danger my-2" *ngIf="f['price'].invalid &&
+                                (f['price'].dirty ||
+                                f['price'].touched)">
+                                <span *ngIf="f['price'].errors['required']">
+                                    price is a required field
+                                </span>
+                                <span *ngIf="f['price'].errors['min']">
+                                    price minimum length is 10000,
+                                </span>
+                                <span *ngIf="f['price'].errors['max']">
+                                    price maximum length is 100000000.
+                                </span>   
+                                <span *ngIf="f['price'].errors['cannotContainSpace']">
+                                    no empty spaces allowed
+                                </span>                 
+                                </p> 
+                              </div>
+                        </div>
                         <div class="col-md-12">
                             <label for="details" class="form-label lsp weig1 mt-5">Details</label>
                             <textarea class="form-control" formControlName="details" id="details" rows="3"></textarea>
+                            <p class="small text-danger my-2" *ngIf="f['details'].invalid &&
+                            (f['details'].dirty ||
+                            f['details'].touched)">
+                            <span *ngIf="f['details'].errors['required']">
+                                details is a required field
+                            </span>
+                            <span *ngIf="f['details'].errors['minlength']">
+                                details minimum length is 1
+                            </span>
+                            <span *ngIf="f['details'].errors['maxlength']">
+                                details maximum length is 100
+                            </span>   
+                            <span *ngIf="f['details'].errors['pattern']">
+                                details must be a string
+                            </span>
+                            <span *ngIf="f['details'].errors['cannotContainSpace']">
+                                no empty spaces allowed
+                            </span>                 
+                            </p> 
                           </div>
+
+
                     </div>
               
         
