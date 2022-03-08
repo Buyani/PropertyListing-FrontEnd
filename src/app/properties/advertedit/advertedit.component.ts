@@ -27,20 +27,25 @@ export class AdverteditComponent implements OnInit {
 
     this.generateAdvertForm();
     //show loader on componets initialization
-    Promise.resolve().then(()=>this.loaderHelper.showLoader());
     this.route.params.subscribe((params)=>{
       
       //get passed advertId
       const advertId=Number(params['id']);
 
-      //call advert service pass advertId 
-      this.advertService.getAdvertById(advertId).subscribe({
-
-        //on receive advert pass advert to EditAdvert(advertId) function
-        next:advert=> this.EditAdvert(advert),
-        //if error occurs show error 
-        error:err=>this.notificationHelper.setErrorMessage(err)
-      })
+      if(advertId>0)
+      {
+        //call advert service pass advertId 
+        this.advertService.getAdvertById(advertId).subscribe({
+          //on receive advert pass advert to EditAdvert(advertId) function
+          next:advert=> this.EditAdvert(advert),
+          //if error occurs show error 
+          error:err=>this.notificationHelper.setErrorMessage(err)
+        })
+      }
+      else{
+        //initilize an empty advert
+        this.EditAdvert( this.advertService.InitialiseNewAdvert());
+      }
     })
   }
 
@@ -48,10 +53,10 @@ export class AdverteditComponent implements OnInit {
   EditAdvert(advert:Advert)
   {
     if(advert.id===0){
-      this.pageTitle='';
+      this.pageTitle='Add New Advert';
     }
     else{
-      this.pageTitle=advert.headlineText
+      this.pageTitle="Edit :"+advert.headlineText
       //auto populate form values
       this.advertForm.setValue({
         headlineText: advert.headlineText,

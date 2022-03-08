@@ -64,7 +64,7 @@ export class AdvertService{
         return throwError(errorMessage);
       }
 
-    private InitialiseNewAdvert():Advert{
+     InitialiseNewAdvert():Advert{
         return {
             id:0,
             headlineText:"",
