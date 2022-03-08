@@ -8,7 +8,6 @@
         </div>
 
         <div class="col-lg-4 mb-3">
-            <!-- Log in form -->
             <h2 class="h2 d-lg-none">Login to Start Buying your</h2>
             <h2 class="h2 d-lg-none">Dream Home</h2>
             <h4 class="h2 text-center d-none d-lg-block">Log In</h4>
@@ -18,16 +17,35 @@
                     <input type="text" class="form-control mt-2 pd py-4 lsp weig2 border-0 brad" id="username"
                         name="username" formControlName="username" placeholder="buyani@gmail.com"
                         required />
+                        <p class="small text-danger my-2" *ngIf="f['username'].invalid &&
+                        (f['username'].dirty ||
+                        f['username'].touched)">
+                        <span *ngIf="f['username'].errors['required']">
+                            username is a required field
+                        </span>
+                        <span *ngIf="f['username'].errors['pattern']">
+                            email must be a valid email address
+                        </span>
+                        </p>
                 </div>
-
                 <div class="mb-3 form-group">
                     <label for="password" class="form-label lsp weig1">Password</label>
                     <input type="password" class="form-control mt-2 py-4 pd lsp weig2 border-0 brad" id="password"
                         name="password" formControlName="password" placeholder="********"
                         required />
+                        <p class="small text-danger my-2" *ngIf="f['password'].invalid &&
+                        (f['password'].dirty ||
+                        f['password'].touched)">
+                        <span *ngIf="f['password'].errors['required']">
+                            password is a required field
+                        </span>
+                        <span *ngIf="f['password'].errors['pattern']">
+                                no special character allowed for password
+                            </span>                    
+                        </p>
                 </div>
 
-                <button type="submit" class="btn color px-5 lsp mt-5 shadow-lg" style="margin:auto;display:block">
+                <button *ngIf="!submitted " type="submit" class="btn color px-5 lsp mt-5 shadow-lg" style="margin:auto;color: black;display:block">
                     LOGIN
                 </button>
             </form>

@@ -6,6 +6,8 @@ import {
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { BehaviorSubject, catchError, delay, Observable, tap, throwError } from 'rxjs';
+import { LoaderHelper } from '../helpers/loader.helper';
+import { NotificationHelper } from '../helpers/notifications.helper';
 import { User } from '../models/user.model';
 
 
@@ -18,7 +20,10 @@ export class UserManager {
     public currentUser: Observable<User>;
     
 
-  constructor(private router:Router,private http: HttpClient) {
+  constructor(private router:Router,
+    private http: HttpClient,
+    private notificationHelper:NotificationHelper,
+    private loaderHelper:LoaderHelper) {
     this.currentUserSubject = new BehaviorSubject<User>(
         JSON.parse(localStorage.getItem('currentUser'))
       );
@@ -40,20 +45,29 @@ export class UserManager {
   }
 
   //login user
-  login(username: string, password: string): void {
-      this.getUsers().subscribe((data)=>{
-          let user=data.find(
+  login(username: string, password: string): Observable<boolean> {
+    return new Observable(observer => {
+      this.getUsers().subscribe({
+        next: data => {
+          const user = data.find(
             (s) =>
               s.email.toLowerCase() === username.toLowerCase() &&
               s.password.toLowerCase() === password.toLowerCase()
           );
-          if(user){
-              this.authenticate(user);
+          console.log(user);
+          if (user) {
+            this.authenticate(user);
+            this.notificationHelper.setSuccessMessage("Hi " + user.forename + " welcome back");
+            this.loaderHelper.hideLoader();
+            observer.next(true);
+          } else {
+            this.notificationHelper.setErrorMessage("ERROR: username or password is incorrect...");
+            this.loaderHelper.hideLoader();
+            observer.next(false);
           }
-          else{
-              console.log("User does not exist...");
-          }
-      })
+        }
+      });
+    });
   }
 
   //logout user by clearing localstorage and naviagtes to another page
