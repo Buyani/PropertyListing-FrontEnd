@@ -1,7 +1,10 @@
-import { city } from "../models/city.model";
+import { Injectable } from "@angular/core";
+import { City } from "../models/city.model";
 import { Province } from "../models/province.model";
 
-
+@Injectable({
+    providedIn:'root'
+})
 export class GeoGraphicService{
     getPrivinces() {
         return [

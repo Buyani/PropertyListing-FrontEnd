@@ -4,7 +4,10 @@ import { ActivatedRoute } from '@angular/router';
 import { LoaderHelper } from 'src/app/helpers/loader.helper';
 import { NotificationHelper } from 'src/app/helpers/notifications.helper';
 import { Advert } from 'src/app/models/advert.model';
+import { City } from 'src/app/models/city.model';
+import { Province } from 'src/app/models/province.model';
 import { AdvertService } from 'src/app/services/advert.service';
+import { GeoGraphicService } from 'src/app/services/giographic.service';
 
 @Component({
   selector: 'app-advertedit',
@@ -15,16 +18,19 @@ export class AdverteditComponent implements OnInit {
 
   advertForm:FormGroup;
   pageTitle:string;
+  pronvinces:Province[];
+  cities :City[];
 
 
   constructor(private route:ActivatedRoute,
              private loaderHelper:LoaderHelper,
              private advertService:AdvertService,
              private notificationHelper:NotificationHelper,
+             private geoService:GeoGraphicService,
              private fb:FormBuilder) { }
 
   ngOnInit(): void {
-
+    this.pronvinces=this.geoService.getPrivinces();
     this.generateAdvertForm();
     //show loader on componets initialization
     this.route.params.subscribe((params)=>{
@@ -79,6 +85,12 @@ export class AdverteditComponent implements OnInit {
       price:['',Validators.required],
       user_id:['',Validators.required],
     })
+  }
+  //populate cities on province select
+  onProvinceSelect(selected:any) {
+    let provinceId=selected.target.value;
+    this.cities=this.geoService.getCities().filter((city)=>city.province_id=== Number(provinceId));
+    console.log(this.cities);
   }
 
   //on form save
