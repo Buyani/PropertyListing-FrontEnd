@@ -48,7 +48,7 @@
                             surname is a required field
                         </span>
                         <span *ngIf="f['surname'].errors['minlength']">
-                            surname minimum length is 1
+                            surname minimum length is 3
                         </span>
                         <span *ngIf="f['surname'].errors['maxlength']">
                             surname maximum length is 100
@@ -72,7 +72,7 @@
                             email is a required field
                         </span>
                         <span *ngIf="f['email'].errors['minlength']">
-                            email minimum length is 1
+                            email minimum length is 6
                         </span>
                         <span *ngIf="f['email'].errors['maxlength']">
                             email maximum length is 100
