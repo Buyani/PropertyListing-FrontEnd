@@ -25,6 +25,7 @@ export class AdverteditComponent implements OnInit {
   pageTitle: string;
   pronvinces: Province[];
   cities: City[];
+  advert:Advert[];
 
   constructor(
     private route: ActivatedRoute,
@@ -76,7 +77,20 @@ export class AdverteditComponent implements OnInit {
     }
   }
 
-  SaveAdvert() {}
+  SaveAdvert() {
+    if(this.advertForm.valid){
+      if(this.advertForm.dirty)
+      {
+        const adv={ ...this.advert, ...this.advertForm.value}
+
+        console.log(JSON.stringify(adv));
+
+        //Implement Update 
+
+        //Implement Add
+      }
+    }
+  }
 
   //generate advert form
   generateAdvertForm(): void {
