@@ -76,17 +76,13 @@ export class AdverteditComponent implements OnInit {
       //auto populate form values
       this.advertForm.setValue({
         headlineText: advert.headlineText,
-        province: advert.province_id,
-        city: advert.city_id,
+        province: advert.province,
+        city: advert.city,
         details: advert.details,
         price: advert.price
       });
-
-      console.log(advert);
     }
   }
-  //set dropdown values 
-  
 //save /update an advert
   SaveAdvert() {
     this.loaderHelper.showLoader();
@@ -110,6 +106,11 @@ export class AdverteditComponent implements OnInit {
           })
         }
       }
+      else{
+
+      }
+    }else{
+      console.log("Form invalid")
     }
   }
   //create advert object based on selected id's of (province and city)
@@ -137,8 +138,8 @@ export class AdverteditComponent implements OnInit {
           Validators.pattern("[a-zA-Z ]*"),
         ],
       ],
-      province: [, [Validators.required]],
-      city: [, Validators.required],
+      province: ['', [Validators.required]],
+      city: ['', Validators.required],
       details: [
         '',
         [
