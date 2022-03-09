@@ -69,6 +69,7 @@ export class AdverteditComponent implements OnInit {
 
   //get Advert to edit
   EditAdvert(advert: Advert) {
+    console.log(advert);
     if (advert.id === 0) {
       this.pageTitle = 'Add New Advert';
     } else {
