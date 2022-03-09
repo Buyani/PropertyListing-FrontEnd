@@ -76,13 +76,17 @@ export class AdverteditComponent implements OnInit {
       //auto populate form values
       this.advertForm.setValue({
         headlineText: advert.headlineText,
-        province: advert.province,
-        city: advert.city,
+        province: advert.province_id,
+        city: advert.city_id,
         details: advert.details,
         price: advert.price
       });
+
+      console.log(advert);
     }
   }
+  //set dropdown values 
+  
 //save /update an advert
   SaveAdvert() {
     this.loaderHelper.showLoader();
@@ -91,7 +95,7 @@ export class AdverteditComponent implements OnInit {
       {
         //map form object to Advert object
         const advert=this.createAdvertObject({ ...this.advert, ...this.advertForm.value})
-
+        //if advertid is not less than 0 it means ita an update else save 
         if(this.advertId>0){
           advert.id=this.advertId;
           this.advertService.updateAdvert(advert).subscribe({
@@ -106,11 +110,6 @@ export class AdverteditComponent implements OnInit {
           })
         }
       }
-      else{
-
-      }
-    }else{
-      console.log("Form invalid")
     }
   }
   //create advert object based on selected id's of (province and city)
@@ -138,8 +137,8 @@ export class AdverteditComponent implements OnInit {
           Validators.pattern("[a-zA-Z ]*"),
         ],
       ],
-      province: ['', [Validators.required]],
-      city: ['', Validators.required],
+      province: [, [Validators.required]],
+      city: [, Validators.required],
       details: [
         '',
         [

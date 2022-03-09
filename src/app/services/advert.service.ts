@@ -115,6 +115,8 @@ export class AdvertService {
       details: '',
       price: 0,
       user_id: 0,
+      province_id:0,
+      city_id:0
     };
   }
 }

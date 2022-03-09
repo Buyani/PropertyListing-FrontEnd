@@ -55,15 +55,15 @@ export class UserData implements InMemoryDbService {
             { 'id':1,'headlineText':"5 Bedroom East gate",'province':"Johanesburg",
             'city':"Sandton",
             'details':"This are the details",
-            'price':1200000.00,"user_id":1},
+            'price':1200000.00,"user_id":1,'city_id':7,'province_id':3},
             { 'id':2, 'headlineText':"Mension Durban North",'province':"KwaZulu Natal",
             'city':"Durban",
             'details':"This are the details",
-            'price':900000.00,'user_id':1},
+            'price':900000.00,'user_id':1,'city_id':22,'province_id':8},
             { 'id':3, 'headlineText':"4 Bedroom House for Sale in Heuwelsig",'province':"Free State",
-            'city':"Heuwelsig, Bloemfontein",
+            'city':"Bethlehem",
             'details':"This are the details",
-            'price':1800000.00,'user_id':2}
+            'price':1800000.00,'user_id':2,'city_id':1,'province_id':1}
         ]
         return {users,adverts};
     }

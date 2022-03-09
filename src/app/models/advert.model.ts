@@ -7,4 +7,8 @@ export class Advert{
     details:string;
     price:number;
     user_id:number;
+
+    //for search purposes
+    province_id:number;
+    city_id:number;
 }
