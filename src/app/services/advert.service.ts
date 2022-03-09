@@ -24,9 +24,11 @@ export class AdvertService {
   //inmemory api url
   private AdvertUrl = 'api/adverts';
 
-  constructor(private http: HttpClient, 
+  constructor(
+    private http: HttpClient,
     private loaderHelper: LoaderHelper,
-    private notificationHelper:NotificationHelper) {}
+    private notificationHelper: NotificationHelper
+  ) {}
 
   //get user advert by user_id
   getUserAdverts(id: number): Advert[] {
@@ -62,31 +64,32 @@ export class AdvertService {
   }
 
   //Update an advert
-  updateSalary(advert: Advert): Observable<Advert> {
-    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-    const url = `${this.AdvertUrl}/${advert.id}`;
+  updateAdvert(advert:Advert):Observable<Advert>{
+    const headers=new HttpHeaders({'Content-Type':'application/json'});
+    const url=`${this.AdvertUrl}/${advert.id}`
 
-    return this.http.put<Advert>(url, advert, { headers }).pipe(
+    return this.http.put<Advert>(url,advert,{headers})
+    .pipe(
+      delay(2000),
+      tap(post=> this.notificationHelper.setSuccessMessage(advert.headlineText+" updated succesfully...")),
+      catchError(this.handleError)
+    );
+  }
+
+  //posts a new advert
+  createNewAdvert(advert: Advert): Observable<Advert> {
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    advert.id = null;
+    return this.http.post<Advert>(this.AdvertUrl, advert, { headers }).pipe(
       delay(2000),
       tap((post) =>
         this.notificationHelper.setSuccessMessage(
-            advert.headlineText + ' updated succesfully...'
+          post.headlineText + ' created succesfully...'
         )
       ),
       catchError(this.handleError)
     );
   }
-
-      //posts a new advert
-      createNewAdvert(advert:Advert):Observable<Advert>{
-        const headers=new HttpHeaders({'Content-Type':'application/json'});
-        advert.id=null;
-        return this.http.post<Advert>(this.AdvertUrl,advert,{headers}).pipe(
-          delay(2000),
-          tap(post=> this.notificationHelper.setSuccessMessage(advert.headlineText+" created succesfully...")),
-          catchError(this.handleError)
-        );
-      }
 
   private handleError(err: HttpErrorResponse): Observable<never> {
     // in a real world app, we may send the server to some remote logging infrastructure

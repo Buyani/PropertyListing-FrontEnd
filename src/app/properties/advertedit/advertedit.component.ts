@@ -5,13 +5,15 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { LoaderHelper } from 'src/app/helpers/loader.helper';
 import { NotificationHelper } from 'src/app/helpers/notifications.helper';
 import Validation from 'src/app/helpers/validators.helper';
 import { Advert } from 'src/app/models/advert.model';
 import { City } from 'src/app/models/city.model';
 import { Province } from 'src/app/models/province.model';
+import { User } from 'src/app/models/user.model';
+import { UserManager } from 'src/app/services/account.service';
 import { AdvertService } from 'src/app/services/advert.service';
 import { GeoGraphicService } from 'src/app/services/giographic.service';
 
@@ -26,15 +28,21 @@ export class AdverteditComponent implements OnInit {
   pronvinces: Province[];
   cities: City[];
   advert:Advert[];
+  currentUser:User;
+  advertId:number;
 
   constructor(
     private route: ActivatedRoute,
+    private router:Router,
     private loaderHelper: LoaderHelper,
     private advertService: AdvertService,
     private notificationHelper: NotificationHelper,
     private geoService: GeoGraphicService,
+    private userService:UserManager,
     private fb: FormBuilder
-  ) {}
+  ) {
+    this.userService.currentUser.subscribe(user => this.currentUser = user);
+  }
 
   ngOnInit(): void {
     this.pronvinces = this.geoService.getPrivinces();
@@ -42,11 +50,11 @@ export class AdverteditComponent implements OnInit {
     //show loader on componets initialization
     this.route.params.subscribe((params) => {
       //get passed advertId
-      const advertId = Number(params['id']);
+      this.advertId = Number(params['id']);
 
-      if (advertId > 0) {
+      if ( this.advertId > 0) {
         //call advert service pass advertId
-        this.advertService.getAdvertById(advertId).subscribe({
+        this.advertService.getAdvertById( this.advertId).subscribe({
           //on receive advert pass advert to EditAdvert(advertId) function
           next: (advert) => this.EditAdvert(advert),
           //if error occurs show error
@@ -71,25 +79,51 @@ export class AdverteditComponent implements OnInit {
         province: advert.province,
         city: advert.city,
         details: advert.details,
-        price: advert.price,
-        user_id: advert.user_id,
+        price: advert.price
       });
     }
   }
-
+//save /update an advert
   SaveAdvert() {
+    this.loaderHelper.showLoader();
     if(this.advertForm.valid){
       if(this.advertForm.dirty)
       {
-        const adv={ ...this.advert, ...this.advertForm.value}
+        //map form object to Advert object
+        const advert=this.createAdvertObject({ ...this.advert, ...this.advertForm.value})
 
-        console.log(JSON.stringify(adv));
-
-        //Implement Update 
-
-        //Implement Add
+        if(this.advertId>0){
+          advert.id=this.advertId;
+          this.advertService.updateAdvert(advert).subscribe({
+            next:()=>this.Complete(),
+            error:(err)=>this.notificationHelper.setErrorMessage(err)
+          })
+        }
+        else{
+          this.advertService.createNewAdvert(advert).subscribe({
+            next:()=>this.Complete(),
+            error:(err)=>this.notificationHelper.setErrorMessage(err)
+          })
+        }
       }
+      else{
+
+      }
+    }else{
+      console.log("Form invalid")
     }
+  }
+  //create advert object based on selected id's of (province and city)
+  createAdvertObject(advert:Advert):Advert{
+    let ad=advert;
+    let province=this.geoService.getPrivinces().find(p=>p.id===Number(advert.province));
+    let city=this.geoService.getCities().find(c=>c.id=== Number(advert.city));
+    if(province && city){
+      ad.city=city.Name;
+      ad.province=province.Name;
+      ad.user_id=Number(this.currentUser.id);
+    }
+    return advert;
   }
 
   //generate advert form
@@ -117,7 +151,7 @@ export class AdverteditComponent implements OnInit {
       ],
       price: [
         '',
-        [Validators.required, Validators.min(10000), Validation.cannotContainSpace, Validators.max(100000000)],
+        [Validators.required, Validators.min(10000), Validators.max(100000000)],
       ],
     });
   }
@@ -134,8 +168,14 @@ export class AdverteditComponent implements OnInit {
       .filter((city) => city.province_id === Number(provinceId));
   }
 
+  Complete():void{
+    this.loaderHelper.hideLoader();
+    this.router.navigate(['/myadverts']);
+    this.advertForm.reset();
+  }
+
   //on form save
-  onSubmit() {
+  onSubmit():void{
     if (!this.advertForm.valid) {
       this.advertForm.markAllAsTouched();
     } else {
