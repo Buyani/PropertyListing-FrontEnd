@@ -52,18 +52,57 @@ export class UserData implements InMemoryDbService {
         ]
 
         const adverts=[
-            { 'id':1,'headlineText':"5 Bedroom East gate",'province':"Johanesburg",
-            'city':"Sandton",
+            { 'id':1,'headlineText':"5 Bedroom East gate",
             'details':"This are the details",
-            'price':1200000.00,"user_id":1,'city_id':7,'province_id':3},
-            { 'id':2, 'headlineText':"Mension Durban North",'province':"KwaZulu Natal",
-            'city':"Durban",
+            'price':1200000.00,
+            "user_id":1,
+            'city':{
+                "id":7,
+                "province_id":3,
+                "Name":"Sandton"
+            },
+            'province':{
+                'id':3,
+                'Name':'Gauteng'
+             }
+        },
+           
+           
+           
+           
+           
+           
+            { 'id':2, 'headlineText':"Mension Durban North",
             'details':"This are the details",
-            'price':900000.00,'user_id':1,'city_id':22,'province_id':8},
-            { 'id':3, 'headlineText':"4 Bedroom House for Sale in Heuwelsig",'province':"Free State",
-            'city':"Bethlehem",
+            'price':900000.00,
+            'user_id':1,
+            'city':{
+                "id":22,
+                "province_id":8,
+                "Name":"Durban"
+            },
+            'province':{
+                'id':8,
+                'Name':'KwaZulu Natal'
+             }
+        },
+
+
+
+            { 'id':3, 'headlineText':"4 Bedroom House for Sale in Heuwelsig",
             'details':"This are the details",
-            'price':1800000.00,'user_id':2,'city_id':1,'province_id':1}
+            'price':1800000.00,
+            'user_id':2,
+            'city':{
+                "id":3,
+                "province_id":1,
+                "Name":"Bethlehem"
+            },
+            'province':{
+                'id':1,
+                'Name':'Free State'
+             }
+        }
         ]
         return {users,adverts};
     }

@@ -26,10 +26,10 @@
                                 </div>
                             </th>
                             <td>
-                                {{ad.province}}
+                                {{ad.province.Name}}
                             </td>
                             <td>
-                                {{ad.city}}
+                                {{ad.city.Name}}
                             </td>
                             <td>
                                 {{ad.price | currency: 'ZAR':"symbol-narrow"}}
@@ -37,6 +37,7 @@
                             <td class="text-right">
                                 <button class="btn btn-primary btn-sm" (click)="onAdvertEdit(ad.id)">Edit</button>
                             </td>
+  
                         </tr>
                     </tbody>
                 </table>

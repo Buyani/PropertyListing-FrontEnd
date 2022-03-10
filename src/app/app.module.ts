@@ -20,6 +20,12 @@ import { AdminComponent } from './properties/admin/admin.component';
 import { AdverteditComponent } from './properties/advertedit/advertedit.component';
 
 
+import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
+import { TooltipModule } from 'ngx-bootstrap/tooltip';
+import { ModalModule } from 'ngx-bootstrap/modal';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -42,8 +48,16 @@ import { AdverteditComponent } from './properties/advertedit/advertedit.componen
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    InMemoryWebApiModule.forRoot(UserData)
+    InMemoryWebApiModule.forRoot(UserData),
+    BrowserAnimationsModule,
+
+    //dropdown,modal
+    BsDropdownModule.forRoot(),
+    TooltipModule.forRoot(),
+    ModalModule.forRoot(),
+    
   ],
+  exports: [BsDropdownModule, TooltipModule, ModalModule],
   providers: [
    
   ],

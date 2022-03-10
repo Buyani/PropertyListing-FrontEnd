@@ -1,123 +1,134 @@
 <div class="container-fluid my-5 p-5 card shadow-lg bg-white rounded border-0" style="width: auto;">
     <div class="row d-flex justify-content-between py-lg-4 px-4">
         <h4 class="h2 text-center d-none d-lg-block">{{pageTitle}}</h4>
+        <div *ngIf="!isEditMode">
             <form [formGroup]="advertForm" (ngSubmit)="onSubmit()">      
-                    <div class="row">
-                        <div class="col-md-4">
-                            <div class="mb-2">
-                                <label for="province" class="form-label lsp weig1 mt-5">Select Province</label>
-                                <select class="form-select col-md-4" formControlName="province" (change)="onProvinceSelect($event)">
-                                    <option class="option" *ngFor="let province of pronvinces" [value]="province.id">
-                                      {{ province.Name }}
-                                    </option>
-                                  </select>
-                                  <p class="small text-danger my-2" *ngIf="f['province'].invalid &&
-                                  (f['province'].dirty ||
-                                  f['province'].touched)">
-                                  <span *ngIf="f['province'].errors['required']">
-                                    province is a required field
-                                  </span>               
-                                  </p> 
-                              </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="mb-2">
-                                <label for="city" class="form-label lsp weig1 mt-5">Select City</label>
-                                <select class="form-select col-md-4" formControlName="city" >
-                                    <option class="option" *ngFor="let city of cities" [value]="city.id">
-                                      {{ city.Name }}
-                                    </option>
-                                  </select>
-                                  <p class="small text-danger my-2" *ngIf="f['city'].invalid &&
-                                  (f['city'].dirty ||
-                                  f['city'].touched)">
-                                  <span *ngIf="f['city'].errors['required']">
-                                    city is a required field
-                                  </span>               
-                                  </p> 
-                              </div>
-                        </div>
-                        <div class="cpl-md-6"></div>
-                        <div class="col-md-6">
-                            <div class="mb-2">
-                                <label for="headlineText" class="form-label lsp weig1 mt-5">HeadLine Text</label>
-                                <input type="text" class="form-control"formControlName="headlineText" id="headlineText" >
-                                <p class="small text-danger my-2" *ngIf="f['headlineText'].invalid &&
-                                (f['headlineText'].dirty ||
-                                f['headlineText'].touched)">
-                                <span *ngIf="f['headlineText'].errors['required']">
-                                    headlineText is a required field
-                                </span>
-                                <span *ngIf="f['headlineText'].errors['minlength']">
-                                    headlineText minimum length is 10
-                                </span>
-                                <span *ngIf="f['headlineText'].errors['maxlength']">
-                                    headlineText maximum length is 100
-                                </span>   
-                                <span *ngIf="f['headlineText'].errors['pattern']">
-                                    headlineText must be a string
-                                </span>
-                                <span *ngIf="f['headlineText'].errors['cannotContainSpace']">
-                                    no empty spaces allowed
-                                </span>                 
-                                </p> 
-                              </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="mb-2">
-                                <label for="price" class="form-label lsp weig1 mt-5">Price</label>
-                                <input type="text" class="form-control"formControlName="price" id="price" >
-                                <p class="small text-danger my-2" *ngIf="f['price'].invalid &&
-                                (f['price'].dirty ||
-                                f['price'].touched)">
-                                <span *ngIf="f['price'].errors['required']">
-                                    price is a required field
-                                </span>
-                                <span *ngIf="f['price'].errors['min']">
-                                    price minimum length is 10000,
-                                </span>
-                                <span *ngIf="f['price'].errors['max']">
-                                    price maximum length is 100000000.
-                                </span>   
-                                <span *ngIf="f['price'].errors['cannotContainSpace']">
-                                    no empty spaces allowed
-                                </span>                 
-                                </p> 
-                              </div>
-                        </div>
-                        <div class="col-md-12">
-                            <label for="details" class="form-label lsp weig1 mt-5">Details</label>
-                            <textarea class="form-control" formControlName="details" id="details" rows="3"></textarea>
-                            <p class="small text-danger my-2" *ngIf="f['details'].invalid &&
-                            (f['details'].dirty ||
-                            f['details'].touched)">
-                            <span *ngIf="f['details'].errors['required']">
-                                details is a required field
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="mb-2">
+                            <label for="province" class="form-label lsp weig1 mt-5">Select Province</label>
+                            <select class="form-select col-md-4" formControlName="province" (change)="onProvinceSelect($event)">
+                                <option class="option" *ngFor="let province of pronvinces" [value]="province.id">
+                                  {{ province.Name }}
+                                </option>
+                              </select>
+                              <p class="small text-danger my-2" *ngIf="f['province'].invalid &&
+                              (f['province'].dirty ||
+                              f['province'].touched)">
+                              <span *ngIf="f['province'].errors['required']">
+                                province is a required field
+                              </span>               
+                              </p> 
+                          </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="mb-2">
+                            <label for="city" class="form-label lsp weig1 mt-5">Select City</label>
+                            <select class="form-select col-md-4" formControlName="city" >
+                                <option class="option" *ngFor="let cit of cities" [value]="cit.id">
+                                  {{ cit.Name }}
+                                </option>
+                              </select>
+                              <p class="small text-danger my-2" *ngIf="f['city'].invalid &&
+                              (f['city'].dirty ||
+                              f['city'].touched)">
+                              <span *ngIf="f['city'].errors['required']">
+                                city is a required field
+                              </span>               
+                              </p> 
+                          </div>
+                    </div>
+                    <div class="cpl-md-6"></div>
+                    <div class="col-md-6">
+                        <div class="mb-2">
+                            <label for="headlineText" class="form-label lsp weig1 mt-5">HeadLine Text</label>
+                            <input type="text" class="form-control"formControlName="headlineText" id="headlineText" >
+                            <p class="small text-danger my-2" *ngIf="f['headlineText'].invalid &&
+                            (f['headlineText'].dirty ||
+                            f['headlineText'].touched)">
+                            <span *ngIf="f['headlineText'].errors['required']">
+                                headlineText is a required field
                             </span>
-                            <span *ngIf="f['details'].errors['minlength']">
-                                details minimum length is 1
+                            <span *ngIf="f['headlineText'].errors['minlength']">
+                                headlineText minimum length is 10
                             </span>
-                            <span *ngIf="f['details'].errors['maxlength']">
-                                details maximum length is 100
+                            <span *ngIf="f['headlineText'].errors['maxlength']">
+                                headlineText maximum length is 100
                             </span>   
-                            <span *ngIf="f['details'].errors['pattern']">
-                                details must be a string
+                            <span *ngIf="f['headlineText'].errors['pattern']">
+                                headlineText must be a string
                             </span>
-                            <span *ngIf="f['details'].errors['cannotContainSpace']">
+                            <span *ngIf="f['headlineText'].errors['cannotContainSpace']">
                                 no empty spaces allowed
                             </span>                 
                             </p> 
                           </div>
-
-
                     </div>
-              
-        
+                    <div class="col-md-6">
+                        <div class="mb-2">
+                            <label for="price" class="form-label lsp weig1 mt-5">Price</label>
+                            <input type="text" class="form-control"formControlName="price" id="price" >
+                            <p class="small text-danger my-2" *ngIf="f['price'].invalid &&
+                            (f['price'].dirty ||
+                            f['price'].touched)">
+                            <span *ngIf="f['price'].errors['required']">
+                                price is a required field
+                            </span>
+                            <span *ngIf="f['price'].errors['min']">
+                                price minimum length is 10000,
+                            </span>
+                            <span *ngIf="f['price'].errors['max']">
+                                price maximum length is 100000000.
+                            </span>   
+                            <span *ngIf="f['price'].errors['cannotContainSpace']">
+                                price does not allow empty spaces
+                            </span>
+                            <span *ngIf="f['price'].errors['pattern']">
+                                price must be numeric with two decimal
+                              </span>              
+                            </p> 
+                          </div>
+                    </div>
+                    <div class="col-md-12">
+                        <label for="details" class="form-label lsp weig1 mt-5">Details</label>
+                        <textarea class="form-control" formControlName="details" id="details" rows="3"></textarea>
+                        <p class="small text-danger my-2" *ngIf="f['details'].invalid &&
+                        (f['details'].dirty ||
+                        f['details'].touched)">
+                        <span *ngIf="f['details'].errors['required']">
+                            details is a required field
+                        </span>
+                        <span *ngIf="f['details'].errors['minlength']">
+                            details minimum length is 1
+                        </span>
+                        <span *ngIf="f['details'].errors['maxlength']">
+                            details maximum length is 100
+                        </span>   
+                        <span *ngIf="f['details'].errors['pattern']">
+                            details must be a string
+                        </span>
+                        <span *ngIf="f['details'].errors['cannotContainSpace']">
+                            no empty spaces allowed
+                        </span>                 
+                        </p> 
+                      </div>
+                </div>
+          
+    <div class="row">
+        <div class="col-md-6">
             <button  type="submit" class="btn  btncolor px-5 lsp mt-5 shadow-lg" style="margin:auto;display:block">
-                Save
-            </button>
-    
-        </form>
+            Publish Advert
+        </button></div>
+        <div class="col-md-6">
+            <button  routerLink="/myadverts" class="btn btn-warning px-5 lsp mt-5 shadow-lg" style="margin:auto;display:block">
+                Cancel
+            </button></div>
+    </div>
+
+
+    </form>
+        </div>
+
     </div>
 </div>
 <br>Dirty: {{ advertForm.dirty }}

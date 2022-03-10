@@ -30,6 +30,7 @@ export class AdverteditComponent implements OnInit {
   advert:Advert[];
   currentUser:User;
   advertId:number;
+  isEditMode:boolean=false;
 
   constructor(
     private route: ActivatedRoute,
@@ -45,14 +46,25 @@ export class AdverteditComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    //load provinces for dropdown
     this.pronvinces = this.geoService.getPrivinces();
+    //cretate a form
     this.generateAdvertForm();
+
+
+
     //show loader on componets initialization
     this.route.params.subscribe((params) => {
       //get passed advertId
       this.advertId = Number(params['id']);
 
+
       if ( this.advertId > 0) {
+        //show loader while getting an advert
+        Promise.resolve().then(()=>this.loaderHelper.showLoader());
+        this.isEditMode=true;
+      
+        this.cities=this.geoService.getCities();
         //call advert service pass advertId
         this.advertService.getAdvertById( this.advertId).subscribe({
           //on receive advert pass advert to EditAdvert(advertId) function
@@ -69,29 +81,33 @@ export class AdverteditComponent implements OnInit {
 
   //get Advert to edit
   EditAdvert(advert: Advert) {
-    console.log(advert);
+
     if (advert.id === 0) {
       this.pageTitle = 'Add New Advert';
     } else {
       this.pageTitle = 'Edit :' + advert.headlineText;
+      
       //auto populate form values
       this.advertForm.setValue({
         headlineText: advert.headlineText,
-        province: advert.province,
-        city: advert.city,
+        province:advert.province.id,
+        city:advert.city.id,
         details: advert.details,
         price: advert.price
       });
+
+      this.isEditMode=false;
     }
   }
 //save /update an advert
-  SaveAdvert() {
+  SaveAdvert():void{
+    //show loader while saving an advert
     this.loaderHelper.showLoader();
     if(this.advertForm.valid){
       if(this.advertForm.dirty)
       {
         //map form object to Advert object
-        const advert=this.createAdvertObject({ ...this.advert, ...this.advertForm.value})
+        const advert=this.createAddObject({ ...this.advert, ...this.advertForm.value})
         //if advertid is not less than 0 it means ita an update else save 
         if(this.advertId>0){
           advert.id=this.advertId;
@@ -114,16 +130,12 @@ export class AdverteditComponent implements OnInit {
       console.log("Form invalid")
     }
   }
-  //create advert object based on selected id's of (province and city)
-  createAdvertObject(advert:Advert):Advert{
-    let ad=advert;
-    let province=this.geoService.getPrivinces().find(p=>p.id===Number(advert.province));
-    let city=this.geoService.getCities().find(c=>c.id=== Number(advert.city));
-    if(province && city){
-      ad.city=city.Name;
-      ad.province=province.Name;
-      ad.user_id=Number(this.currentUser.id);
-    }
+
+  //create an object based on selected province and city
+  createAddObject(advert:Advert):Advert{
+    advert.user_id=Number(this.currentUser.id);
+    advert.city=this.geoService.getCities().find(p=>p.id===Number(advert.city))
+    advert.province=this.geoService.getPrivinces().find(p=>p.id===Number(advert.province))
     return advert;
   }
 
@@ -139,20 +151,20 @@ export class AdverteditComponent implements OnInit {
           Validators.pattern("[a-zA-Z ]*"),
         ],
       ],
-      province: ['', [Validators.required]],
-      city: ['', Validators.required],
+      province: [, [Validators.required]],
+      city: [, Validators.required],
       details: [
         '',
         [
           Validators.required,
           Validators.minLength(10),
-          Validators.maxLength(100),
+          Validators.maxLength(1000),
           Validators.pattern("[a-zA-Z ]*"),
         ],
       ],
       price: [
         '',
-        [Validators.required, Validators.min(10000), Validators.max(100000000)],
+        [Validators.required, Validators.pattern(/^\d+\.\d{0,2}$/), Validators.min(10000), Validators.max(100000000)],
       ],
     });
   }

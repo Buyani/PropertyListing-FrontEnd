@@ -110,13 +110,11 @@ export class AdvertService {
     return {
       id: 0,
       headlineText: '',
-      province: '',
-      city: '',
+      province:null,
+      city:null,
       details: '',
       price: 0,
-      user_id: 0,
-      province_id:0,
-      city_id:0
+      user_id: 0
     };
   }
 }
