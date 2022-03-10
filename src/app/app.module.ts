@@ -19,13 +19,6 @@ import { LoaderComponent } from './shared/loader/loader.component';
 import { AdminComponent } from './properties/admin/admin.component';
 import { AdverteditComponent } from './properties/advertedit/advertedit.component';
 
-
-import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
-import { TooltipModule } from 'ngx-bootstrap/tooltip';
-import { ModalModule } from 'ngx-bootstrap/modal';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -49,15 +42,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     FormsModule,
     ReactiveFormsModule,
     InMemoryWebApiModule.forRoot(UserData),
-    BrowserAnimationsModule,
-
-    //dropdown,modal
-    BsDropdownModule.forRoot(),
-    TooltipModule.forRoot(),
-    ModalModule.forRoot(),
-    
   ],
-  exports: [BsDropdownModule, TooltipModule, ModalModule],
+  exports: [],
   providers: [
    
   ],
