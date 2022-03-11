@@ -123,6 +123,7 @@ export class AdverteditComponent implements OnInit {
           })
         }
         else{
+          advert.status=Status.LIVE;
           this.advertService.createNewAdvert(advert).subscribe({
             next:()=>this.Complete(),
             error:(err)=>this.notificationHelper.setErrorMessage(err)
