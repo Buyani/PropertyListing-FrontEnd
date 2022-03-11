@@ -40,11 +40,16 @@
                                 <b class="text-success" *ngSwitchCase="1">{{ad.status | statusDisplayPipe}}</b>
                                 <b class="text-danger" *ngSwitchCase="2">{{ad.status | statusDisplayPipe}}</b>
                             </td>
-                            <td class="text-right">
-                                <button class="btn btn-primary btn-sm" (click)="onAdvertEdit(ad.id)">Edit</button>
-                                <button class="btn btn-warning btn-sm">Hide</button>
-                                <button class="btn btn-danger btn-sm" >Delete</button>
-                            </td>
+                            <td class="overflow-hidden">
+                                <div ngbDropdown container="body">
+                                  <button class="btn btn-outline-primary btn-sm" ngbDropdownToggle>Actions</button>
+                                  <div ngbDropdownMenu>
+                                    <button class="edt" (click)="onAdvertEdit(ad.id)" ngbDropdownItem>Edit</button>
+                                    <button class="hid" ngbDropdownItem>Hide</button>
+                                    <button class="del" ngbDropdownItem>Delete</button>
+                                  </div>
+                                </div>
+                              </td>
                         </tr>
                     </tbody>
                 </table>

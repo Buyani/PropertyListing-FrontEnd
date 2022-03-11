@@ -18,6 +18,7 @@ import { LoaderComponent } from './shared/loader/loader.component';
 import { AdminComponent } from './properties/admin/admin.component';
 import { AdverteditComponent } from './properties/advertedit/advertedit.component';
 import { StatusPipe } from './pipes/status.pipe';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -42,6 +43,7 @@ import { StatusPipe } from './pipes/status.pipe';
     FormsModule,
     ReactiveFormsModule,
     InMemoryWebApiModule.forRoot(UserData),
+    NgbModule,
   ],
   exports: [],
   providers: [
