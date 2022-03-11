@@ -10,5 +10,5 @@ export class Advert{
     user_id:number;
     province:Province;
     city:City;
-    status:Status.HIDE;
+    status:Status;
 }

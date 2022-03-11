@@ -9,6 +9,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { LoaderHelper } from 'src/app/helpers/loader.helper';
 import { NotificationHelper } from 'src/app/helpers/notifications.helper';
 import Validation from 'src/app/helpers/validators.helper';
+import { Status } from 'src/app/models/advert-status.model';
 import { Advert } from 'src/app/models/advert.model';
 import { City } from 'src/app/models/city.model';
 import { Province } from 'src/app/models/province.model';
@@ -28,9 +29,10 @@ export class AdverteditComponent implements OnInit {
   pronvinces: Province[];
   cities: City[];
   submitted = false;
-  advert:Advert[];
+  advert:Advert;
   currentUser:User;
   advertId:number;
+  advertStatus:Status;
   isEditMode:boolean=false;
 
   constructor(
@@ -87,6 +89,7 @@ export class AdverteditComponent implements OnInit {
       this.pageTitle = 'Add New Advert';
     } else {
       this.pageTitle = 'Edit :' + advert.headlineText;
+      this.advertStatus=advert.status;
       
       //auto populate form values
       this.advertForm.setValue({
@@ -113,6 +116,7 @@ export class AdverteditComponent implements OnInit {
         //if advertid is not less than 0 it means ita an update else save 
         if(this.advertId>0){
           advert.id=this.advertId;
+          advert.status=this.advertStatus;
           this.advertService.updateAdvert(advert).subscribe({
             next:()=>this.Complete(),
             error:(err)=>this.notificationHelper.setErrorMessage(err)
