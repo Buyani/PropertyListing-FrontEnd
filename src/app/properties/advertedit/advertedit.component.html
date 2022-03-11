@@ -55,11 +55,8 @@
                             <span *ngIf="f['headlineText'].errors['maxlength']">
                                 headlineText maximum length is 100
                             </span>   
-                            <span *ngIf="f['headlineText'].errors['pattern']">
-                                headlineText must be a string
-                            </span>
-                            <span *ngIf="f['headlineText'].errors['cannotContainSpace']">
-                                no empty spaces allowed
+                            <span *ngIf="f['headlineText'].errors['emptySpaceStart']">
+                                {{f['headlineText'].errors['emptySpaceStart'].value}}
                             </span>                 
                             </p> 
                           </div>
@@ -99,7 +96,7 @@
                             details is a required field
                         </span>
                         <span *ngIf="f['details'].errors['minlength']">
-                            details minimum length is 1
+                            details minimum length is 10
                         </span>
                         <span *ngIf="f['details'].errors['maxlength']">
                             details maximum length is 100
@@ -109,14 +106,17 @@
                         </span>
                         <span *ngIf="f['details'].errors['cannotContainSpace']">
                             no empty spaces allowed
-                        </span>                 
+                        </span>  
+                        <span *ngIf="f['details'].errors['emptySpaceStart']">
+                            {{f['details'].errors['emptySpaceStart'].value}}
+                        </span>                
                         </p> 
                       </div>
                 </div>
           
     <div class="row">
         <div class="col-md-6">
-            <button  type="submit" class="btn  btncolor px-5 lsp mt-5 shadow-lg" style="margin:auto;display:block">
+            <button  type="submit" *ngIf="!submitted" class="btn  btncolor px-5 lsp mt-5 shadow-lg" style="margin:auto;display:block">
             Publish Advert
         </button></div>
         <div class="col-md-6">

@@ -32,15 +32,11 @@ export class MyadvertsComponent implements OnInit {
     //if user is logged get users adverts
     if(this.currentUser){
       
-      this.advertService.getAdverts().subscribe({
-        next:adverts=>this.MyAdverts(adverts),
+      this.advertService.getUserAdverts(Number(this.currentUser.id)).subscribe({
+        next:adverts=>this.myAdverts=adverts,
         error:err=>this.notificationHelper.setErrorMessage(err)
       })
     }
-  }
-
-  MyAdverts(adverts:Advert[]):void{
-    this.myAdverts=adverts.filter(ad=> ad.user_id===Number(this.currentUser.id))
   }
 
   //when edit button is clicked ,pass id and navigate

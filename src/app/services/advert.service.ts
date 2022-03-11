@@ -15,6 +15,7 @@ import {
 } from 'rxjs';
 import { LoaderHelper } from '../helpers/loader.helper';
 import { NotificationHelper } from '../helpers/notifications.helper';
+import { Status } from '../models/advert-status.model';
 import { Advert } from '../models/advert.model';
 
 @Injectable({
@@ -31,15 +32,24 @@ export class AdvertService {
   ) {}
 
   //get user advert by user_id
-  getUserAdverts(id: number): Advert[] {
-    let advertlist: Advert[];
-
-    this.getAdverts().subscribe((adverts) => {
-      advertlist = adverts.filter((p) => p.user_id === id);
-    });
-
-    return advertlist;
+  getUserAdverts(id: number):Observable<Advert[]> {
+    return new Observable(observer=>{
+      this.getAdverts().subscribe({
+        next:data=>{
+          let myads=data.filter(d=>d.user_id===id);
+          if(myads){
+            this.loaderHelper.hideLoader();
+            observer.next(myads);
+          }
+          else{
+            this.loaderHelper.hideLoader();
+            observer.next(null);
+          }
+        } 
+      })
+    })
   }
+  
   //get all adverts
   getAdverts(): Observable<Advert[]> {
     return this.http.get<Advert[]>(this.AdvertUrl).pipe(
@@ -114,7 +124,8 @@ export class AdvertService {
       city:null,
       details: '',
       price: 0,
-      user_id: 0
+      user_id: 0,
+      status:Status.HIDE
     };
   }
 }

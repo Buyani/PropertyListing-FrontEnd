@@ -27,6 +27,7 @@ export class AdverteditComponent implements OnInit {
   pageTitle: string;
   pronvinces: Province[];
   cities: City[];
+  submitted = false;
   advert:Advert[];
   currentUser:User;
   advertId:number;
@@ -101,6 +102,7 @@ export class AdverteditComponent implements OnInit {
   }
 //save /update an advert
   SaveAdvert():void{
+    this.submitted = true;
     //show loader while saving an advert
     this.loaderHelper.showLoader();
     if(this.advertForm.valid){
@@ -148,7 +150,7 @@ export class AdverteditComponent implements OnInit {
           Validators.required,
           Validators.minLength(10),
           Validators.maxLength(100),
-          Validators.pattern("[a-zA-Z ]*"),
+          Validation.emptySpaceValidator
         ],
       ],
       province: [, [Validators.required]],
@@ -159,12 +161,15 @@ export class AdverteditComponent implements OnInit {
           Validators.required,
           Validators.minLength(10),
           Validators.maxLength(1000),
-          Validators.pattern("[a-zA-Z ]*"),
+          Validation.emptySpaceValidator
         ],
       ],
       price: [
         '',
-        [Validators.required, Validators.pattern(/^\d+\.\d{0,2}$/), Validators.min(10000), Validators.max(100000000)],
+        [Validators.required, 
+          Validators.pattern(/^\d+\.\d{0,2}$/), 
+        Validators.min(10000), 
+        Validators.max(100000000)],
       ],
     });
   }
@@ -176,6 +181,12 @@ export class AdverteditComponent implements OnInit {
   //populate cities on province select
   onProvinceSelect(selected: any) {
     let provinceId = selected.target.value;
+
+    //set city value to null when choosing a new province
+    this.advertForm.patchValue({
+      city:null
+    })
+
     this.cities = this.geoService
       .getCities()
       .filter((city) => city.province_id === Number(provinceId));
@@ -183,6 +194,7 @@ export class AdverteditComponent implements OnInit {
 
   Complete():void{
     this.loaderHelper.hideLoader();
+    this.submitted=false;
     this.router.navigate(['/myadverts']);
     this.advertForm.reset();
   }

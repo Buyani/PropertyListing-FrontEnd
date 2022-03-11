@@ -1,5 +1,6 @@
 import { InMemoryDbService } from "angular-in-memory-web-api";
 import { Observable } from "rxjs";
+import { Status } from "../models/advert-status.model";
 import { Advert } from "../models/advert.model";
 import { Role } from "../models/role.model";
 import { User } from "../models/user.model";
@@ -64,7 +65,8 @@ export class UserData implements InMemoryDbService {
             'province':{
                 'id':3,
                 'Name':'Gauteng'
-             }
+             },
+             'status':Status.HIDE
         },
            
            
@@ -84,7 +86,8 @@ export class UserData implements InMemoryDbService {
             'province':{
                 'id':8,
                 'Name':'KwaZulu Natal'
-             }
+             },
+             'status':Status.LIVE
         },
 
 
@@ -101,7 +104,8 @@ export class UserData implements InMemoryDbService {
             'province':{
                 'id':1,
                 'Name':'Free State'
-             }
+             },
+             'status':Status.HIDE
         }
         ]
         return {users,adverts};

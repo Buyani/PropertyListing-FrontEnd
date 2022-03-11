@@ -1,3 +1,4 @@
+import { Status } from "./advert-status.model";
 import { City } from "./city.model";
 import { Province } from "./province.model";
 
@@ -9,4 +10,5 @@ export class Advert{
     user_id:number;
     province:Province;
     city:City;
+    status:Status.HIDE;
 }

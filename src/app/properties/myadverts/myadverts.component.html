@@ -13,6 +13,7 @@
                             <th scope="col">Province</th>
                             <th scope="col">City</th>
                             <th scope="col">Price</th>
+                            <th scope="col">Status</th>
                             <th scope="col">Actions</th>
                         </tr>
                     </thead>
@@ -33,6 +34,11 @@
                             </td>
                             <td>
                                 {{ad.price | currency: 'ZAR':"symbol-narrow"}}
+                            </td>
+                            <td [ngSwitch]="ad.status">
+                                <b class="text-warning" *ngSwitchCase="0">{{ad.status | statusDisplayPipe}}</b>
+                                <b class="text-success" *ngSwitchCase="1">{{ad.status | statusDisplayPipe}}</b>
+                                <b class="text-danger" *ngSwitchCase="2">{{ad.status | statusDisplayPipe}}</b>
                             </td>
                             <td class="text-right">
                                 <button class="btn btn-primary btn-sm" (click)="onAdvertEdit(ad.id)">Edit</button>

@@ -31,4 +31,18 @@ export default class Validation {
 
     }
 
+    static emptySpaceValidator(control: AbstractControl) : ValidationErrors | null {
+      if(control.value.startsWith(' ')){
+        return {
+          'emptySpaceStart': { value: 'input can not start with empty space' }
+        };
+      }
+      if(control.value.endsWith('  ')){
+        return {
+          'emptySpaceStart': { value: 'only one empty space in between texts' }
+        };
+      }
+      return null;
+  }
+
 }
