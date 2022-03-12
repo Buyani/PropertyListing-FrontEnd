@@ -25,7 +25,8 @@
                             <button class="btn btn-outline-primary btn-sm" ngbDropdownToggle>Actions</button>
                             <div ngbDropdownMenu>
                               <button class="edt" (click)="onAdvertEdit(ad.id)" ngbDropdownItem>Edit</button>
-                              <button class="hid" (click)="onHideAdvert(ad.id)" ngbDropdownItem>Hide</button>
+                              <button *ngIf="ad.status===1" class="hid" (click)="onHideOrShowAdvert(ad.id,0)" ngbDropdownItem>Hide</button>
+                              <button *ngIf="ad.status===0" class="hid" (click)="onHideOrShowAdvert(ad.id,1)" ngbDropdownItem>Show Advert</button>
                               <button class="del" (click)="onDelete(ad)" ngbDropdownItem>Delete</button>
                             </div>
                           </div>

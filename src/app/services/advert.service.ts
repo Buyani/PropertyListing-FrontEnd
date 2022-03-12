@@ -105,7 +105,6 @@ export class AdvertService {
   deleteAdvert(id: number): Observable<{}> {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     const url = `${this.AdvertUrl}/${id}`;
-    console.log("URL+++++++++++++++++++",url);
     return this.http.delete<Advert>(url, { headers }).pipe(
       delay(2000),
       tap(advert => this.notificationHelper.setSuccessMessage(advert.headlineText + " advert deleted succesfully...")),
@@ -123,7 +122,7 @@ export class AdvertService {
     } else {
       // The backend returned an unsuccessful response code.
       // The response body may contain clues as to what went wrong,
-      errorMessage = `Sever returned code ${err.status},error message: ${err.message}`;
+      errorMessage = `Sever returned code ${err.status}: ${err.message}`;
     }
     return throwError(errorMessage);
   }

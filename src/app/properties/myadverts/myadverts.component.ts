@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { throwIfEmpty } from 'rxjs';
 import { ConfirmationDialogHelper } from 'src/app/helpers/confirmation.helper';
 import { LoaderHelper } from 'src/app/helpers/loader.helper';
 import { NotificationHelper } from 'src/app/helpers/notifications.helper';
@@ -43,13 +44,14 @@ export class MyadvertsComponent implements OnInit {
   }
 
   //on hide advert
-  onHideAdvert(advertId: number) {
+  onHideOrShowAdvert(advertId: number,status:Status) {
     this.advertService.getAdvertById(advertId).subscribe({
       next: advert => {
         if (advert) {
-          advert.status = Status.HIDE;
+          advert.status = status;
           this.advertService.updateAdvert(advert).subscribe({
-            next: adv => console.log("UPDATED THIS     >...........", adv)
+            next: adv =>this.onComplete(),
+            error:err=>this.notificationHelper.setErrorMessage(err)
           })
         }
       }
@@ -61,12 +63,13 @@ export class MyadvertsComponent implements OnInit {
       .then((confirmed) => {
         if (confirmed) {
           this.loaderHelper.showLoader();
-          this.advertService.deleteAdvert(advert.id).subscribe({
+          this.advertService.deleteAdvert(Number(advert.id)).subscribe({
             next:()=> this.onComplete(),
             error: err => this.notificationHelper.setErrorMessage(err)
           });
         }
         else {
+          console.log('User canceled...')
           return;
         }
       })
