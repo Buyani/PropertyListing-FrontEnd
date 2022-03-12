@@ -29,27 +29,27 @@ export class AdvertService {
     private http: HttpClient,
     private loaderHelper: LoaderHelper,
     private notificationHelper: NotificationHelper
-  ) {}
+  ) { }
 
   //get user advert by user_id
-  getUserAdverts(id: number):Observable<Advert[]> {
-    return new Observable(observer=>{
+  getUserAdverts(id: number): Observable<Advert[]> {
+    return new Observable(observer => {
       this.getAdverts().subscribe({
-        next:data=>{
-          let myads=data.filter(d=>d.user_id===id);
-          if(myads){
+        next: data => {
+          let myads = data.filter(d => d.user_id === id);
+          if (myads) {
             this.loaderHelper.hideLoader();
             observer.next(myads);
           }
-          else{
+          else {
             this.loaderHelper.hideLoader();
             observer.next(null);
           }
-        } 
+        }
       })
     })
   }
-  
+
   //get all adverts
   getAdverts(): Observable<Advert[]> {
     return this.http.get<Advert[]>(this.AdvertUrl).pipe(
@@ -74,16 +74,16 @@ export class AdvertService {
   }
 
   //Update an advert
-  updateAdvert(advert:Advert):Observable<Advert>{
-    const headers=new HttpHeaders({'Content-Type':'application/json'});
-    const url=`${this.AdvertUrl}/${advert.id}`
-
-    return this.http.put<Advert>(url,advert,{headers})
-    .pipe(
-      delay(2000),
-      tap(post=> this.notificationHelper.setSuccessMessage(advert.headlineText+" updated succesfully...")),
-      catchError(this.handleError)
-    );
+  updateAdvert(advert: Advert): Observable<Advert> {
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    const url = `${this.AdvertUrl}/${advert.id}`
+    console.log("CALLED");
+    return this.http.put<Advert>(url, advert, { headers })
+      .pipe(
+        delay(2000),
+        tap(post => this.notificationHelper.setSuccessMessage(advert.headlineText + " updated succesfully...")),
+        catchError(this.handleError)
+      );
   }
 
   //posts a new advert
@@ -97,6 +97,18 @@ export class AdvertService {
           post.headlineText + ' created succesfully...'
         )
       ),
+      catchError(this.handleError)
+    );
+  }
+
+  //deletes a advert 
+  deleteAdvert(id: number): Observable<{}> {
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    const url = `${this.AdvertUrl}/${id}`;
+    console.log("URL+++++++++++++++++++",url);
+    return this.http.delete<Advert>(url, { headers }).pipe(
+      delay(2000),
+      tap(advert => this.notificationHelper.setSuccessMessage(advert.headlineText + " advert deleted succesfully...")),
       catchError(this.handleError)
     );
   }
@@ -120,12 +132,12 @@ export class AdvertService {
     return {
       id: 0,
       headlineText: '',
-      province:null,
-      city:null,
+      province: null,
+      city: null,
       details: '',
       price: 0,
       user_id: 0,
-      status:Status.HIDE
+      status: Status.HIDE
     };
   }
 }

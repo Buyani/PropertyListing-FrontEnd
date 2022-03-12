@@ -2,6 +2,7 @@
     <div>
         <h6 class="headtextdes text-center">{{pageTitle}}</h6>
         <hr>
+        <span class="btn btn-info btn-sm" routerLink="/adverts/0" ><a>Add Advert</a></span>
     </div>
     <div *ngFor="let ad of myAdverts" class="card carddes border-0 shadow-lg postion-relative" >
         <div class="row g-0">
@@ -24,8 +25,8 @@
                             <button class="btn btn-outline-primary btn-sm" ngbDropdownToggle>Actions</button>
                             <div ngbDropdownMenu>
                               <button class="edt" (click)="onAdvertEdit(ad.id)" ngbDropdownItem>Edit</button>
-                              <button class="hid" ngbDropdownItem>Hide</button>
-                              <button class="del" ngbDropdownItem>Delete</button>
+                              <button class="hid" (click)="onHideAdvert(ad.id)" ngbDropdownItem>Hide</button>
+                              <button class="del" (click)="onDelete(ad)" ngbDropdownItem>Delete</button>
                             </div>
                           </div>
                     </div>
@@ -41,3 +42,22 @@
     <hr />
     
 </div>
+
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          ...
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>

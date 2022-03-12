@@ -19,6 +19,8 @@ import { AdminComponent } from './properties/admin/admin.component';
 import { AdverteditComponent } from './properties/advertedit/advertedit.component';
 import { StatusPipe } from './pipes/status.pipe';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { ConfirmationdialogComponent } from './shared/confirmationdialog/confirmationdialog.component';
+import { ConfirmationDialogHelper } from './helpers/confirmation.helper';
 
 @NgModule({
   declarations: [
@@ -33,7 +35,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     LoaderComponent,
     AdminComponent,
     AdverteditComponent,
-    StatusPipe
+    StatusPipe,
+    ConfirmationdialogComponent
 
   ],
   imports: [
@@ -47,8 +50,9 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
   ],
   exports: [],
   providers: [
-   
+    ConfirmationDialogHelper
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [ ConfirmationdialogComponent ],
 })
 export class AppModule { }
