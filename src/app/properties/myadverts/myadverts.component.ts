@@ -14,7 +14,7 @@ import { AdvertService } from 'src/app/services/advert.service';
 })
 export class MyadvertsComponent implements OnInit {
 
-  pageTitle:string="My Adverts List";
+  pageTitle:string="Your Adverts";
   myAdverts:Advert[];
   currentUser:User;
   errorMessage:string;
