@@ -17,9 +17,7 @@
                                 style="height: 20px;"></span>{{ad.province.Name}},{{ad.city.Name}}
                     </h6>
                     <div class="d-flex justify-content-start">
-                        <div class="position-absolute bottom-0 end-0 mb-5 me-4 price">
-                            <i class="bi bi-cash"></i> <h5 class="cardtitledes text-primary"><b>{{ad.price |currency: 'ZAR':"symbol-narrow"}}</b></h5>
-                        </div>
+                        <h3 class="text-success">{{ad.price |currency: 'ZAR':"symbol-narrow"}}</h3>
                     </div>
                     <div class="position-absolute top-0 end-0">
                         <div ngbDropdown class="body btn button1 my-3 me-3 px-4 py-3">
@@ -30,6 +28,11 @@
                               <button class="del" ngbDropdownItem>Delete</button>
                             </div>
                           </div>
+                    </div>
+                    <div class="position-absolute bottom-0 end-0 mb-5 me-4 price" [ngSwitch]="ad.status">
+                        <b class="text-warning" *ngSwitchCase="0">{{ad.status | statusDisplayPipe}}</b>
+                        <b class="text-success" *ngSwitchCase="1">{{ad.status | statusDisplayPipe}}</b>
+                        <b class="text-danger" *ngSwitchCase="2">{{ad.status | statusDisplayPipe}}</b>
                     </div>
                 </div>
             </div>
