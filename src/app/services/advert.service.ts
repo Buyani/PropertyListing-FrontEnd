@@ -105,11 +105,11 @@ export class AdvertService {
   deleteAdvert(id: number): Observable<{}> {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     const url = `${this.AdvertUrl}/${id}`;
-    return this.http.delete<Advert>(url, { headers }).pipe(
-      delay(2000),
-      tap(advert => this.notificationHelper.setSuccessMessage(advert.headlineText + " advert deleted succesfully...")),
-      catchError(this.handleError)
-    );
+    return this.http.delete<Advert>(url, { headers })
+      .pipe(
+        tap((data )=> this.notificationHelper.setSuccessMessage("Successfully deleted advert...")),
+        catchError(this.handleError)
+      );
   }
 
   private handleError(err: HttpErrorResponse): Observable<never> {

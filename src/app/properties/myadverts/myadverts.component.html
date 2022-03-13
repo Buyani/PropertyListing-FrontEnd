@@ -2,7 +2,7 @@
     <div>
         <h6 class="headtextdes text-center">{{pageTitle}}</h6>
         <hr>
-        <span class="btn btn-info btn-sm" routerLink="/adverts/0" ><a>Add Advert</a></span>
+        <span class="btn blcolor" routerLink="/adverts/0" ><a>Add Advert</a></span>
     </div>
     <div *ngFor="let ad of myAdverts" class="card carddes border-0 shadow-lg postion-relative" >
         <div class="row g-0">
@@ -22,11 +22,11 @@
                     </div>
                     <div class="position-absolute top-0 end-0">
                         <div ngbDropdown class="body btn button1 my-3 me-3 px-4 py-3">
-                            <button class="btn btn-outline-primary btn-sm" ngbDropdownToggle>Actions</button>
+                            <button class="btn btn-outline-primary " ngbDropdownToggle>Actions</button>
                             <div ngbDropdownMenu>
                               <button class="edt" (click)="onAdvertEdit(ad.id)" ngbDropdownItem>Edit</button>
                               <button *ngIf="ad.status===1" class="hid" (click)="onHideOrShowAdvert(ad.id,0)" ngbDropdownItem>Hide</button>
-                              <button *ngIf="ad.status===0" class="hid" (click)="onHideOrShowAdvert(ad.id,1)" ngbDropdownItem>Show Advert</button>
+                              <button *ngIf="ad.status===0" class="hid" (click)="onHideOrShowAdvert(ad.id,1)" ngbDropdownItem>Show</button>
                               <button class="del" (click)="onDelete(ad)" ngbDropdownItem>Delete</button>
                             </div>
                           </div>

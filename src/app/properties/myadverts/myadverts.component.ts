@@ -63,10 +63,10 @@ export class MyadvertsComponent implements OnInit {
       .then((confirmed) => {
         if (confirmed) {
           this.loaderHelper.showLoader();
-          this.advertService.deleteAdvert(Number(advert.id)).subscribe({
-            next:()=> this.onComplete(),
-            error: err => this.notificationHelper.setErrorMessage(err)
-          });
+          this.advertService.deleteAdvert(advert.id).subscribe({
+            next:()=>this.onComplete(),
+            error:err=>this.notificationHelper.setErrorMessage(err)
+          })
         }
         else {
           console.log('User canceled...')
@@ -86,6 +86,7 @@ export class MyadvertsComponent implements OnInit {
     this.advertService.getUserAdverts(Number(this.currentUser.id)).subscribe({
       next: adverts => {
         this.myAdverts = adverts;
+        this.loaderHelper.hideLoader();
       }
     })
   }

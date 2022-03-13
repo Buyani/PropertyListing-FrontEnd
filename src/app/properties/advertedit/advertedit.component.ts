@@ -199,9 +199,10 @@ export class AdverteditComponent implements OnInit {
 
   Complete():void{
     this.loaderHelper.hideLoader();
+    this.advertForm.reset();
     this.submitted=false;
     this.router.navigate(['/myadverts']);
-    this.advertForm.reset();
+    
   }
 
   //on form save

@@ -34,7 +34,7 @@
     margin-bottom: 10vh;
   }
   .blcolor {
-    background-color: #016450;
+    background-color: #c1d16e;
     font-family: "Segoe UI";
     font-weight: 700;
     src: local("Segoe UI Bold");
@@ -66,5 +66,11 @@
     font-family: "Segoe UI";
     font-weight: 700;
     src: local("Segoe UI Bold");
+    letter-spacing: 2px;
+  }
+  .btn-outline-primary {
+    font-family: "Segoe UI";
+    font-weight: 600;
+    src: local("Segoe UI Semibold");
     letter-spacing: 2px;
   }
