@@ -6,7 +6,6 @@ import { RegisterComponent } from './account/register/register.component';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FooterComponent } from './shared/footer/footer.component';
-import { HeaderComponent } from './shared/header/header.component';
 import { HomesListPageComponent } from './properties/homeslistpage/homeslistpage.component';
 import { ListPropertyPageComponent } from './properties/listpropertypage/listpropertypage.component';
 import { HomeComponent } from './properties/home/home.component';
@@ -17,7 +16,11 @@ import { HttpClientModule } from '@angular/common/http';
 import { MyadvertsComponent } from './properties/myadverts/myadverts.component';
 import { LoaderComponent } from './shared/loader/loader.component';
 import { AdminComponent } from './properties/admin/admin.component';
-
+import { AdverteditComponent } from './properties/advertedit/advertedit.component';
+import { StatusPipe } from './pipes/status.pipe';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { ConfirmationdialogComponent } from './shared/confirmationdialog/confirmationdialog.component';
+import { ConfirmationDialogHelper } from './helpers/confirmation.helper';
 
 @NgModule({
   declarations: [
@@ -25,13 +28,15 @@ import { AdminComponent } from './properties/admin/admin.component';
     LoginComponent,
     RegisterComponent,
     FooterComponent,
-    HeaderComponent,
     HomesListPageComponent,
     ListPropertyPageComponent,
     HomeComponent,
     MyadvertsComponent,
     LoaderComponent,
-    AdminComponent
+    AdminComponent,
+    AdverteditComponent,
+    StatusPipe,
+    ConfirmationdialogComponent
 
   ],
   imports: [
@@ -40,11 +45,14 @@ import { AdminComponent } from './properties/admin/admin.component';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    InMemoryWebApiModule.forRoot(UserData)
+    InMemoryWebApiModule.forRoot(UserData),
+    NgbModule,
   ],
+  exports: [],
   providers: [
-   
+    ConfirmationDialogHelper
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [ ConfirmationdialogComponent ],
 })
 export class AppModule { }
