@@ -55,7 +55,22 @@ export class UserData implements InMemoryDbService {
         const adverts = [
             {
                 'id': 1, 'headlineText': "5 Bedroom East gate",
-                'details': "This are the details",
+                'details': `Family Home - Why Rent when you can buy
+
+                This home is ideally situated on the border of Westville North and Reservoir Hills and is above road level.
+                
+                The garden is manageable and neat, there is also a swimming pool for those hot summer days.
+                
+                This house is neat and move in ready.
+                
+                Security is taken care of in the form of an alarm, burglar bars and a motorized gate.
+                
+                Added bonus is the 1 bedroom cottage which is seperate from the main house and is at the back of the property. A rental income of around R 4000 could be achieved.
+                
+                There is also a servants quarters.
+                
+                Call Ebrahim to view.
+                `,
                 'price': 1200000.00,
                 "user_id": 1,
                 'city': {
@@ -71,7 +86,22 @@ export class UserData implements InMemoryDbService {
             },
             {
                 'id': 2, 'headlineText': "Mension Durban North",
-                'details': "This are the details",
+                'details': `Family Home - Why Rent when you can buy
+
+                This home is ideally situated on the border of Westville North and Reservoir Hills and is above road level.
+                
+                The garden is manageable and neat, there is also a swimming pool for those hot summer days.
+                
+                This house is neat and move in ready.
+                
+                Security is taken care of in the form of an alarm, burglar bars and a motorized gate.
+                
+                Added bonus is the 1 bedroom cottage which is seperate from the main house and is at the back of the property. A rental income of around R 4000 could be achieved.
+                
+                There is also a servants quarters.
+                
+                Call Ebrahim to view.
+                `,
                 'price': 900000.00,
                 'user_id': 1,
                 'city': {
@@ -87,7 +117,22 @@ export class UserData implements InMemoryDbService {
             },
             {
                 'id': 3, 'headlineText': "4 Bedroom House for Sale in Heuwelsig",
-                'details': "This are the details",
+                'details': `Family Home - Why Rent when you can buy
+
+                This home is ideally situated on the border of Westville North and Reservoir Hills and is above road level.
+                
+                The garden is manageable and neat, there is also a swimming pool for those hot summer days.
+                
+                This house is neat and move in ready.
+                
+                Security is taken care of in the form of an alarm, burglar bars and a motorized gate.
+                
+                Added bonus is the 1 bedroom cottage which is seperate from the main house and is at the back of the property. A rental income of around R 4000 could be achieved.
+                
+                There is also a servants quarters.
+                
+                Call Ebrahim to view.
+                `,
                 'price': 1800000.00,
                 'user_id': 2,
                 'city': {

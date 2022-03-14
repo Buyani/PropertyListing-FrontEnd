@@ -1,0 +1,31 @@
+.details{
+    height: 14rem;
+}
+.main{
+    height: 15rem;
+}
+.pricelocation{
+    height: 8rem;
+}
+.sellercard{
+    height: 23rem;
+}
+
+.price {
+    color: #016450;
+    letter-spacing: 5px;
+    font-family: "Segoe UI";
+    font-weight: 700;
+    src: local("Segoe UI Bold");
+    line-height: 3rem;
+  }
+  .featuredes {
+    font-size: 14px;
+    font-family: "Segoe UI";
+    font-weight: 700;
+    src: local("Segoe UI Bold");
+    letter-spacing: 2px;
+    color: #999999;
+  }
+
+

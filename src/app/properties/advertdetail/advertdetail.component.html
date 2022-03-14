@@ -1,1 +1,43 @@
-<p>advertdetail works!</p>
+<div *ngIf="advert">
+    <div class="row gap-3">
+        <div class="card col-md-12 main">
+            <div class="card-body">
+            </div>
+          </div>
+    </div>
+    <hr clas="col-md-12">
+    <div class="row">
+        <div class="col-md-8 gap-3">
+            <div class="row gap-3">
+                <div class="card pricelocation">
+                    <div class="card-body">
+                        <h3 class="price">{{advert.price |currency: 'ZAR':"symbol-narrow"}}</h3>
+                        <h6 class="mt-3 featuredes">
+                            <span><img src="../../assets/Rounded.png" alt="arrow" class="img-fluid me-2"
+                                    style="height: 20px;"></span>{{advert.province.Name}},{{advert.city.Name}}
+                        </h6>
+                    </div>
+                  </div>
+    
+                  <div class="card details">
+                    <div class="card-body">
+                        {{advert.details}}
+                    </div>
+                  </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card sellercard">
+                <h4 class="text-center">Contact Seller</h4>
+                <div class="card-body">
+            
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div><hr></div>
+</div>
+
+
+

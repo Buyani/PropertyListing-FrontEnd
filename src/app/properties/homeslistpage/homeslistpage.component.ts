@@ -44,7 +44,7 @@ getAdvertsList(){
 }
 getAdvertDetails(advert:Advert){
   console.log("PASSSED ADVERT   ",advert)
-  this.route.navigate(['/details',advert])
+  this.route.navigate(['/details',advert.id])
 }
 // sorts/oders adverts by price high or price low
   sort(event: any) {

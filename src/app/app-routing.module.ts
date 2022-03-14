@@ -23,7 +23,7 @@ const routes: Routes = [
   { path:'myadverts', component: MyadvertsComponent,canActivate: [AuthGuard]},
   { path:'admin' ,component: AdminComponent , canActivate: [AuthGuard , RoleGuard]},
   { path :'adverts/:id', component:AdverteditComponent,canActivate:[AuthGuard]},
-  { path :'details/:advert', component:AdvertdetailComponent}
+  { path :'details/:advertId', component:AdvertdetailComponent}
 ];
 
 @NgModule({

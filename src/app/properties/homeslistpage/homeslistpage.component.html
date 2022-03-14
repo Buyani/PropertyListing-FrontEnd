@@ -28,7 +28,7 @@
             </div>
             <div class="col-md-8">
                 <div class="card-body ms-5 mt-4">
-                    <h5 class="cardtitledes"(click)="getAdvertDetails(ad)"><b>{{ad.headlineText}}</b></h5>
+                    <a class="cardtitledes" (click)="getAdvertDetails(ad)"><b>{{ad.headlineText}}</b></a>
                     <h6 class="mt-3 featuredes">
                         <span><img src="../../assets/Rounded.png" alt="arrow" class="img-fluid me-2"
                                 style="height: 20px;"></span>{{ad.province.Name}},{{ad.city.Name}}
