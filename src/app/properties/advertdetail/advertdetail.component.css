@@ -28,4 +28,12 @@
     color: #999999;
   }
 
+  #img1{
+    width: 80%;
+    height: auto;
+    margin: auto;
+    display: block;
+    background-size:20%;
+}
+
 
