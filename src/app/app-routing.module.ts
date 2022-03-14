@@ -5,6 +5,7 @@ import { RegisterComponent } from './account/register/register.component';
 import { AuthGuard } from './helpers/auth.guard';
 import { RoleGuard } from './helpers/role.guard';
 import { AdminComponent } from './properties/admin/admin.component';
+import { AdvertdetailComponent } from './properties/advertdetail/advertdetail.component';
 import { AdverteditComponent } from './properties/advertedit/advertedit.component';
 import { HomeComponent } from './properties/home/home.component';
 import { HomesListPageComponent } from './properties/homeslistpage/homeslistpage.component';
@@ -21,7 +22,8 @@ const routes: Routes = [
   {path :'login',component: LoginComponent},
   { path:'myadverts', component: MyadvertsComponent,canActivate: [AuthGuard]},
   { path:'admin' ,component: AdminComponent , canActivate: [AuthGuard , RoleGuard]},
-  { path :'adverts/:id', component:AdverteditComponent,canActivate:[AuthGuard]}
+  { path :'adverts/:id', component:AdverteditComponent,canActivate:[AuthGuard]},
+  { path :'details/:advert', component:AdvertdetailComponent}
 ];
 
 @NgModule({

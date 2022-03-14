@@ -1,0 +1,87 @@
+.headtextdes {
+    margin-top: 10vh;
+    margin-bottom: 2vh;
+    font-size: 30px;
+    font-family: "Segoe UI";
+    font-weight: 300;
+    letter-spacing: 2px;
+    color: rgba(153, 153, 153, 0.3);
+  }
+  .h2 {
+    color: #016450;
+    letter-spacing: 5px;
+    font-family: "Segoe UI";
+    font-weight: 700;
+    src: local("Segoe UI Bold");
+    line-height: 3rem;
+  }
+  .featuredes {
+    font-size: 14px;
+    font-family: "Segoe UI";
+    font-weight: 700;
+    src: local("Segoe UI Bold");
+    letter-spacing: 2px;
+    color: #999999;
+  }
+  .cardtitledes {
+    font-family: "Segoe UI";
+    font-weight: 300;
+    src: local("Segoe UI Bold");
+    letter-spacing: 2px;
+    font-size: 20px;
+  }
+  .aminities {
+    font-family: "Segoe UI";
+    font-weight: 700;
+    src: local("Segoe UI Bold");
+    letter-spacing: 2px;
+    color: #999999;
+  }
+  .carddes {
+    margin-top: 5vh;
+    margin-bottom: 6vh;
+  }
+  .searchText{
+    border-radius: 25px;
+  }
+  .blcolor {
+    background-color: #c1d16e;
+    font-family: "Segoe UI";
+    font-weight: 700;
+    src: local("Segoe UI Bold");
+    letter-spacing: 1.5px;
+    color: #ffffff;
+  }
+  .bscolor {
+    background-color: #ffffff;
+    font-family: "Segoe UI";
+    font-weight: 700;
+    src: local("Segoe UI Bold");
+    letter-spacing: 1.5px;
+    color: #016450;
+  }
+  .button1 {
+    font-family: "Segoe UI";
+    font-weight: 700;
+    src: local("Segoe UI Bold");
+    letter-spacing: 1.5px;
+    color: #016450;
+  }
+  .billdes {
+    font-family: "Segoe UI";
+    font-weight: 600;
+    src: local("Segoe UI Semibold");
+    letter-spacing: 2px;
+  }
+  .billdesgt {
+    font-family: "Segoe UI";
+    font-weight: 700;
+    src: local("Segoe UI Bold");
+    letter-spacing: 2px;
+  }
+  .btn-outline-primary {
+    font-family: "Segoe UI";
+    font-weight: 600;
+    src: local("Segoe UI Semibold");
+    letter-spacing: 2px;
+  }
