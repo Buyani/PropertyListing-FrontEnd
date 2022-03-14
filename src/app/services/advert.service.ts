@@ -77,7 +77,6 @@ export class AdvertService {
   updateAdvert(advert: Advert): Observable<Advert> {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     const url = `${this.AdvertUrl}/${advert.id}`
-    console.log("CALLED");
     return this.http.put<Advert>(url, advert, { headers })
       .pipe(
         delay(2000),

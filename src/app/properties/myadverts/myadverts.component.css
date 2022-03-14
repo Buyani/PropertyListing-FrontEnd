@@ -7,6 +7,14 @@
     letter-spacing: 2px;
     color: rgba(153, 153, 153, 0.3);
   }
+  .h2 {
+    color: #016450;
+    letter-spacing: 5px;
+    font-family: "Segoe UI";
+    font-weight: 700;
+    src: local("Segoe UI Bold");
+    line-height: 3rem;
+  }
   .featuredes {
     font-size: 14px;
     font-family: "Segoe UI";

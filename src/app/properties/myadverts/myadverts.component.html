@@ -1,6 +1,6 @@
-<div class="container">
+<div class="container" *ngIf="!updatingStatus && !deleting">
     <div>
-        <h6 class="headtextdes text-center">{{pageTitle}}</h6>
+        <h2 class="headtextdes text-center">{{pageTitle}}</h2>
         <hr>
         <span class="btn blcolor" routerLink="/adverts/0" ><a>Add Advert</a></span>
     </div>
