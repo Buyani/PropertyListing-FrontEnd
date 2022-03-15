@@ -10,6 +10,14 @@
 .sellercard{
     height: 23rem;
 }
+.title{
+    color: #016450;
+    letter-spacing: 5px;
+    font-family: "Segoe UI";
+    font-weight: 700;
+    src: local("Segoe UI Bold");
+    line-height: 3rem;
+}
 
 .price {
     color: #016450;
@@ -39,5 +47,13 @@
     src: local("Segoe UI Semibold");
     letter-spacing: 1.5px;
   }
+
+  .mt-0 {
+    margin-top: 0 !important;
+  }
+  .top17 { 
+      margin-top:10px; 
+      margin-right: 8px;
+    }
 
 

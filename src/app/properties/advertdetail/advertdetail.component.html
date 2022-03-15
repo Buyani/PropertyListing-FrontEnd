@@ -1,5 +1,5 @@
-<div *ngIf="advert">
-    <div class="row gap-3">
+<div class="container" *ngIf="advert">
+    <div class="row">
         <ngb-carousel>
             <ng-template ngbSlide *ngFor="let image of images">
                 <div class="wrapper">
@@ -12,10 +12,9 @@
             </ng-template>
         </ngb-carousel>
     </div>
-    <hr clas="col-md-12">
     <div class="row">
-        <div class="col-md-6 gap-3">
-            <div class="row gap-3">
+        <div class="col-md-8">
+            <div class="row top17">
                 <div class="card pricelocation">
                     <div class="card-body">
                         <h3 class="price">{{advert.price |currency: 'ZAR':"symbol-narrow"}}</h3>
@@ -26,7 +25,8 @@
                     </div>
 
                 </div>
-
+            </div>
+            <div class="row top17">
                 <div class="card details">
                     <div class="card-body">
                         {{advert.details}}
@@ -34,69 +34,28 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-6">
-            <div class="col-md-6">
+        <div class="col-md-4">
+            <div class="row top17">
                 <div class="card sellercard">
-                    <h4 class="text-center col1">Contact Seller</h4>
-                    <div class="card-body">
-    
+                    <div class="card-body justify-content-center">
+                        <h5 class="card-title text-center title col1">Contact Seller</h5>
+                        <div class="text-center">
+                            <div class="row">Buyani Mhlongo</div>
+                            <div class="row">0763432298</div>
+                            <div class="row">buyanimhlongo@gmail.com</div>
+                        </div>
+
                     </div>
                 </div>
             </div>
-            <div></div>
-            <div class="col-md-6 card">
-                    <h4 class="text-center col1">Contact Form</h4>
-            
-                        <div class="container py-4">
+            <div class="row top17">
+                <div class="card sellercard">
+                    <div class="card-body">
+                        <h5 class="card-title title text-center col1">Contact Form</h5>
 
-                            <!-- Bootstrap 5 starter form -->
-                            <form id="contactForm">
-                          
-                              <!-- Name input -->
-                              <div class="mb-3">
-                                <label class="form-label" for="name">Name</label>
-                                <input class="form-control" id="name" type="text" placeholder="Name" data-sb-validations="required" />
-                                <div class="invalid-feedback" data-sb-feedback="name:required">Name is required.</div>
-                              </div>
-                          
-                              <!-- Email address input -->
-                              <div class="mb-3">
-                                <label class="form-label" for="emailAddress">Email Address</label>
-                                <input class="form-control" id="emailAddress" type="email" placeholder="Email Address" data-sb-validations="required, email" />
-                                <div class="invalid-feedback" data-sb-feedback="emailAddress:required">Email Address is required.</div>
-                                <div class="invalid-feedback" data-sb-feedback="emailAddress:email">Email Address Email is not valid.</div>
-                              </div>
-                          
-                              <!-- Message input -->
-                              <div class="mb-3">
-                                <label class="form-label" for="message">Message</label>
-                                <textarea class="form-control" id="message" type="text" placeholder="Message" style="height: 10rem;" data-sb-validations="required"></textarea>
-                                <div class="invalid-feedback" data-sb-feedback="message:required">Message is required.</div>
-                              </div>
-                          
-                              <!-- Form submissions success message -->
-                              <div class="d-none" id="submitSuccessMessage">
-                                <div class="text-center mb-3">Form submission successful!</div>
-                              </div>
-                          
-                              <!-- Form submissions error message -->
-                              <div class="d-none" id="submitErrorMessage">
-                                <div class="text-center text-danger mb-3">Error sending message!</div>
-                              </div>
-                          
-                              <!-- Form submit button -->
-                              <div class="d-grid">
-                                <button class="btn btn-primary btn-lg" type="submit">Submit</button>
-                              </div>            
-                            </form>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-    <div>
-        <hr>
-    </div>
 </div>
-
-
-
