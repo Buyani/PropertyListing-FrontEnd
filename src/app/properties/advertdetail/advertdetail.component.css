@@ -8,7 +8,10 @@
     height: 8rem;
 }
 .sellercard{
-    height: 23rem;
+    height: 15rem;
+}
+.contact-form{
+    margin-bottom: 8px;
 }
 .title{
     color: #016450;
@@ -18,6 +21,13 @@
     src: local("Segoe UI Bold");
     line-height: 3rem;
 }
+.container{
+    background-color: rgb(247, 246, 241);
+}
+
+.middle{
+    margin-left: 5px;
+}
 
 .price {
     color: #016450;
@@ -26,6 +36,7 @@
     font-weight: 700;
     src: local("Segoe UI Bold");
     line-height: 3rem;
+
   }
   .featuredes {
     font-size: 14px;
