@@ -10,6 +10,9 @@
 .sellercard{
     height: 15rem;
 }
+.contactcard{
+    height: 29rem;
+}
 .contact-form{
     margin-bottom: 8px;
 }
@@ -59,8 +62,10 @@
     letter-spacing: 1.5px;
   }
 
-  .mt-0 {
-    margin-top: 0 !important;
+  .btncolor {
+    background-color: #8ae4d2;
+    font-weight: bold;
+    color: #ffffff;
   }
   .top17 { 
       margin-top:10px; 
