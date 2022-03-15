@@ -20,7 +20,8 @@
         </div>
     </div>
 
-    <div *ngFor="let ad of advertsList " class="card carddes border-0 shadow-lg postion-relative" >
+    <div *ngFor="let ad of advertsList | slice: (page-1) * pageSize : page * pageSize; index as i" class="card carddes border-0 shadow-lg postion-relative" >
+        <span scope="row">{{ (page -1) * pageSize + i + 1 }}</span>
         <div class="row g-0" >
             <div class="col-md-4">
                 <img src="../../assets/photoBuilding.png" class="img-fluid rounded-start m-3" alt="buildingimg"
@@ -40,4 +41,7 @@
             </div>
         </div>
     </div>
+
+    <ngb-pagination [collectionSize]="collectionSize" [(page)]="page" [maxSize]="5" [boundaryLinks]="true"
+    [pageSize]="pageSize" class="d-flex justify-content-center"></ngb-pagination>
 </div>

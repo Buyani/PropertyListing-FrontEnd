@@ -4,6 +4,7 @@ import { LoaderHelper } from 'src/app/helpers/loader.helper';
 import { NotificationHelper } from 'src/app/helpers/notifications.helper';
 import { Advert } from 'src/app/models/advert.model';
 import { AdvertService } from 'src/app/services/advert.service';
+import { NgbCarouselConfig } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-advertdetail',
@@ -12,12 +13,23 @@ import { AdvertService } from 'src/app/services/advert.service';
 })
 export class AdvertdetailComponent implements OnInit {
 
+  images = [
+    {title: 'First Slide', short: 'First Slide Short', src: "https://picsum.photos/id/700/900/500"},
+    {title: 'Second Slide', short: 'Second Slide Short', src: "https://picsum.photos/id/1011/900/500"},
+    {title: 'Third Slide', short: 'Third Slide Short', src: "https://picsum.photos/id/984/900/500"}
+  ];
+
   advert: Advert;
 
   constructor(private router: ActivatedRoute,
+    config: NgbCarouselConfig,
     private advertService: AdvertService,
     private loaderHeper: LoaderHelper,
-    private notificationHelper: NotificationHelper) { }
+    private notificationHelper: NotificationHelper) { 
+      config.interval = 2000;
+      config.keyboard = true;
+      config.pauseOnHover = true;
+    }
 
   ngOnInit(): void {
     Promise.resolve().then(() => this.loaderHeper.showLoader());

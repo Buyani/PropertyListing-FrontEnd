@@ -3,7 +3,6 @@ import { Router } from '@angular/router';
 import { LoaderHelper } from 'src/app/helpers/loader.helper';
 import { NotificationHelper } from 'src/app/helpers/notifications.helper';
 import { Advert } from 'src/app/models/advert.model';
-import { LogIn } from 'src/app/models/login.model';
 import { User } from 'src/app/models/user.model';
 import { UserManager } from 'src/app/services/account.service';
 import { AdvertService } from 'src/app/services/advert.service';
@@ -19,6 +18,11 @@ export class HomesListPageComponent implements OnInit {
   advertsList: Advert[];
   filteredAdverts:Advert[];
   selectedAdvert:Advert;
+
+  page = 1;
+  pageSize = 2;
+  collectionSize: number;
+  currentRate = 8;
 
   constructor(private userService: UserManager,
     private advertService: AdvertService,
@@ -38,6 +42,7 @@ getAdvertsList(){
   this.advertService.getAdverts().subscribe({
     next: adverts =>{
       this.advertsList=adverts.sort((low, high) => low.price - high.price);
+      this.collectionSize = this.advertsList.length;
     },
     error:err=>this.notificatioHelper.setErrorMessage(err)
   })
