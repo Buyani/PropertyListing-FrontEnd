@@ -21,8 +21,8 @@ export class MyadvertsComponent implements OnInit {
   myAdverts: Advert[];
   currentUser: User;
   errorMessage: string;
-  updatingStatus:boolean;
-  deleting:boolean;
+  updatingStatus: boolean;
+  deleting: boolean;
 
   constructor(private loaderHelper: LoaderHelper,
     private advertService: AdvertService,
@@ -46,32 +46,29 @@ export class MyadvertsComponent implements OnInit {
   }
 
   //on hide advert
-  onHideOrShowAdvert(advertId: number,status:Status) {
-    this.updatingStatus=true;
+  onHideOrShowAdvert(advert: Advert, status: Status) {
+    this.updatingStatus = true;
     this.loaderHelper.showLoader();
-    this.advertService.getAdvertById(advertId).subscribe({
-      next: advert => {
-        if (advert) {
-          advert.status = status;
-          this.advertService.updateAdvert(advert).subscribe({
-            next: adv =>this.onComplete(),
-            error:err=>this.notificationHelper.setErrorMessage(err)
-          })
-        }
-      }
-    })
+
+    if (advert) {
+      advert.status = status;
+      this.advertService.updateAdvert(advert).subscribe({
+        next: adv => this.onComplete(),
+        error: err => this.notificationHelper.setErrorMessage(err)
+      })
+    }
   }
   //when delete option is selected
   onDelete(advert: Advert): void {
     this.ConfirmationHelper.confirm('Please confirm..', `Do you really want to delete :${advert.headlineText} ... ?`)
       .then((confirmed) => {
         if (confirmed) {
-          this.deleting=true;
+          this.deleting = true;
           this.loaderHelper.showLoader();
 
           this.advertService.deleteAdvert(advert.id).subscribe({
-            next:()=>this.onComplete(),
-            error:err=>this.notificationHelper.setErrorMessage(err)
+            next: () => this.onComplete(),
+            error: err => this.notificationHelper.setErrorMessage(err)
           })
         }
         else {
@@ -86,14 +83,14 @@ export class MyadvertsComponent implements OnInit {
   onAdvertEdit(advertid: number) {
     this.router.navigate(['/adverts', advertid])
   }
-  
+
   onComplete(): void {
     this.loaderHelper.showLoader();
     this.advertService.getUserAdverts(Number(this.currentUser.id)).subscribe({
       next: adverts => {
         this.myAdverts = adverts;
-        this.updatingStatus=false;
-        this.deleting=false;
+        this.updatingStatus = false;
+        this.deleting = false;
         this.loaderHelper.hideLoader();
       }
     })
