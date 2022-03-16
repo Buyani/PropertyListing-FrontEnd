@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { LoginComponent } from './account/login/login.component';
 import { RegisterComponent } from './account/register/register.component';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FooterComponent } from './shared/footer/footer.component';
@@ -21,6 +20,10 @@ import { StatusPipe } from './pipes/status.pipe';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ConfirmationdialogComponent } from './shared/confirmationdialog/confirmationdialog.component';
 import { ConfirmationDialogHelper } from './helpers/confirmation.helper';
+import { AdvertdetailComponent } from './properties/advertdetail/advertdetail.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { SellerComponent } from './properties/seller/seller.component';
+
 
 @NgModule({
   declarations: [
@@ -36,15 +39,18 @@ import { ConfirmationDialogHelper } from './helpers/confirmation.helper';
     AdminComponent,
     AdverteditComponent,
     StatusPipe,
-    ConfirmationdialogComponent
+    ConfirmationdialogComponent,
+    AdvertdetailComponent,
+    SellerComponent
 
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule,
     ReactiveFormsModule,
+    FormsModule,
     InMemoryWebApiModule.forRoot(UserData),
     NgbModule,
   ],

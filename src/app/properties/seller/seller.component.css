@@ -1,0 +1,46 @@
+
+.sellercard{
+    height: 10rem;
+}
+.contactcard{
+    height: 29rem;
+}
+.contact-form{
+    margin-bottom: 8px;
+}
+.title{
+    color: #016450;
+    letter-spacing: 5px;
+    font-family: "Segoe UI";
+    font-weight: 700;
+    src: local("Segoe UI Bold");
+    line-height: 3rem;
+}
+
+.col1 {
+    font-family: "Segoe UI";
+    font-weight: 400;
+    src: local("Segoe UI Semibold");
+    letter-spacing: 1.5px;
+  }
+
+  .btncolor {
+    background-color: #8ae4d2;
+    font-weight: bold;
+    color: #ffffff;
+  }
+  .top17 { 
+      margin-top:10px; 
+      margin-right: 8px;
+    }
+
+.seller-details{
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    text-align: center;
+}
+
+.card-color{
+    background-color: #f7f6ee7e;
+}
+
+

@@ -1,0 +1,114 @@
+<div class="row top17" *ngIf="seller">
+    <div class="card card-color sellercard text-center">
+        <div class="card-body">
+            <h5 class="card-title text-center title col1">Contact Seller</h5>
+            <div class="seller-details d-flex justify-content-center">
+                <div>{{seller.forename}} {{seller.forename}} <br>
+                 {{seller.email}} 
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<div class="row top17 contact-form">
+    <div class="card contactcard card-color">
+        <span *ngIf="errorMessage" class="text-danger">{{errorMessage}}</span>
+        <div class="card-body">
+            <h5 class="card-title title text-center col1">Contact Form</h5>
+            <form class="text-center"[formGroup]="messageForm" (ngSubmit)="onMessageSend()">
+                <span>
+                    <input formControlName="name" type="text" class="form-control mb-4" placeholder="your name">
+                    <p class="small text-danger my-2" *ngIf="f['name'].invalid &&
+                    (f['name'].dirty ||
+                    f['name'].touched)">
+                    <span *ngIf="f['name'].errors['required']">
+                        name is a required field
+                    </span>
+                    <span *ngIf="f['name'].errors['minlength']">
+                        name minimum length is 5
+                    </span>
+                    <span *ngIf="f['name'].errors['maxlength']">
+                        name maximum length is 100
+                    </span>   
+                    <span *ngIf="f['name'].errors['pattern']">
+                        name must be a string
+                    </span>
+                    <span *ngIf="f['name'].errors['cannotContainSpace']">
+                        no empty spaces allowed
+                    </span>                 
+                    </p> 
+                </span>
+                <span>
+                    <input formControlName="email" type="email"class="form-control mb-4" placeholder="your email">
+                    <p class="small text-danger my-2" *ngIf="f['email'].invalid &&
+                    (f['email'].dirty ||
+                    f['email'].touched)">
+                    <span *ngIf="f['email'].errors['required']">
+                        email is a required field
+                    </span>
+                    <span *ngIf="f['email'].errors['minlength']">
+                        email minimum length is 6
+                    </span>
+                    <span *ngIf="f['email'].errors['maxlength']">
+                        email maximum length is 100
+                    </span>   
+                    <span *ngIf="f['email'].errors['pattern']">
+                        email must be a valid email address
+                    </span>  
+                    <span *ngIf="f['email'].errors['cannotContainSpace']">
+                        no empty spaces allowed
+                    </span>                 
+                    </p> 
+                </span>
+                <span>
+                    <input formControlName="cellnumber" type="text"class="form-control mb-4" placeholder="your cellphone">
+                    <i class="fa fa-phone fa-lg fa-fw" aria-hidden="true"></i>
+                    <p class="small text-danger my-2" *ngIf="f['cellnumber'].invalid &&
+                    (f['cellnumber'].dirty ||
+                    f['cellnumber'].touched)">
+                    <span *ngIf="f['cellnumber'].errors['required']">
+                        cellnumber is a required field
+                    </span>
+                    <span *ngIf="f['cellnumber'].errors['minlength']">
+                        cellnumber minimum length is 5
+                    </span>
+                    <span *ngIf="f['cellnumber'].errors['maxlength']">
+                        cellnumber maximum length is 100
+                    </span>   
+                    <span *ngIf="f['cellnumber'].errors['pattern']">
+                        cellnumber must be a string
+                    </span>
+                    <span *ngIf="f['cellnumber'].errors['cannotContainSpace']">
+                        no empty spaces allowed
+                    </span>                 
+                    </p> 
+                </span>
+
+                <span>
+                    <textarea formControlName="message" class="form-control mb-4" type="text" rows="3"></textarea>
+                    <p class="small text-danger my-2" *ngIf="f['message'].invalid &&
+                    (f['message'].dirty ||
+                    f['message'].touched)">
+                    <span *ngIf="f['message'].errors['required']">
+                        message is a required field
+                    </span>
+                    <span *ngIf="f['message'].errors['minlength']">
+                        message minimum length is 10
+                    </span>
+                    <span *ngIf="f['message'].errors['maxlength']">
+                        message maximum length is 200
+                    </span>   
+                    <span *ngIf="f['message'].errors['pattern']">
+                        message must be a string
+                    </span>
+                    <span *ngIf="f['message'].errors['cannotContainSpace']">
+                        no empty spaces allowed
+                    </span>                 
+                    </p> 
+                </span>
+                <button class="btn btncolor btn-info btn-block my-4" type="submit">Send Message</button>
+            </form>
+        </div>
+    </div>
+</div>

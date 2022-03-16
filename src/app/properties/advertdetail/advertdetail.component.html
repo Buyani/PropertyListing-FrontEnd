@@ -1,0 +1,39 @@
+<div class="container" *ngIf="advert">
+    <div class="row">
+        <ngb-carousel>
+            <ng-template ngbSlide *ngFor="let image of images">
+                <div class="wrapper">
+                    <img [src]="image.src" style="width: 100%; height: 50vh">
+                </div>
+            </ng-template>
+        </ngb-carousel> 
+    </div>
+    <div class="row ">
+        <div class="col-md-8">
+            <div class="row middle top17">
+                <div class="card midcolor pricelocation">
+                    <div class="card-body">  
+                        <h3 class="price">{{advert.price |currency: 'ZAR':"symbol-narrow"}}</h3>
+                        <span class="cardtitledes title">{{advert.headlineText}}</span>
+                        <h6 class="featuredes">
+                            <span><img src="../../assets/Rounded.png" alt="arrow" class="img-fluid me-2"
+                                    style="height: 20px;"></span>{{advert.province.Name}},{{advert.city.Name}}
+                        </h6>
+                    </div>
+
+                </div>
+            </div>
+            <div class="row top17 middle">
+                <div class="card midcolor details">
+                    <div class="card-body">
+                        {{advert.details}}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <app-seller [advert]="advert"></app-seller>
+
+        </div>
+    </div>
+</div>

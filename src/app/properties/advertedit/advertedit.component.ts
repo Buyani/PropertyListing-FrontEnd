@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {
   FormBuilder,
-  FormControl,
   FormGroup,
   Validators,
 } from '@angular/forms';
@@ -53,8 +52,6 @@ export class AdverteditComponent implements OnInit {
     this.pronvinces = this.geoService.getPrivinces();
     //cretate a form
     this.generateAdvertForm();
-
-
 
     //show loader on componets initialization
     this.route.params.subscribe((params) => {

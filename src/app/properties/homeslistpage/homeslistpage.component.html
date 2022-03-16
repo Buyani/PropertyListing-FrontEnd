@@ -1,3 +1,47 @@
+<div class="container mt-3">
+    <div id="form-container" class="row  my-3 my-lg-0 d-flex justify-content-center">
+        <div class="col-12 col-md-6 searchText">
+            <form  id="filter-form"
+                class="row align-items-center px-lg-0 border-0 p-2">
+                <div class="col-12 col-md-10 mx-auto">
+                    <input type="text" name="propName" ngModel class="form-control searchText" id="exampleFormControlInput1"
+                        placeholder="Search Properties">
+                </div>
+            </form>
+        </div>
+        <div class="col-12 col-sm-3 " style="line-height: 0%;">
+            <div class="input-group">
+                <select name="sortBy" (change)="sort($event)" ngModel class="form-select border-0 py-4 label-style form-group" id="price">
+                    <option value="" style="color: #016450;" selected disabled><b>Order By</b></option>
+                    <option value="Low">Price Low to High</option>
+                    <option value="High">Price High to Low</option>
+                </select>
+            </div>
+        </div>
+    </div>
+<hr>
+    <div *ngFor="let ad of advertsList | slice: (page-1) * pageSize : page * pageSize; index as i" class="card carddes border-0 shadow-lg postion-relative" >
+  
+        <div class="row g-0" >
+            <div class="col-md-4">
+                <img src="../../assets/photoBuilding.png" class="img-fluid rounded-start m-3" alt="buildingimg"
+                    style="height: 40vh;" />
+            </div>
+            <div class="col-md-8">
+                <div class="card-body ms-5 mt-4">
+                    <div class="cardtitledes" (click)="getAdvertDetails(ad)"><b>{{ad.headlineText}}</b></div>
+                    <h6 class="mt-3 featuredes">
+                        <span><img src="../../assets/Rounded.png" alt="arrow" class="img-fluid me-2"
+                                style="height: 20px;"></span>{{ad.province.Name}},{{ad.city.Name}}
+                    </h6>
+                    <div class="d-flex justify-content-start">
+                        <h3 class="text-success">{{ad.price |currency: 'ZAR':"symbol-narrow"}}</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
-
-<h1>PROPERTIES LIST HERE</h1>
+    <ngb-pagination [collectionSize]="collectionSize" [(page)]="page" [maxSize]="5" [boundaryLinks]="true"
+    [pageSize]="pageSize" class="d-flex justify-content-center"></ngb-pagination>
+</div>
