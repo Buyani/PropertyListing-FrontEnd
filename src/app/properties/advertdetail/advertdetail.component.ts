@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { LoaderHelper } from 'src/app/helpers/loader.helper';
 import { NotificationHelper } from 'src/app/helpers/notifications.helper';
@@ -9,12 +9,13 @@ import { NgbCarouselConfig } from '@ng-bootstrap/ng-bootstrap';
 @Component({
   selector: 'app-advertdetail',
   templateUrl: './advertdetail.component.html',
-  styleUrls: ['./advertdetail.component.css']
+  styleUrls: ['./advertdetail.component.css'],
+
 })
 export class AdvertdetailComponent implements OnInit {
 
   images = [
-    {title: 'Third Slide', short: 'Third Slide Short', src: "https://picsum.photos/id/984/900/500"}
+    { src: "../../assets/photoBuilding.png"}
   ];
 
   advert: Advert;

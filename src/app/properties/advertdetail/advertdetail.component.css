@@ -24,9 +24,6 @@
     src: local("Segoe UI Bold");
     line-height: 3rem;
 }
-.container{
-    background-color: rgb(247, 246, 241);
-}
 
 .middle{
     margin-left: 5px;
@@ -75,6 +72,11 @@
 .seller-details{
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     text-align: center;
+    color: #016450;
+}
+
+.midcolor{
+    background-color: #f7f6ee7e;
 }
 
 
