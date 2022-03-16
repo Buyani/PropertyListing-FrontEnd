@@ -53,7 +53,7 @@ export class MyadvertsComponent implements OnInit {
     if (advert) {
       advert.status = status;
       this.advertService.updateAdvert(advert).subscribe({
-        next: adv => this.onComplete(),
+        next: adv => this.onComplete(advert),
         error: err => this.notificationHelper.setErrorMessage(err)
       })
     }
@@ -67,7 +67,7 @@ export class MyadvertsComponent implements OnInit {
           this.loaderHelper.showLoader();
 
           this.advertService.deleteAdvert(advert.id).subscribe({
-            next: () => this.onComplete(),
+            next: () => this.onComplete(advert),
             error: err => this.notificationHelper.setErrorMessage(err)
           })
         }
@@ -84,15 +84,10 @@ export class MyadvertsComponent implements OnInit {
     this.router.navigate(['/adverts', advertid])
   }
 
-  onComplete(): void {
-    this.loaderHelper.showLoader();
-    this.advertService.getUserAdverts(Number(this.currentUser.id)).subscribe({
-      next: adverts => {
-        this.myAdverts = adverts;
-        this.updatingStatus = false;
-        this.deleting = false;
-        this.loaderHelper.hideLoader();
-      }
-    })
+  onComplete(advert:Advert): void {
+    this.myAdverts = this.myAdverts.filter(adv => adv != advert);
+    this.updatingStatus = false;
+    this.deleting = false;
+    this.loaderHelper.hideLoader();
   }
 }
