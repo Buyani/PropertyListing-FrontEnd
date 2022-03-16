@@ -53,8 +53,8 @@ export class MyadvertsComponent implements OnInit {
     if (advert) {
       advert.status = status;
       this.advertService.updateAdvert(advert).subscribe({
-        next: adv => this.onComplete(advert),
-        error: err => this.notificationHelper.setErrorMessage(err)
+        next:adv=>this.onComplete(advert),
+        error:err=>this.notificationHelper.setErrorMessage(err)
       })
     }
   }

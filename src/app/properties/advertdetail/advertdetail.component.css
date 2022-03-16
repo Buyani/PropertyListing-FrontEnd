@@ -5,7 +5,7 @@
     height: 15rem;
 }
 .pricelocation{
-    height: 8rem;
+    height: 12vw;
 }
 .sellercard{
     height: 15rem;
@@ -13,6 +13,7 @@
 .contactcard{
     height: 29rem;
 }
+
 .contact-form{
     margin-bottom: 8px;
 }
@@ -33,10 +34,8 @@
     color: #016450;
     letter-spacing: 5px;
     font-family: "Segoe UI";
-    font-weight: 700;
+    font-weight: 500;
     src: local("Segoe UI Bold");
-    line-height: 3rem;
-
   }
   .featuredes {
     font-size: 14px;

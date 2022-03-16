@@ -20,7 +20,7 @@ export class HomesListPageComponent implements OnInit {
   selectedAdvert:Advert;
 
   page = 1;
-  pageSize = 2;
+  pageSize = 10;
   collectionSize: number;
   currentRate = 8;
 

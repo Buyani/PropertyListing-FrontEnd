@@ -29,6 +29,7 @@
     src: local("Segoe UI Bold");
     letter-spacing: 2px;
     font-size: 20px;
+    cursor: pointer;
   }
   .aminities {
     font-family: "Segoe UI";
