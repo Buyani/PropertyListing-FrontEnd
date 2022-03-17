@@ -48,4 +48,39 @@ export default class Validation {
     return null;
   }
 
+
+  static currentNotMatch(currentPassword: string, checkControlName: string): ValidatorFn {
+    return (controls: AbstractControl) => {
+      const current = controls.get(currentPassword);
+      const checkControl = controls.get(checkControlName);
+      if (checkControl?.errors && !checkControl.errors['newcurrent']) {
+        return null;
+      }
+      if (current?.value !== checkControl?.value) {
+
+        controls.get(checkControlName)?.setErrors({ newcurrent: true });
+        return { newcurrent: true };
+      } else {
+        return null;
+      }
+    };
+  }
+
+  static OldandNew(newpassword: string, oldpassword: string): ValidatorFn {
+    return (controls: AbstractControl) => {
+      const current = controls.get(oldpassword);
+      const checkControl = controls.get(newpassword);
+      if (checkControl?.errors && !checkControl.errors['newold']) {
+        return null;
+      }
+      if (current?.value === checkControl?.value) {
+
+        controls.get(newpassword)?.setErrors({ newold: true });
+        return { newold: true };
+      } else {
+        return null;
+      }
+    };
+  }
+
 }

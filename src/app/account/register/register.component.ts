@@ -12,22 +12,6 @@ import Validation from 'src/app/helpers/validators.helper';
 import { User } from 'src/app/models/user.model';
 import { UserManager } from 'src/app/services/account.service';
 
-function passwordMatcher(
-  c: AbstractControl
-): { [key: string]: boolean } | null {
-  const password = c.get('password');
-  const confirmpassword = c.get('confirmpassword');
-  if (password.pristine || confirmpassword.pristine) {
-    return null;
-  }
-
-  if (password.value === confirmpassword.value) {
-    return null;
-  }
-
-  return { match: true };
-}
-
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',

@@ -1,75 +1,207 @@
 <div class="container rounded bg-white mt-5 mb-5 border" *ngIf="currentUser">
-<form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
-  <span class="border-top"></span>
-  <div class="row">
+  <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+    <span class="border-top"></span>
+    <div class="row">
       <div class="col-md-3 border-right">
-          <div class="d-flex flex-column align-items-center text-center p-3 py-5"><img class="rounded-circle mt-5" width="150px" src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg">
-            <span class="font-weight-bold">{{currentUser.forename}} {{currentUser.surname}}</span>
-            <span class="text-black-50">{{currentUser.email}}</span><span> </span></div>
+        <div class="d-flex flex-column align-items-center text-center p-3 py-5"><img class="rounded-circle mt-5"
+            width="150px"
+            src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg">
+          <span class="font-weight-bold">{{currentUser.forename}} {{currentUser.surname}}</span>
+          <span class="text-black-50">{{currentUser.email}}</span><span> </span>
+        </div>
       </div>
-  
-        <div class="col-md-5 border-right">
-          <div class="p-3 py-5">
-              <div class="d-flex justify-content-between align-items-center mb-3">
-                  <h4 class="title text-right">Profile Settings</h4>
-              </div>
-              <div class="row mt-2">
-                  <div class="col-md-6">
-                    <label class="labels">Forename</label>
-                    <input type="text" class="form-control" formControlName="forename" placeholder="forename" value="">
-                  </div>
-                  <div class="col-md-6">
-                    <label class="labels">Surname</label>
-                    <input type="text" class="form-control" formControlName="surname" value="" placeholder="surname">
-                  </div>
-              </div>
-               <div class="row mt-3">
-                    <div class="col-md-12">
-                      <label class="labels">Email</label>
-                      <input type="text" class="form-control" formControlName="email" placeholder="email address" value="">
-                    </div>
-                </div>
-                <div class="row mt-3">
-                  <div class="col-md-12">
-                  </div>
-              </div>
-              <div class="row mt-3">
-                <div class="col-md-12">
-                </div>
-            </div>
-            <div class="row mt-3">
-              <div class="col-md-12">
-              </div>
-          </div>
-              <div class="row buttons">
-                <div class="col-md-4"> <button class="btn  profile-button btncolor" type="button">Save Profile</button></div>
-                <div class="col-md-4"><button routerLink="/myadverts" class="btn  profile-button btncanel" type="button">Cancel</button></div>
 
-              </div>
+      <div class="col-md-5 border-right">
+        <div class="p-3 py-5">
+          <div class="d-flex justify-content-between align-items-center mb-3">
+            <h4 class="title text-right">Profile Settings</h4>
+          </div>
+          <div class="row mt-2">
+            <div class="col-md-6">
+              <label class="labels">Forename</label>
+              <input type="text" class="form-control" formControlName="forename" placeholder="forename" value="">
+              <p class="small text-danger my-2" *ngIf="f['forename'].invalid &&
+                    (f['forename'].dirty ||
+                    f['forename'].touched)">
+                <span *ngIf="f['forename'].errors['required']">
+                  forename is a required field
+                </span>
+                <span *ngIf="f['forename'].errors['minlength']">
+                  forename minimum length is 1
+                </span>
+                <span *ngIf="f['forename'].errors['maxlength']">
+                  forename maximum length is 100
+                </span>
+                <span *ngIf="f['forename'].errors['pattern']">
+                  forename must be a string
+                </span>
+                <span *ngIf="f['forename'].errors['cannotContainSpace']">
+                  no empty spaces allowed
+                </span>
+              </p>
+            </div>
+            <div class="col-md-6">
+              <label class="labels">Surname</label>
+              <input type="text" class="form-control" formControlName="surname" value="" placeholder="surname">
+              <p class="small text-danger my-2" *ngIf="f['surname'].invalid &&
+                    (f['surname'].dirty ||
+                    f['surname'].touched)">
+                <span *ngIf="f['surname'].errors['required']">
+                  surname is a required field
+                </span>
+                <span *ngIf="f['surname'].errors['minlength']">
+                  surname minimum length is 3
+                </span>
+                <span *ngIf="f['surname'].errors['maxlength']">
+                  surname maximum length is 100
+                </span>
+                <span *ngIf="f['surname'].errors['pattern']">
+                  surname must be a string
+                </span>
+                <span *ngIf="f['surname'].errors['cannotContainSpace']">
+                  no empty spaces allowed
+                </span>
+              </p>
+            </div>
+          </div>
+          <div class="row mt-3">
+            <div class="col-md-12">
+              <label class="labels">Email</label>
+              <input type="text" class="form-control" formControlName="email" placeholder="email address" value="">
+              <p class="small text-danger my-2" *ngIf="f['email'].invalid &&
+                      (f['email'].dirty ||
+                      f['email'].touched)">
+                <span *ngIf="f['email'].errors['required']">
+                  email is a required field
+                </span>
+                <span *ngIf="f['email'].errors['minlength']">
+                  email minimum length is 6
+                </span>
+                <span *ngIf="f['email'].errors['maxlength']">
+                  email maximum length is 100
+                </span>
+                <span *ngIf="f['email'].errors['pattern']">
+                  email must be a valid email address
+                </span>
+              </p>
+            </div>
+          </div>
+          <div class="row mt-3">
+            <div class="col-md-12">
+            </div>
+          </div>
+          <div class="row mt-3">
+            <div class="col-md-12">
+            </div>
+          </div>
+          <div class="row mt-3">
+            <div class="col-md-12">
+            </div>
+          </div>
+          <div class="row buttons">
+            <div class="col-md-4"> <button class="btn  profile-button btncolor" type="submit">Save Profile</button>
+            </div>
+            <div class="col-md-4"><button routerLink="/myadverts" class="btn  profile-button btncanel"
+                type="button">Cancel</button></div>
+
           </div>
         </div>
+      </div>
 
       <div class="col-md-4">
-          <div class="p-3 py-5">
-              <div class="d-flex justify-content-between align-items-center title-password"><span>Change Password</span>
-              </div>
-              <br>
-              <div class="col-md-12">
-                <label class="labels">Current Password</label>
-                <input type="password" formControlName="currentpassword" class="form-control" placeholder="current password" value="">
-              </div> 
-              <br>
-              <div class="col-md-12">
-                <label class="labels">New Password</label>
-                <input type="password" formControlName="password" class="form-control" placeholder="new password" value="">
-              </div>
-              <br>
-              <div class="col-md-12">
-                <label class="labels">Confirm Password</label>
-                <input type="password"formControlName="confirmpassword" class="form-control" placeholder="new password" value="">
-              </div>
+        <div class="p-3 py-5">
+          <div class="d-flex justify-content-between align-items-center title-password"><span>Change Password</span>
           </div>
+          <br>
+          <div class="col-md-12">
+            <label class="labels">Current Password</label>
+            <input type="password" formControlName="currentpassword" class="form-control" placeholder="current password"
+              value="">
+            <p class="small text-danger my-2" *ngIf="f['currentpassword'].invalid &&
+                (f['currentpassword'].dirty ||
+                f['currentpassword'].touched)">
+              <span *ngIf="f['currentpassword'].errors['newcurrent']">
+                password entered does not match current password
+              </span>
+              <span *ngIf="f['currentpassword'].errors['required']">
+                confirmpassword is a required field
+              </span>
+              <span *ngIf="f['currentpassword'].errors['minlength']">
+                confirm password minimum length is 8
+              </span>
+              <span *ngIf="f['currentpassword'].errors['maxlength']">
+                confirm password maximum length is 100
+              </span>
+              <span *ngIf="f['currentpassword'].errors['pattern']">
+                no special character allowed for password
+              </span>
+              <span *ngIf="f['currentpassword'].errors['cannotContainSpace']">
+                no empty spaces allowed
+              </span>
+            </p>
+          </div>
+          <br>
+
+
+          <div class="col-md-12">
+            <label class="labels">New Password</label>
+            <input type="password" formControlName="password" class="form-control" placeholder="new password" value="">
+            <p class="small text-danger my-2" *ngIf="f['password'].invalid &&
+                (f['password'].dirty ||
+                f['password'].touched)">
+              <span *ngIf="f['password'].errors['required']">
+                confirmpassword is a required field
+              </span>
+              <span *ngIf="f['password'].errors['minlength']">
+                confirm password minimum length is 8
+              </span>
+              <span *ngIf="f['password'].errors['maxlength']">
+                confirm password maximum length is 100
+              </span>
+              <span *ngIf="f['password'].errors['pattern']">
+                no special character allowed for password
+              </span>
+              <span *ngIf="f['password'].errors['matching']">
+                confirm password and password do not match
+              </span>
+              <span *ngIf="f['password'].errors['cannotContainSpace']">
+                no empty spaces allowed
+              </span>
+              <span *ngIf="f['password'].errors['newold']">
+                new password can't be the same as old password
+              </span>
+            </p>
+          </div>
+          <br>
+          <div class="col-md-12">
+            <label class="labels">Confirm Password</label>
+            <input type="password" formControlName="confirmpassword" class="form-control" placeholder="new password"
+              value="">
+            <p class="small text-danger my-2" *ngIf="f['confirmpassword'].invalid &&
+                (f['confirmpassword'].dirty ||
+                f['confirmpassword'].touched)">
+              <span *ngIf="f['confirmpassword'].errors['required']">
+                confirmpassword is a required field
+              </span>
+              <span *ngIf="f['confirmpassword'].errors['minlength']">
+                confirm password minimum length is 8
+              </span>
+              <span *ngIf="f['confirmpassword'].errors['maxlength']">
+                confirm password maximum length is 100
+              </span>
+              <span *ngIf="f['confirmpassword'].errors['pattern']">
+                no special character allowed for password
+              </span>
+              <span *ngIf="f['confirmpassword'].errors['matching']">
+                confirm password and password do not match
+              </span>
+              <span *ngIf="f['confirmpassword'].errors['cannotContainSpace']">
+                no empty spaces allowed
+              </span>
+            </p>
+          </div>
+        </div>
       </div>
-  </div>
-</form>
+    </div>
+  </form>
 </div>

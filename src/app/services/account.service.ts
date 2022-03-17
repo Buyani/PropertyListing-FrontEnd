@@ -69,6 +69,19 @@ export class UserManager {
       });
     });
   }
+  
+  //Update an advert
+  updateUser(user: User): Observable<User> {
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    const url = `${this.userUrl}/${user.id}`
+    return this.http.put<User>(url, user, { headers })
+      .pipe(
+        delay(2000),
+        tap(post => this.notificationHelper.setSuccessMessage(user.forename + " your profile has been updated...")),
+        catchError(this.handleError)
+      );
+  }
+
 
   //logout user by clearing localstorage and naviagtes to another page
   logout(){
