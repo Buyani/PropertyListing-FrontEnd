@@ -34,7 +34,7 @@ export class UserManager {
     return this.currentUserSubject.value;
   }
   //sets current user
-  set currentUserValue(user: User) {
+  public set currentUserValue(user: User) {
     this.currentUserSubject.next(user);
   }
 
@@ -82,7 +82,10 @@ updateUser(user: User): Observable < User > {
     return this.http.put<User>(url, user, { headers })
     .pipe(
       delay(2000),
-      tap(post => this.currentUserValue),
+      tap(post => { 
+        this.notificationHelper.setSuccessMessage(user.forename + " your profile was updated succefully...")
+        this.currentUserSubject.next(post);
+      }),
       catchError(this.handleError)
     );
 }

@@ -10,8 +10,7 @@
           <span class="text-black-50">{{currentUser.email}}</span><span> </span>
         </div>
       </div>
-
-      <div class="col-md-5 border-right">
+          <div class="col-md-5 border-right" *ngIf="!submitted">
         <span *ngIf="errorMessage" class="text-danger">{{errorMessage}}</span>
         <div class="p-3 py-5">
           <div class="d-flex justify-content-between align-items-center mb-3">
@@ -110,7 +109,7 @@
         </div>
       </div>
 
-      <div class="col-md-4">
+      <div class="col-md-4" *ngIf="!submitted">
         <div class="p-3 py-5">
           <div class="d-flex justify-content-between align-items-center title-password"><span>Change Password</span>
           </div>

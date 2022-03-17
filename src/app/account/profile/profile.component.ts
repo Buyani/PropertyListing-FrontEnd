@@ -139,17 +139,21 @@ export class ProfileComponent implements OnInit {
       //map form values to object values
       const p = { ...this.profile, ...this.profileForm.value };
       p.id=this.currentUser.id;
+      p.role=this.currentUser.role;
       //show loader while posting to api
-      this.loaderHelper.showLoader();
+     this.loaderHelper.showLoader();
       this.loading = true;
 
       //call user Service and update user profile
       this.userService.updateUser(p).subscribe({
         next:user=>{
           this.loaderHelper.hideLoader()
+          this.loading=false;
+          this.submitted=false;
         },
         error:err=>this.errorMessage=err
       }) 
     }
   }
+
 }

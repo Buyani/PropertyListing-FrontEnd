@@ -55,7 +55,7 @@ import { ProfileComponent } from './account/profile/profile.component';
     HttpClientModule,
     ReactiveFormsModule,
     FormsModule,
-    InMemoryWebApiModule.forRoot(UserData),
+    InMemoryWebApiModule.forRoot(UserData,{ put204: false }),
     NgbModule,
   ],
   exports: [],
