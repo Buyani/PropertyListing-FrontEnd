@@ -1,4 +1,5 @@
 <div class="container rounded bg-white mt-5 mb-5 border" *ngIf="currentUser">
+<form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
   <span class="border-top"></span>
   <div class="row">
       <div class="col-md-3 border-right">
@@ -6,7 +7,8 @@
             <span class="font-weight-bold">{{currentUser.forename}} {{currentUser.surname}}</span>
             <span class="text-black-50">{{currentUser.email}}</span><span> </span></div>
       </div>
-        <form [formGroup]="profileForm" (ngSubmit)="onSubmit()" class="col-md-5 border-right">
+  
+        <div class="col-md-5 border-right">
           <div class="p-3 py-5">
               <div class="d-flex justify-content-between align-items-center mb-3">
                   <h4 class="title text-right">Profile Settings</h4>
@@ -26,26 +28,48 @@
                       <label class="labels">Email</label>
                       <input type="text" class="form-control" formControlName="email" placeholder="email address" value="">
                     </div>
-                    <div class="col-md-12">
-                      <label class="labels">Cell Phone</label>
-                      <input type="text" class="form-control" formControlName="cellphone" placeholder="cell phone number" value="">
-                    </div>
                 </div>
+                <div class="row mt-3">
+                  <div class="col-md-12">
+                  </div>
+              </div>
+              <div class="row mt-3">
+                <div class="col-md-12">
+                </div>
+            </div>
+            <div class="row mt-3">
+              <div class="col-md-12">
+              </div>
+          </div>
               <div class="row buttons">
                 <div class="col-md-4"> <button class="btn  profile-button btncolor" type="button">Save Profile</button></div>
-                <div class="col-md-4"><button class="btn  profile-button btncanel" type="button">Cancel</button></div>
+                <div class="col-md-4"><button routerLink="/myadverts" class="btn  profile-button btncanel" type="button">Cancel</button></div>
 
               </div>
           </div>
-      </form>
+        </div>
 
       <div class="col-md-4">
           <div class="p-3 py-5">
               <div class="d-flex justify-content-between align-items-center title-password"><span>Change Password</span>
-              </div><br>
-              <div class="col-md-12"><label class="labels">Current Password</label><input type="text" class="form-control" placeholder="current password" value=""></div> <br>
-              <div class="col-md-12"><label class="labels">New Password</label><input type="text" class="form-control" placeholder="new password" value=""></div>
+              </div>
+              <br>
+              <div class="col-md-12">
+                <label class="labels">Current Password</label>
+                <input type="password" formControlName="currentpassword" class="form-control" placeholder="current password" value="">
+              </div> 
+              <br>
+              <div class="col-md-12">
+                <label class="labels">New Password</label>
+                <input type="password" formControlName="password" class="form-control" placeholder="new password" value="">
+              </div>
+              <br>
+              <div class="col-md-12">
+                <label class="labels">Confirm Password</label>
+                <input type="password"formControlName="confirmpassword" class="form-control" placeholder="new password" value="">
+              </div>
           </div>
       </div>
   </div>
+</form>
 </div>
