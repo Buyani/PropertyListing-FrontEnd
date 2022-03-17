@@ -23,6 +23,7 @@ import { ConfirmationDialogHelper } from './helpers/confirmation.helper';
 import { AdvertdetailComponent } from './properties/advertdetail/advertdetail.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SellerComponent } from './properties/seller/seller.component';
+import { AccountprofileComponent } from './account/accountprofile/accountprofile.component';
 
 
 @NgModule({
@@ -41,7 +42,8 @@ import { SellerComponent } from './properties/seller/seller.component';
     StatusPipe,
     ConfirmationdialogComponent,
     AdvertdetailComponent,
-    SellerComponent
+    SellerComponent,
+    AccountprofileComponent
 
   ],
   imports: [

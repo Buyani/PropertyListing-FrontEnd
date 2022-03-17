@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AccountprofileComponent } from './account/accountprofile/accountprofile.component';
 import { LoginComponent } from './account/login/login.component';
 import { RegisterComponent } from './account/register/register.component';
 import { AuthGuard } from './helpers/auth.guard';
@@ -23,7 +24,8 @@ const routes: Routes = [
   { path:'myadverts', component: MyadvertsComponent,canActivate: [AuthGuard]},
   { path:'admin' ,component: AdminComponent , canActivate: [AuthGuard , RoleGuard]},
   { path :'adverts/:id', component:AdverteditComponent,canActivate:[AuthGuard]},
-  { path :'details/:advertId', component:AdvertdetailComponent}
+  { path :'details/:advertId', component:AdvertdetailComponent},
+  { path :'myprofile', component:AccountprofileComponent}
 ];
 
 @NgModule({
