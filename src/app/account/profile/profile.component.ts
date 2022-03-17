@@ -1,16 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { LoaderHelper } from 'src/app/helpers/loader.helper';
+import { NotificationHelper } from 'src/app/helpers/notifications.helper';
 import Validation from 'src/app/helpers/validators.helper';
 import { User } from 'src/app/models/user.model';
 import { UserManager } from 'src/app/services/account.service';
 
 @Component({
   selector: 'app-accountprofile',
-  templateUrl: './accountprofile.component.html',
-  styleUrls: ['./accountprofile.component.css']
+  templateUrl: './profile.component.html',
+  styleUrls: ['./profile.component.css']
 })
-export class AccountprofileComponent implements OnInit {
+export class ProfileComponent implements OnInit {
 
   currentUser: User;
   profileForm: FormGroup;
@@ -23,7 +24,8 @@ export class AccountprofileComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private userService: UserManager,
-    private loaderHelper:LoaderHelper) {
+    private loaderHelper:LoaderHelper,
+    private notificationHelper:NotificationHelper) {
     this.userService.currentUser.subscribe(user => this.currentUser = user);
   }
 
@@ -116,10 +118,8 @@ export class AccountprofileComponent implements OnInit {
       surname: this.currentUser.surname,
       email: this.currentUser.email,
       oldpassword: this.currentUser.password
-
     });
     this.currentPassword = this.currentUser.password;
-    console.log(this.currentPassword);
   }
 
   //easly access form controls
@@ -137,21 +137,19 @@ export class AccountprofileComponent implements OnInit {
     }
     else {
       //map form values to object values
-      const s = { ...this.profile, ...this.profileForm.value };
+      const p = { ...this.profile, ...this.profileForm.value };
+      p.id=this.currentUser.id;
       //show loader while posting to api
       this.loaderHelper.showLoader();
       this.loading = true;
 
       //call user Service and update user profile
-      
+      this.userService.updateUser(p).subscribe({
+        next:user=>{
+          this.loaderHelper.hideLoader()
+        },
+        error:err=>this.errorMessage=err
+      }) 
     }
   }
-
-  //check if current password matches new password
-  currentPasswordCheck(newpassword: string) {
-
-  }
-
-
-
 }

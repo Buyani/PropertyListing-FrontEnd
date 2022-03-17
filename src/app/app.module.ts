@@ -23,7 +23,8 @@ import { ConfirmationDialogHelper } from './helpers/confirmation.helper';
 import { AdvertdetailComponent } from './properties/advertdetail/advertdetail.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SellerComponent } from './properties/seller/seller.component';
-import { AccountprofileComponent } from './account/accountprofile/accountprofile.component';
+import { ProfileComponent } from './account/profile/profile.component';
+
 
 
 @NgModule({
@@ -43,7 +44,8 @@ import { AccountprofileComponent } from './account/accountprofile/accountprofile
     ConfirmationdialogComponent,
     AdvertdetailComponent,
     SellerComponent,
-    AccountprofileComponent
+    ProfileComponent
+    
 
   ],
   imports: [

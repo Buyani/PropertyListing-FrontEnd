@@ -12,11 +12,13 @@
       </div>
 
       <div class="col-md-5 border-right">
+        <span *ngIf="errorMessage" class="text-danger">{{errorMessage}}</span>
         <div class="p-3 py-5">
           <div class="d-flex justify-content-between align-items-center mb-3">
             <h4 class="title text-right">Profile Settings</h4>
           </div>
           <div class="row mt-2">
+          
             <div class="col-md-6">
               <label class="labels">Forename</label>
               <input type="text" class="form-control" formControlName="forename" placeholder="forename" value="">
@@ -99,7 +101,7 @@
             </div>
           </div>
           <div class="row buttons">
-            <div class="col-md-4"> <button class="btn  profile-button btncolor" type="submit">Save Profile</button>
+            <div class="col-md-4"> <button *ngIf="!loading" class="btn  profile-button btncolor" type="submit">Save Profile</button>
             </div>
             <div class="col-md-4"><button routerLink="/myadverts" class="btn  profile-button btncanel"
                 type="button">Cancel</button></div>
@@ -204,4 +206,8 @@
       </div>
     </div>
   </form>
+  <br>Dirty: {{ profileForm.dirty }}
+<br>Touched: {{ profileForm.touched }}
+<br>Valid: {{ profileForm.valid }}
+<br>Value: {{ profileForm.value | json }}
 </div>

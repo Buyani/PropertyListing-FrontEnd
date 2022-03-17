@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AccountprofileComponent } from './account/accountprofile/accountprofile.component';
 import { LoginComponent } from './account/login/login.component';
+import { ProfileComponent } from './account/profile/profile.component';
 import { RegisterComponent } from './account/register/register.component';
 import { AuthGuard } from './helpers/auth.guard';
 import { RoleGuard } from './helpers/role.guard';
@@ -25,7 +25,7 @@ const routes: Routes = [
   { path:'admin' ,component: AdminComponent , canActivate: [AuthGuard , RoleGuard]},
   { path :'adverts/:id', component:AdverteditComponent,canActivate:[AuthGuard]},
   { path :'details/:advertId', component:AdvertdetailComponent},
-  { path :'myprofile', component:AccountprofileComponent}
+  { path :'myprofile', component:ProfileComponent}
 ];
 
 @NgModule({
