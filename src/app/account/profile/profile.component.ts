@@ -118,7 +118,8 @@ export class ProfileComponent implements OnInit {
       forename: this.currentUser.forename,
       surname: this.currentUser.surname,
       email: this.currentUser.email,
-      oldpassword: this.currentUser.password
+      oldpassword: this.currentUser.password,
+      cellphone:this.currentUser.cellphone
     });
     this.currentPassword = this.currentUser.password;
   }
@@ -134,7 +135,8 @@ export class ProfileComponent implements OnInit {
     //if the form is valid
     if (this.profileForm.invalid) {
       this.profileForm.markAllAsTouched();
-      this.errorMessage = "Error occured while trying to update profile";
+      this.notificationHelper.setErrorMessage("Error occured while trying to update profile");
+      return;
     }
     else {
       //map form values to object values
@@ -156,5 +158,7 @@ export class ProfileComponent implements OnInit {
       }) 
     }
   }
+
+
 
 }

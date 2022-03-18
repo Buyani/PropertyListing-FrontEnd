@@ -13,7 +13,8 @@ export class UserData implements InMemoryDbService {
                 "surname": "Mhlongo",
                 "email": "buyanimhlongo@gmail.com",
                 "password": "BSmhlongo91",
-                "role": Role.User
+                "role": Role.User,
+                "cellphone":""
             },
             {
                 "id": 2,
@@ -21,7 +22,8 @@ export class UserData implements InMemoryDbService {
                 "surname": "Shezi",
                 "email": "sabeloshezi@gmail.com",
                 "password": "SabeloMhlongo91",
-                "role": Role.User
+                "role": Role.User,
+                "cellphone":"0763432298"
             },
             {
                 "id": 3,
@@ -29,7 +31,8 @@ export class UserData implements InMemoryDbService {
                 "surname": "Ntombela",
                 "email": "nokuthula@gmail.com",
                 "password": "Nokwe91",
-                "role": Role.User
+                "role": Role.User,
+                "cellphone":""
             },
             {
                 "id": 4,
@@ -37,7 +40,8 @@ export class UserData implements InMemoryDbService {
                 "surname": "AdminSurname",
                 "email": "admin@admin.com",
                 "password": "Admin",
-                "role": Role.Admin
+                "role": Role.Admin,
+                "cellphone":""
             },
             {
                 "id": 5,
@@ -45,7 +49,8 @@ export class UserData implements InMemoryDbService {
                 "surname": "AdminSurname",
                 "email": "admin1@admin1.com",
                 "password": "Admin",
-                "role": Role.Admin
+                "role": Role.Admin,
+                "cellphone":""
             },
         ]
 
