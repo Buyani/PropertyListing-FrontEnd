@@ -91,6 +91,7 @@ export class ProfileComponent implements OnInit {
           ],
         ],
         oldpassword: [''],
+        cellphone:['',[Validators.minLength(6),Validators.maxLength(30),]],
         confirmpassword: [
           '',
           [

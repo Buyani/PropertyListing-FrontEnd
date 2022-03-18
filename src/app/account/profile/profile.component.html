@@ -6,8 +6,8 @@
         <div class="d-flex flex-column align-items-center text-center p-3 py-5"><img class="rounded-circle mt-5"
             width="150px"
             src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg">
-          <span class="font-weight-bold">{{currentUser.forename}} {{currentUser.surname}}</span>
-          <span class="text-black-50">{{currentUser.email}}</span><span> </span>
+          <span class="font-weight-bold title">{{currentUser.forename}} {{currentUser.surname}}</span>
+          <span class="pmail">{{currentUser.email}}</span><span> </span>
         </div>
       </div>
           <div class="col-md-5 border-right" *ngIf="!submitted">
@@ -16,8 +16,9 @@
           <div class="d-flex justify-content-between align-items-center mb-3">
             <h4 class="title text-right">Profile Settings</h4>
           </div>
+          <div class="d-flex justify-content-between align-items-center title-password"><span>Change Details</span>
+          </div>
           <div class="row mt-2">
-          
             <div class="col-md-6">
               <label class="labels">Forename</label>
               <input type="text" class="form-control" formControlName="forename" placeholder="forename" value="">
@@ -89,10 +90,18 @@
           </div>
           <div class="row mt-3">
             <div class="col-md-12">
-            </div>
-          </div>
-          <div class="row mt-3">
-            <div class="col-md-12">
+              <label class="labels">Cellphone</label>
+              <input type="text" class="form-control" formControlName="cellphone" placeholder="cellphone number" value="">
+              <p class="small text-danger my-2" *ngIf="f['cellphone'].invalid &&
+                      (f['cellphone'].dirty ||
+                      f['cellphone'].touched)">
+                <span *ngIf="f['cellphone'].errors['minlength']">
+                  cellphone minimum length is 6
+                </span>
+                <span *ngIf="f['cellphone'].errors['maxlength']">
+                  cellphone maximum length is 30
+                </span>
+              </p>
             </div>
           </div>
           <div class="row mt-3">
@@ -104,11 +113,9 @@
             </div>
             <div class="col-md-4"><button routerLink="/myadverts" class="btn  profile-button btncanel"
                 type="button">Cancel</button></div>
-
           </div>
         </div>
       </div>
-
       <div class="col-md-4" *ngIf="!submitted">
         <div class="p-3 py-5">
           <div class="d-flex justify-content-between align-items-center title-password"><span>Change Password</span>

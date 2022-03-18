@@ -24,6 +24,7 @@ import { AdvertdetailComponent } from './properties/advertdetail/advertdetail.co
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SellerComponent } from './properties/seller/seller.component';
 import { ProfileComponent } from './account/profile/profile.component';
+import { SellerprofileComponent } from './account/sellerprofile/sellerprofile.component';
 
 
 
@@ -44,7 +45,8 @@ import { ProfileComponent } from './account/profile/profile.component';
     ConfirmationdialogComponent,
     AdvertdetailComponent,
     SellerComponent,
-    ProfileComponent
+    ProfileComponent,
+    SellerprofileComponent
     
 
   ],
