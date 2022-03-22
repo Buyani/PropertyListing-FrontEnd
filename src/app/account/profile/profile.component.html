@@ -16,7 +16,7 @@
           <div class="d-flex justify-content-between align-items-center mb-3">
             <h4 class="title text-right">Account Settings</h4>
           </div>
-          <div class="d-flex justify-content-between align-items-center title-password"><span>Contact Details</span>
+          <div class="d-flex justify-content-between align-items-center title-password"><span>Personal Details</span>
           </div>
           <div class="row mt-2">
             <div class="col-md-6">
@@ -119,13 +119,13 @@
                 current password is a required field
               </span>
               <span *ngIf="f['currentpassword'].errors['minlength']">
-                confirm password minimum length is 8
+                current password minimum length is 8
               </span>
               <span *ngIf="f['currentpassword'].errors['maxlength']">
-                password maximum length is 100
+                current password maximum length is 100
               </span>
               <span *ngIf="f['currentpassword'].errors['pattern']">
-                no special character allowed for password
+                no special character allowed 
               </span>
               <span *ngIf="f['currentpassword'].errors['cannotContainSpace']">
                 no empty spaces allowed
@@ -152,9 +152,6 @@
               </span>
               <span *ngIf="f['password'].errors['pattern']">
                 no special character allowed for password
-              </span>
-              <span *ngIf="f['password'].errors['matching']">
-                new password and password do not match
               </span>
               <span *ngIf="f['password'].errors['cannotContainSpace']">
                 no empty spaces allowed
