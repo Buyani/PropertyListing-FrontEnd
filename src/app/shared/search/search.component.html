@@ -1,1 +1,29 @@
-<p>search works!</p>
+<div id="form-container" class="row filtersearch  my-3 my-lg-0 d-flex justify-content-center">
+    <div class="col-md-6 searchText">
+        <form (ngSubmit)="searchKeyWord()"  [formGroup]="searchForm"  id="filter-form"
+            class="row align-items-center px-lg-0 border-0 p-2">
+            <div class="col-12 col-md-10 mx-auto">
+                <input type="text" formControlName="keyWord"  class="form-control searchText" id="exampleFormControlInput1"
+                    placeholder="Search Properties">
+            </div>
+            <div class="col-md-2">
+                <button type="submit" name="search" id="search-btn"
+                    class="btn material-icons shadow-lg mx-auto py-3 px-3 d-none d-sm-block">
+                    search
+                </button>
+            </div>
+        </form>
+    </div>
+    <div class="col-12 col-md-3 " style="line-height: 0%;">
+        <div class="input-group">
+            <select name="sortBy" (change)="onOrderBy($event)"  class="form-select border-0 py-4 label-style form-group" id="price">
+                <option value="" style="color: #016450;" selected disabled><b>Order By</b></option>
+                <option value="Low">Price Low to High</option>
+                <option value="High">Price High to Low</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+
+

@@ -1,0 +1,94 @@
+
+.filtersearch{
+    background-color: #016450;
+    color: #999999;
+  
+      top: 100%;
+      left: 0;
+      z-index: 1000;
+      display: none;
+      min-width: 160px;
+      margin: 2px 0 0;
+      font-size: 14px;
+      text-align: left;
+      list-style: none;
+      background-color: rgb(247, 246, 240); /* here */
+      -webkit-background-clip: padding-box;
+      background-clip: padding-box;
+      border: 1px solid #ccc;
+      border: 1px solid rgba(0,0,0,.15);
+      border-radius: 4px;
+      -webkit-box-shadow: 0 6px 12px rgba(0,0,0,.175);
+      box-shadow: 0 6px 12px rgba(0,0,0,.175);
+  
+  }
+  
+  
+  .headtextdes {
+      margin-top: 10vh;
+      margin-bottom: 2vh;
+      font-size: 30px;
+      font-family: "Segoe UI";
+      font-weight: 300;
+      letter-spacing: 2px;
+      color: rgba(153, 153, 153, 0.3);
+    }
+    .h2 {
+      color: #016450;
+      letter-spacing: 5px;
+      font-family: "Segoe UI";
+      font-weight: 700;
+      src: local("Segoe UI Bold");
+      line-height: 3rem;
+    }
+    .featuredes {
+      font-size: 14px;
+      font-family: "Segoe UI";
+      font-weight: 700;
+      src: local("Segoe UI Bold");
+      letter-spacing: 2px;
+      color: #999999;
+    }
+    .filtersearch{
+      background-color: #016450;
+      color: #999999;
+      margin-top: 50px;
+      top: 100%;
+      left: 0;
+      z-index: 1000;
+      display: none;
+      min-width: 160px;
+      margin: 2px 0 0;
+      font-size: 14px;
+      text-align: left;
+      list-style: none;
+      background-color: rgb(247, 246, 240); /* here */
+      -webkit-background-clip: padding-box;
+      background-clip: padding-box;
+      border: 1px solid #ccc;
+      border: 1px solid rgba(0,0,0,.15);
+      border-radius: 4px;
+      -webkit-box-shadow: 0 6px 12px rgba(0,0,0,.175);
+      box-shadow: 0 6px 12px rgba(0,0,0,.175);
+  
+    }
+    .cardtitledes {
+      font-family: "Segoe UI";
+      font-weight: 300;
+      src: local("Segoe UI Bold");
+      letter-spacing: 2px;
+      font-size: 20px;
+      cursor: pointer;
+    }
+    .aminities {
+      font-family: "Segoe UI";
+      font-weight: 700;
+      src: local("Segoe UI Bold");
+      letter-spacing: 2px;
+      color: #999999;
+    }
+  
+    .searchText{
+      border-radius: 25px;
+    }
+  

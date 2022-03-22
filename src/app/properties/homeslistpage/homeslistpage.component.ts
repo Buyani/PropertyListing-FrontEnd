@@ -10,26 +10,27 @@ import { AdvertService } from 'src/app/services/advert.service';
 @Component({
   selector: 'app-homeslistpage',
   templateUrl: './homeslistpage.component.html',
-  styleUrls: ['./homeslistpage.component.css']
+  styleUrls: ['./homeslistpage.component.css'],
 })
 export class HomesListPageComponent implements OnInit {
-
   currentUser: User;
   advertsList: Advert[];
-  filteredAdverts:Advert[];
-  selectedAdvert:Advert;
+  filteredAdverts: Advert[];
+  selectedAdvert: Advert;
 
   page = 1;
   pageSize = 10;
   collectionSize: number;
   currentRate = 8;
 
-  constructor(private userService: UserManager,
+  constructor(
+    private userService: UserManager,
     private advertService: AdvertService,
-    private route:Router,
+    private route: Router,
     private loaderHelper: LoaderHelper,
-    private notificatioHelper: NotificationHelper) {
-    this.userService.currentUser.subscribe(user => this.currentUser = user);
+    private notificatioHelper: NotificationHelper
+  ) {
+    this.userService.currentUser.subscribe((user) => (this.currentUser = user));
   }
   //component start
   ngOnInit(): void {
@@ -37,39 +38,45 @@ export class HomesListPageComponent implements OnInit {
     this.getAdvertsList();
   }
 
-//get a list of adverts
-getAdvertsList(){
-  this.advertService.getAdverts().subscribe({
-    next: adverts =>{
-      this.advertsList=adverts.sort((low, high) => low.price - high.price);
-      this.collectionSize = this.advertsList.length;
-    },
-    error:err=>this.notificatioHelper.setErrorMessage(err)
-  })
-}
-getAdvertDetails(advert:Advert){
-  console.log("PASSSED ADVERT   ",advert)
-  this.route.navigate(['/details',advert.id])
-}
-// sorts/oders adverts by price high or price low
+  //get a list of adverts
+  getAdvertsList() {
+    this.advertService.getAdverts().subscribe({
+      next: (adverts) => {
+        this.advertsList = adverts.sort((low, high) => low.price - high.price);
+        this.collectionSize = this.advertsList.length;
+      },
+      error: (err) => this.notificatioHelper.setErrorMessage(err),
+    });
+  }
+  getAdvertDetails(advert: Advert) {
+    this.route.navigate(['/details', advert.id]);
+  }
+  // sorts/oders adverts by price high or price low
   sort(event: any) {
-    switch (event.target.value) {
-      case "Low":
-        {
-          this.advertsList = this.advertsList.sort((low, high) => low.price - high.price);
-          break;
-        }
-      case "High":
-        {
-          this.advertsList = this.advertsList.sort((low, high) => high.price - low.price);
-          break;
-        }
+    switch (event) {
+      case 'Low': {
+        this.advertsList = this.advertsList.sort(
+          (low, high) => low.price - high.price
+        );
+        break;
+      }
+      case 'High': {
+        this.advertsList = this.advertsList.sort(
+          (low, high) => high.price - low.price
+        );
+        break;
+      }
       default: {
-        this.advertsList = this.advertsList.sort((low, high) => low.price - high.price);
+        this.advertsList = this.advertsList.sort(
+          (low, high) => low.price - high.price
+        );
         break;
       }
     }
     return this.advertsList;
+  }
 
+  onSearch(search:any):void{
+    this.advertsList = this.advertsList.filter((salary) => salary.headlineText.toLowerCase().indexOf(search.keyWord.toLowerCase()) !== -1)
   }
 }
