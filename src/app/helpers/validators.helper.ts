@@ -8,6 +8,9 @@ export default class Validation {
     return (controls: AbstractControl) => {
       const control = controls.get(controlName);
       const checkControl = controls.get(checkControlName);
+      if(checkControl.value===null){
+        return null;
+      }
       if (checkControl?.errors && !checkControl.errors['matching']) {
         return null;
       }
@@ -53,6 +56,9 @@ export default class Validation {
     return (controls: AbstractControl) => {
       const current = controls.get(currentPassword);
       const checkControl = controls.get(checkControlName);
+      if(!checkControl.value){
+        return null;
+      }
       if (checkControl?.errors && !checkControl.errors['newcurrent']) {
         return null;
       }

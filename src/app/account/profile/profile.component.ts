@@ -69,7 +69,6 @@ export class ProfileComponent implements OnInit {
         currentpassword: [
           '',
           [
-            Validators.required,
             Validators.minLength(8),
             Validators.maxLength(100),
             Validators.pattern("^[a-zA-Z0-9 ]+$"),
@@ -81,7 +80,6 @@ export class ProfileComponent implements OnInit {
         password: [
           '',
           [
-            Validators.required,
             Validators.minLength(8),
             Validators.maxLength(100),
             Validators.pattern("^[a-zA-Z0-9 ]+$"),
@@ -95,7 +93,6 @@ export class ProfileComponent implements OnInit {
         confirmpassword: [
           '',
           [
-            Validators.required,
             Validators.minLength(8),
             Validators.maxLength(100),
             Validators.pattern("^[a-zA-Z0-9 ]+$"),
@@ -131,6 +128,7 @@ export class ProfileComponent implements OnInit {
 
   //on submit
   onSubmit() {
+    this.setValidations();
     this.submitted = true;
     //if the form is valid
     if (this.profileForm.invalid) {
@@ -143,6 +141,10 @@ export class ProfileComponent implements OnInit {
       const p = { ...this.profile, ...this.profileForm.value };
       p.id=this.currentUser.id;
       p.role=this.currentUser.role;
+
+      if(!this.f['currentpassword'].value){
+        p.password=this.currentUser.password;
+      }
       //show loader while posting to api
      this.loaderHelper.showLoader();
       this.loading = true;
@@ -156,6 +158,24 @@ export class ProfileComponent implements OnInit {
         },
         error:err=>this.errorMessage=err
       }) 
+    }
+  }
+
+  setValidations():void{
+    let controls=['password','confirmpassword']
+    if(this.f['currentpassword'].value)
+    {
+      controls.forEach(control => {
+        this.profileForm.get(control).addValidators(Validators.required);
+        this.profileForm.get(control).updateValueAndValidity();
+      });
+    }
+    else{
+      controls.forEach(control => {
+        this.profileForm.get(control).removeValidators(Validators.required);
+        this.profileForm.get(control).updateValueAndValidity();
+      });
+
     }
   }
 
