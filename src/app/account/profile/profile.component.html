@@ -116,13 +116,13 @@
                 password entered does not match current password
               </span>
               <span *ngIf="f['currentpassword'].errors['required']">
-                confirmpassword is a required field
+                password is a required field
               </span>
               <span *ngIf="f['currentpassword'].errors['minlength']">
                 confirm password minimum length is 8
               </span>
               <span *ngIf="f['currentpassword'].errors['maxlength']">
-                confirm password maximum length is 100
+                password maximum length is 100
               </span>
               <span *ngIf="f['currentpassword'].errors['pattern']">
                 no special character allowed for password
@@ -145,16 +145,16 @@
                 confirmpassword is a required field
               </span>
               <span *ngIf="f['password'].errors['minlength']">
-                confirm password minimum length is 8
+                new password minimum length is 8
               </span>
               <span *ngIf="f['password'].errors['maxlength']">
-                confirm password maximum length is 100
+                new password maximum length is 100
               </span>
               <span *ngIf="f['password'].errors['pattern']">
                 no special character allowed for password
               </span>
               <span *ngIf="f['password'].errors['matching']">
-                confirm password and password do not match
+                new password and password do not match
               </span>
               <span *ngIf="f['password'].errors['cannotContainSpace']">
                 no empty spaces allowed
