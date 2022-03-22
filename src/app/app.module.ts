@@ -25,6 +25,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SellerComponent } from './properties/seller/seller.component';
 import { ProfileComponent } from './account/profile/profile.component';
 import { SellerprofileComponent } from './account/sellerprofile/sellerprofile.component';
+import { SearchComponent } from './shared/search/search.component';
 
 
 
@@ -46,7 +47,8 @@ import { SellerprofileComponent } from './account/sellerprofile/sellerprofile.co
     AdvertdetailComponent,
     SellerComponent,
     ProfileComponent,
-    SellerprofileComponent
+    SellerprofileComponent,
+    SearchComponent
     
 
   ],
