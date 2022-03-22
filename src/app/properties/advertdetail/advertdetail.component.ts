@@ -55,4 +55,9 @@ export class AdvertdetailComponent implements OnInit {
     console.log(JSON.stringify(ad))
   }
 
+  //onMessage send
+  onSendMessage(messsage:any){
+    this.notificationHelper.setSuccessMessage(messsage)
+  }
+
 }

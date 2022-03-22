@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input,EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import Validation from 'src/app/helpers/validators.helper';
 import { Advert } from 'src/app/models/advert.model';
@@ -13,6 +13,7 @@ import { UserManager } from 'src/app/services/account.service';
 export class SellerComponent implements OnInit {
 
   @Input() advert:Advert;
+  @Output() sendMessageEvent:EventEmitter<string>=new EventEmitter<string>();
   seller:User;
   messageForm:FormGroup;
   errorMessage:string;
@@ -41,7 +42,8 @@ export class SellerComponent implements OnInit {
       this.errorMessage = 'Error occured make sure all fields are correct';
     }
     else{
-      console.log(JSON.stringify(this.messageForm))
+      this.sendMessageEvent.emit("Message was sent successfully...");
+      this.errorMessage="";
     }
     
   }
@@ -65,7 +67,7 @@ export class SellerComponent implements OnInit {
         Validators.maxLength(100),
         Validators.minLength(10),
         Validators.pattern("[a-zA-Z ]*"),
-        Validation.cannotContainSpace]]
+        Validation.emptySpaceValidator]]
     })
   }
 }

@@ -32,7 +32,7 @@
             </div>
         </div>
         <div class="col-md-4">
-            <app-seller [advert]="advert"></app-seller>
+            <app-seller (sendMessageEvent)="onSendMessage($event)" [advert]="advert"></app-seller>
 
         </div>
     </div>
