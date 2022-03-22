@@ -116,7 +116,7 @@
                 password entered does not match current password
               </span>
               <span *ngIf="f['currentpassword'].errors['required']">
-                password is a required field
+                current password is a required field
               </span>
               <span *ngIf="f['currentpassword'].errors['minlength']">
                 confirm password minimum length is 8
@@ -142,7 +142,7 @@
                 (f['password'].dirty ||
                 f['password'].touched)">
               <span *ngIf="f['password'].errors['required']">
-                confirmpassword is a required field
+                new password is a required field
               </span>
               <span *ngIf="f['password'].errors['minlength']">
                 new password minimum length is 8
@@ -173,7 +173,7 @@
                 (f['confirmpassword'].dirty ||
                 f['confirmpassword'].touched)">
               <span *ngIf="f['confirmpassword'].errors['required']">
-                confirmpassword is a required field
+                confirm password is a required field
               </span>
               <span *ngIf="f['confirmpassword'].errors['minlength']">
                 confirm password minimum length is 8
