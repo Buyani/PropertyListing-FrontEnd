@@ -23,6 +23,9 @@ import { ConfirmationDialogHelper } from './helpers/confirmation.helper';
 import { AdvertdetailComponent } from './properties/advertdetail/advertdetail.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SellerComponent } from './properties/seller/seller.component';
+import { ProfileComponent } from './account/profile/profile.component';
+import { SellerprofileComponent } from './account/sellerprofile/sellerprofile.component';
+
 
 
 @NgModule({
@@ -41,7 +44,10 @@ import { SellerComponent } from './properties/seller/seller.component';
     StatusPipe,
     ConfirmationdialogComponent,
     AdvertdetailComponent,
-    SellerComponent
+    SellerComponent,
+    ProfileComponent,
+    SellerprofileComponent
+    
 
   ],
   imports: [
@@ -51,7 +57,7 @@ import { SellerComponent } from './properties/seller/seller.component';
     HttpClientModule,
     ReactiveFormsModule,
     FormsModule,
-    InMemoryWebApiModule.forRoot(UserData),
+    InMemoryWebApiModule.forRoot(UserData,{ put204: false }),
     NgbModule,
   ],
   exports: [],

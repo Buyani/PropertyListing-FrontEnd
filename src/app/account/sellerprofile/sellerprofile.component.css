@@ -1,0 +1,54 @@
+.profile-button {
+    background: rgb(99, 39, 120);
+    box-shadow: none;
+    border: none
+}
+
+
+
+.back:hover {
+    color: #682773;
+    cursor: pointer
+}
+
+.title{
+    color: #016450;
+    font-family: "Segoe UI";
+    font-weight: 700;
+    src: local("Segoe UI Bold");
+    letter-spacing: 4.5px;
+    margin-left: 5px;
+}
+.pmail{
+    color: #9e8a16;
+    font-family: "Segoe UI";
+    font-weight: 500;
+    src: local("Segoe UI Bold");
+    margin-left: 5px;
+}
+
+.title-password{
+    color: #016450;
+    font-family: "Segoe UI";
+    font-weight: 400;
+    src: local("Segoe UI Bold");
+    letter-spacing: 4.5px;
+    margin-left: 5px;
+}
+
+.labels {
+    font-size: 15px
+}
+.btncolor {
+    background-color: #016450;
+    font-weight: bold;
+    color: #ffffff;
+  }
+  .btncanel{
+    background-color: #d1c023;
+    font-weight: bold;
+    color: #ffffff;
+  }
+  .buttons{
+      margin-top: 40px;
+  }

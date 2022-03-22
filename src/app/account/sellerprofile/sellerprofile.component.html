@@ -1,0 +1,73 @@
+<div class="container rounded bg-white mt-5 mb-5 border" *ngIf="currentUser">
+    <form [formGroup]="sellerForm" (ngSubmit)="onSubmit()">
+      <span class="border-top"></span>
+      <div class="row">
+        <div class="col-md-3 border-right">
+          <div class="d-flex flex-column align-items-center text-center p-3 py-5"><img class="rounded-circle mt-5"
+              width="150px"
+              src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg">
+            <span class="font-weight-bold title">{{currentUser.forename}} {{currentUser.surname}}</span>
+            <span class="pmail">{{currentUser.email}}</span><span> </span>
+          </div>
+        </div>
+            <div class="col-md-5 border-right">
+          <span *ngIf="errorMessage" class="text-danger">{{errorMessage}}</span>
+          <div class="p-3 py-5">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+              <h4 class="title text-right">Sellers Profile Settings</h4>
+            </div>
+            <div class="d-flex justify-content-between align-items-center title-password"><span>Contact Details</span>
+            </div>
+            <div class="row mt-3">
+              <div class="col-md-12">
+                <label class="labels">Email</label>
+                <input type="text" class="form-control" formControlName="email" placeholder="email address" value="">
+                <p class="small text-danger my-2" *ngIf="f['email'].invalid &&
+                        (f['email'].dirty ||
+                        f['email'].touched)">
+                  <span *ngIf="f['email'].errors['required']">
+                    email is a required field
+                  </span>
+                  <span *ngIf="f['email'].errors['minlength']">
+                    email minimum length is 6
+                  </span>
+                  <span *ngIf="f['email'].errors['maxlength']">
+                    email maximum length is 100
+                  </span>
+                  <span *ngIf="f['email'].errors['pattern']">
+                    email must be a valid email address
+                  </span>
+                </p>
+              </div>
+            </div>
+            <div class="row mt-3">
+              <div class="col-md-12">
+                <label class="labels">Cellphone</label>
+                <input type="text" class="form-control" formControlName="cellphone" placeholder="cellphone number" value="">
+                <p class="small text-danger my-2" *ngIf="f['cellphone'].invalid &&
+                        (f['cellphone'].dirty ||
+                        f['cellphone'].touched)">
+                  <span *ngIf="f['cellphone'].errors['minlength']">
+                    cellphone minimum length is 6
+                  </span>
+                  <span *ngIf="f['cellphone'].errors['maxlength']">
+                    cellphone maximum length is 30
+                  </span>
+                </p>
+              </div>
+            </div>
+            <div class="row mt-3">
+              <div class="col-md-12">
+              </div>
+            </div>
+            <div class="row buttons">
+              <div class="col-md-4"> <button *ngIf="!loading" class="btn  profile-button btncolor" type="submit">Save Profile</button>
+              </div>
+              <div class="col-md-4"><button routerLink="/myadverts" class="btn  profile-button btncanel"
+                  type="button">Cancel</button></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>

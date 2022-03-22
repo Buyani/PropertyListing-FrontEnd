@@ -7,4 +7,5 @@ export class User{
     email:string;
     role:Role;
     password:string;
+    cellphone?:string;
 }
