@@ -18,9 +18,9 @@ export class HomesListPageComponent implements OnInit {
   advertsList: Advert[];
   filteredAdverts: Advert[];
   selectedAdvert: Advert;
-  searching:boolean=false;
+  searching: boolean = false;
 
-  searchCriteria:Search;
+  searchCriteria: Search;
 
   page = 1;
   pageSize = 10;
@@ -81,25 +81,45 @@ export class HomesListPageComponent implements OnInit {
   }
 
   onSearch(search: Search): void {
-    this.searching=true;
+    this.searching = true;
     this.loaderHelper.showLoader();
 
-    if(search.province && search.city)
-      this.advertService.getAdverts().subscribe({next:adverts=>{
-        this.filteredAdverts=adverts.filter(advert=>advert.province.id===Number(search.province) && 
-        advert.city.id===Number(search.city))
-        this.advertsList=this.filteredAdverts;
-        this.searching=false;
-      }
-    })
+    //province
+    if (search.province && !search.city)
+      this.advertService.getAdverts().subscribe({
+        next: (adverts) => {
+          this.filteredAdverts = adverts.filter(
+            (advert) => advert.province.id === Number(search.province)
+          );
+          this.advertsList = this.filteredAdverts;
+          this.searching = false;
+        },
+      });
 
-    if(search.province && !search.city)
-    this.advertService.getAdverts().subscribe({next:adverts=>{
-      this.filteredAdverts=adverts.filter(advert=>advert.province.id===Number(search.province))
-      this.advertsList=this.filteredAdverts;
-      this.searching=false;
-    }
-  })
-    
+    //province and city
+    if (search.province && search.city)
+      this.advertService.getAdverts().subscribe({
+        next: (adverts) => {
+          this.filteredAdverts = adverts.filter(
+            (advert) =>
+              advert.province.id === Number(search.province) &&
+              advert.city.id === Number(search.city)
+          );
+          this.advertsList = this.filteredAdverts;
+          this.searching = false;
+        },
+      });
+
+    //province, Min and City
+    if (search.province && search.minPrice && search.city)
+    this.advertService.getAdverts().subscribe({
+      next: (adverts) => {
+        this.filteredAdverts = adverts.filter(
+          (advert) => advert.province.id === Number(search.province) && (advert.price > search.minPrice || advert.price == search.minPrice) 
+        );
+        this.advertsList = this.filteredAdverts;
+        this.searching = false;
+      },
+    });
   }
 }
