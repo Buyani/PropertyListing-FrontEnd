@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { LoaderHelper } from 'src/app/helpers/loader.helper';
 import { NotificationHelper } from 'src/app/helpers/notifications.helper';
 import { Advert } from 'src/app/models/advert.model';
+import { Search } from 'src/app/models/search.mode.';
 import { User } from 'src/app/models/user.model';
 import { UserManager } from 'src/app/services/account.service';
 import { AdvertService } from 'src/app/services/advert.service';
@@ -17,6 +18,9 @@ export class HomesListPageComponent implements OnInit {
   advertsList: Advert[];
   filteredAdverts: Advert[];
   selectedAdvert: Advert;
+  searching:boolean=false;
+
+  searchCriteria:Search;
 
   page = 1;
   pageSize = 10;
@@ -76,7 +80,16 @@ export class HomesListPageComponent implements OnInit {
     return this.advertsList;
   }
 
-  onSearch(search:any):void{
-    this.advertsList = this.advertsList.filter((salary) => salary.headlineText.toLowerCase().indexOf(search.keyWord.toLowerCase()) !== -1)
+  onSearch(search: Search): void {
+    this.searching=true;
+    this.loaderHelper.showLoader();
+      this.advertService.getAdverts().subscribe({next:adverts=>{
+        this.filteredAdverts=adverts.filter(advert=>advert.province.id===Number(search.province))
+        this.advertsList=this.filteredAdverts;
+        this.searching=false;
+      }
+    })
+     
+    
   }
 }

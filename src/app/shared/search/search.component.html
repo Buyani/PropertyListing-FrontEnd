@@ -1,7 +1,8 @@
 <div id="form-container" class="row filtersearch  my-3 my-lg-0 d-flex justify-content-center">
-    <div class="col-md-6 searchText">
-        <form (ngSubmit)="searchKeyWord()"  [formGroup]="searchForm"  id="filter-form"
-            class="row align-items-center px-lg-0 border-0 p-2">
+<form (ngSubmit)="searchKeyWord()"  [formGroup]="searchForm"  id="filter-form"
+    class="row align-items-center px-lg-0 border-0 p-2">
+    <div class="row col-md-6 searchText justify-content-center">
+
             <div class="col-12 col-md-10 mx-auto">
                 <input type="text" formControlName="keyWord"  class="form-control searchText" id="exampleFormControlInput1"
                     placeholder="Search Properties">
@@ -12,7 +13,7 @@
                     search
                 </button>
             </div>
-        </form>
+  
     </div>
     <div class="col-12 col-md-3 " style="line-height: 0%;">
         <div class="input-group">
@@ -26,37 +27,38 @@
     <div class="row col-md-12 justify-content-center">
         <div class="mb-2 col-md-2">
             <label>Province</label>
-            <select  class="form-select col-md-4">
-                <option>
-                    KwaZulu Natal
+            <select class="form-select col-md-4" formControlName="province"  (change)="onProvinceSelect($event)">
+                <option class="option"  *ngFor="let province of pronvinces" [value]="province.id">
+                  {{ province.Name }}
                 </option>
-            </select>
+              </select>
         </div>
         <div class="mb-2 col-md-2">
             <label>City</label>
-            <select  class="form-select col-md-4">
-                <option>
-                    Durban
+            <select class="form-select col-md-4" formControlName="city"  >
+                <option class="option" *ngFor="let cit of cities" [value]="cit.id">
+                  {{ cit.Name }}
                 </option>
-            </select>
+              </select>
         </div>
         <div class="mb-2 col-md-2">
             <label>Min Price</label>
-            <select  class="form-select col-md-4">
-                <option>
-                    150000
+            <select class="form-select col-md-4" formControlName="minPrice"  >
+                <option class="option" *ngFor="let p of pricelist" [value]="p.price">
+                  {{ p.price }}
                 </option>
-            </select>
+              </select>
         </div>
         <div class="mb-2 col-md-2">
             <label>Max Price</label>
-            <select class="form-select col-md-4">
-                <option>
-                    10000000
+            <select class="form-select col-md-4" formControlName="maxPrice">
+                <option class="option" *ngFor="let p of pricelist" [value]="p.price">
+                  {{ p.price }}
                 </option>
-            </select>
+              </select>
         </div>
     </div>
+</form>
 </div>
 
 
