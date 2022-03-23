@@ -67,6 +67,7 @@ export class SearchComponent implements OnInit {
     this.searchForm.patchValue({
       city: null,
     });
+    
     this.cities = this.geoService
       .getCities()
       .filter((city) => city.province_id === Number(provinceId));

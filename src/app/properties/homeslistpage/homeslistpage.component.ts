@@ -110,16 +110,32 @@ export class HomesListPageComponent implements OnInit {
         },
       });
 
-    //province, Min and City
-    if (search.province && search.minPrice && search.city)
-    this.advertService.getAdverts().subscribe({
-      next: (adverts) => {
-        this.filteredAdverts = adverts.filter(
-          (advert) => advert.province.id === Number(search.province) && (advert.price > search.minPrice || advert.price == search.minPrice) 
-        );
-        this.advertsList = this.filteredAdverts;
-        this.searching = false;
-      },
-    });
+    //province, Min ,City
+    if (search.province && search.city)
+      this.advertService.getAdverts().subscribe({
+        next: (adverts) => {
+          this.filteredAdverts = adverts.filter(
+            (advert) =>
+              advert.province.id === Number(search.province) &&
+              advert.city.id === Number(search.city) && advert.price>=Number(search.minPrice)
+          );
+          this.advertsList = this.filteredAdverts;
+          this.searching = false;
+        },
+      });
+
+      //province, Min ,City and Max
+      if (search.province && search.city)
+      this.advertService.getAdverts().subscribe({
+        next: (adverts) => {
+          this.filteredAdverts = adverts.filter(
+            (advert) =>
+              advert.province.id === Number(search.province) &&
+              advert.city.id === Number(search.city) && advert.price>=Number(search.minPrice) && advert.price<= Number(search.maxPrice)
+          );
+          this.advertsList = this.filteredAdverts;
+          this.searching = false;
+        },
+      });
   }
 }
