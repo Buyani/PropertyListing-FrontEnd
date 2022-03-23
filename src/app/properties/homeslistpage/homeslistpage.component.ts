@@ -83,13 +83,23 @@ export class HomesListPageComponent implements OnInit {
   onSearch(search: Search): void {
     this.searching=true;
     this.loaderHelper.showLoader();
+
+    if(search.province && search.city)
       this.advertService.getAdverts().subscribe({next:adverts=>{
-        this.filteredAdverts=adverts.filter(advert=>advert.province.id===Number(search.province))
+        this.filteredAdverts=adverts.filter(advert=>advert.province.id===Number(search.province) && 
+        advert.city.id===Number(search.city))
         this.advertsList=this.filteredAdverts;
         this.searching=false;
       }
     })
-     
+
+    if(search.province && !search.city)
+    this.advertService.getAdverts().subscribe({next:adverts=>{
+      this.filteredAdverts=adverts.filter(advert=>advert.province.id===Number(search.province))
+      this.advertsList=this.filteredAdverts;
+      this.searching=false;
+    }
+  })
     
   }
 }
