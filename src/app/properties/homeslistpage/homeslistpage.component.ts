@@ -137,5 +137,19 @@ export class HomesListPageComponent implements OnInit {
           this.searching = false;
         },
       });
+
+      //province ,City and Max
+      if (search.province && search.city)
+      this.advertService.getAdverts().subscribe({
+        next: (adverts) => {
+          this.filteredAdverts = adverts.filter(
+            (advert) =>
+              advert.province.id === Number(search.province) &&
+              advert.city.id === Number(search.city) && advert.price<= Number(search.maxPrice)
+          );
+          this.advertsList = this.filteredAdverts;
+          this.searching = false;
+        },
+      });
   }
 }
