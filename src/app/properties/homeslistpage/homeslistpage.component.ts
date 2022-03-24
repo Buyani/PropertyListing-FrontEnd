@@ -84,13 +84,22 @@ export class HomesListPageComponent implements OnInit {
     this.searching = true;
     this.loaderHelper.showLoader();
 
+    //keyWord
+    if (search.keyWord)
+      this.advertService.getAdverts().subscribe({
+        next: (adverts) => {
+          this.filteredAdverts = adverts.filter((advert) => advert.headlineText.toLowerCase().indexOf(search.keyWord.toLowerCase()) !== -1);
+          this.advertsList = this.filteredAdverts;
+          this.searching = false;
+        },
+      });
+
     //province
     if (search.province && !search.city)
       this.advertService.getAdverts().subscribe({
         next: (adverts) => {
           this.filteredAdverts = adverts.filter(
-            (advert) => advert.province.id === Number(search.province)
-          );
+            (advert) => advert.province.id === Number(search.province));
           this.advertsList = this.filteredAdverts;
           this.searching = false;
         },
@@ -102,8 +111,7 @@ export class HomesListPageComponent implements OnInit {
         next: (adverts) => {
           this.filteredAdverts = adverts.filter(
             (advert) =>
-              advert.province.id === Number(search.province) &&
-              advert.city.id === Number(search.city)
+              advert.province.id === Number(search.province) && advert.city.id === Number(search.city)
           );
           this.advertsList = this.filteredAdverts;
           this.searching = false;
@@ -116,37 +124,34 @@ export class HomesListPageComponent implements OnInit {
         next: (adverts) => {
           this.filteredAdverts = adverts.filter(
             (advert) =>
-              advert.province.id === Number(search.province) &&
-              advert.city.id === Number(search.city) && advert.price>=Number(search.minPrice)
+              advert.province.id === Number(search.province) && advert.city.id === Number(search.city) && advert.price >= Number(search.minPrice)
           );
           this.advertsList = this.filteredAdverts;
           this.searching = false;
         },
       });
 
-      //province, Min ,City and Max
-      if (search.province && search.city)
+    //province, Min ,City and Max
+    if (search.province && search.city)
       this.advertService.getAdverts().subscribe({
         next: (adverts) => {
           this.filteredAdverts = adverts.filter(
             (advert) =>
-              advert.province.id === Number(search.province) &&
-              advert.city.id === Number(search.city) && advert.price>=Number(search.minPrice) && advert.price<= Number(search.maxPrice)
+              advert.province.id === Number(search.province) && advert.city.id === Number(search.city) && advert.price >= Number(search.minPrice) &&
+              advert.price <= Number(search.maxPrice)
           );
           this.advertsList = this.filteredAdverts;
           this.searching = false;
         },
       });
 
-      //province ,City and Max
-      if (search.province && search.city)
+    //province ,City and Max
+    if (search.province && search.city)
       this.advertService.getAdverts().subscribe({
         next: (adverts) => {
           this.filteredAdverts = adverts.filter(
             (advert) =>
-              advert.province.id === Number(search.province) &&
-              advert.city.id === Number(search.city) && advert.price<= Number(search.maxPrice)
-          );
+              advert.province.id === Number(search.province) && advert.city.id === Number(search.city) && advert.price <= Number(search.maxPrice));
           this.advertsList = this.filteredAdverts;
           this.searching = false;
         },
