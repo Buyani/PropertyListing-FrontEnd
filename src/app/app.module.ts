@@ -26,7 +26,8 @@ import { SellerComponent } from './properties/seller/seller.component';
 import { ProfileComponent } from './account/profile/profile.component';
 import { SellerprofileComponent } from './account/sellerprofile/sellerprofile.component';
 import { SearchComponent } from './shared/search/search.component';
-
+import { FeaturedHomesComponent } from './properties/featured-homes/featured-homes.component';
+import { CarouselModule } from 'ngx-owl-carousel-o';
 
 
 @NgModule({
@@ -48,7 +49,8 @@ import { SearchComponent } from './shared/search/search.component';
     SellerComponent,
     ProfileComponent,
     SellerprofileComponent,
-    SearchComponent
+    SearchComponent,
+    FeaturedHomesComponent
     
 
   ],
@@ -61,6 +63,7 @@ import { SearchComponent } from './shared/search/search.component';
     FormsModule,
     InMemoryWebApiModule.forRoot(UserData,{ put204: false }),
     NgbModule,
+    CarouselModule,
   ],
   exports: [],
   providers: [
