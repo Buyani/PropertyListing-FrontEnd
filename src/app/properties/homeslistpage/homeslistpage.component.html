@@ -1,5 +1,5 @@
 <div class="container mt-3">
-    <app-search  (orderByEvent)="sort($event)"   (searchEvent)="onSearch($event)"></app-search>
+    <app-search  (orderByEvent)="sort($event)"  (searchEvent)="onSearch($event)"></app-search>
 <hr>
 <div *ngIf="!searching">
     <div  *ngFor="let ad of advertsList  | slice: (page-1) * pageSize : page * pageSize; index as i" class="card carddes border-0 shadow-lg postion-relative" >

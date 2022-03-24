@@ -2,14 +2,18 @@ import {
   Component,
   ElementRef,
   EventEmitter,
+  Input,
   OnInit,
   Output,
   ViewChild,
 } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { LoaderHelper } from 'src/app/helpers/loader.helper';
+import { Advert } from 'src/app/models/advert.model';
 import { City } from 'src/app/models/city.model';
 import { Province } from 'src/app/models/province.model';
 import { Search } from 'src/app/models/search.mode.';
+import { AdvertService } from 'src/app/services/advert.service';
 import { GeoGraphicService } from 'src/app/services/giographic.service';
 import { PriceServiceDemo } from 'src/app/services/price-demo.service';
 
@@ -24,13 +28,17 @@ export class SearchComponent implements OnInit {
   cities: City[];
   pricelist:any;
   pronvinces: Province[];
+  filtered:Advert[];
+
   @Output() orderByEvent: EventEmitter<String> = new EventEmitter<String>();
-  @Output() searchEvent: EventEmitter<Search> = new EventEmitter<Search>();
+  @Output() searchEvent: EventEmitter<Advert[]> = new EventEmitter<Advert[]>();
   @ViewChild('searchRef') usernameElementRef: ElementRef;
 
   constructor(private fb: FormBuilder, 
     private geoService: GeoGraphicService,
-    private priceservice:PriceServiceDemo) {}
+    private advertService:AdvertService,
+    private priceservice:PriceServiceDemo,
+    private loaderHelper:LoaderHelper) {}
 
   ngOnInit(): void {
     this.createSearchForm();
@@ -58,7 +66,7 @@ export class SearchComponent implements OnInit {
   //when search button is clicked
   searchKeyWord(): void {
     const search = { ...this.search, ...this.searchForm.value };
-    this.searchEvent.emit(search);
+    this.onSearch(search);
   }
   onProvinceSelect(selected: any) {
     let provinceId = selected.target.value;
@@ -67,9 +75,63 @@ export class SearchComponent implements OnInit {
     this.searchForm.patchValue({
       city: null,
     });
-    
+
     this.cities = this.geoService
       .getCities()
       .filter((city) => city.province_id === Number(provinceId));
+  }
+
+
+  onSearch(search: Search): void {
+    this.loaderHelper.showLoader();
+    //keyWord
+    if (search.keyWord)
+      this.advertService.getAdverts().subscribe({
+        next: (adverts) => {
+          this.filtered = adverts.filter((advert) => advert.headlineText.toLowerCase().indexOf(search.keyWord.toLowerCase()) !== -1);
+          this.searchEvent.emit(this.filtered);
+        },
+      });
+
+    //province
+    if (search.province && !search.city)
+      this.advertService.getAdverts().subscribe({
+        next: (adverts) => {
+          this.searchEvent.emit(adverts.filter((advert) => advert.province.id === Number(search.province)));
+        },
+      });
+
+    //province and city
+    if (search.province && search.city)
+      this.advertService.getAdverts().subscribe({
+        next: (adverts) => {
+          this.searchEvent.emit(adverts.filter((advert) => advert.province.id === Number(search.province) && advert.city.id === Number(search.city)));
+        },
+      });
+
+    //province, Min ,City
+    if (search.province && search.city)
+      this.advertService.getAdverts().subscribe({
+        next: (adverts) => {
+          this.searchEvent.emit(adverts.filter((advert) => advert.province.id === Number(search.province) && advert.city.id === Number(search.city) && advert.price >= Number(search.minPrice)));
+        },
+      });
+
+    //province, Min ,City and Max
+    if (search.province && search.city)
+      this.advertService.getAdverts().subscribe({
+        next: (adverts) => {
+          this.searchEvent.emit(adverts.filter((advert) => advert.province.id === Number(search.province) && advert.city.id === Number(search.city) && advert.price >= Number(search.minPrice) && advert.price <= Number(search.maxPrice)));
+        },
+      });
+
+    //province ,City and Max
+    if (search.province && search.city)
+      this.advertService.getAdverts().subscribe({
+        next: (adverts) => {
+          this.filtered = adverts.filter((advert) => advert.province.id === Number(search.province) && advert.city.id === Number(search.city) && advert.price <= Number(search.maxPrice));
+              this.searchEvent.emit(this.filtered);
+        },
+      });
   }
 }
