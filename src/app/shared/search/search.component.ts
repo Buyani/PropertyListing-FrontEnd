@@ -87,7 +87,7 @@ export class SearchComponent implements OnInit {
     this.loaderHelper.showLoader();
     this.advertService.getAdverts().subscribe({
       next: (data) => {
-        //keyWord
+        //if only key word is passed
         if (search.keyWord) {
           this.searchEvent.emit(
             data.filter(
@@ -99,7 +99,7 @@ export class SearchComponent implements OnInit {
           );
         }
 
-        //province
+        //if only the province is selected
         if (search.province && !search.city) {
           this.searchEvent.emit(
             data.filter(
@@ -108,7 +108,7 @@ export class SearchComponent implements OnInit {
           );
         }
 
-        //province and city
+        //if province and city selected
         if (search.province && search.city) {
           this.searchEvent.emit(
             data.filter(
@@ -119,7 +119,7 @@ export class SearchComponent implements OnInit {
           );
         }
 
-        //province, Min ,City
+        //if province, MinPrice ,City is selected
         if (search.province && search.city) {
           this.searchEvent.emit(
             data.filter(
@@ -131,7 +131,7 @@ export class SearchComponent implements OnInit {
           );
         }
 
-        //province, Min ,City and Max
+        //if province, MinPrice ,City and MaxPrice is selected
         if (search.province && search.city) {
           this.searchEvent.emit(
             data.filter(
@@ -144,7 +144,7 @@ export class SearchComponent implements OnInit {
           );
         }
 
-        //province ,City and Max
+        //if province ,City and MaxPrice is selected
         if (search.province && search.city) {
           this.searchEvent.emit(
             data.filter(
