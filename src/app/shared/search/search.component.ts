@@ -26,24 +26,26 @@ export class SearchComponent implements OnInit {
   searchForm: FormGroup;
   search: Search;
   cities: City[];
-  pricelist:any;
+  pricelist: any;
   pronvinces: Province[];
-  filtered:Advert[];
+  advertsCollection: Advert[];
 
   @Output() orderByEvent: EventEmitter<String> = new EventEmitter<String>();
   @Output() searchEvent: EventEmitter<Advert[]> = new EventEmitter<Advert[]>();
   @ViewChild('searchRef') usernameElementRef: ElementRef;
 
-  constructor(private fb: FormBuilder, 
+  constructor(
+    private fb: FormBuilder,
     private geoService: GeoGraphicService,
-    private advertService:AdvertService,
-    private priceservice:PriceServiceDemo,
-    private loaderHelper:LoaderHelper) {}
+    private advertService: AdvertService,
+    private priceservice: PriceServiceDemo,
+    private loaderHelper: LoaderHelper
+  ) {}
 
   ngOnInit(): void {
     this.createSearchForm();
     //load prices
-    this.pricelist=this.priceservice.prices();
+    this.pricelist = this.priceservice.prices();
     //load provinces for dropdown
     this.pronvinces = this.geoService.getPrivinces();
   }
@@ -81,57 +83,81 @@ export class SearchComponent implements OnInit {
       .filter((city) => city.province_id === Number(provinceId));
   }
 
-
   onSearch(search: Search): void {
     this.loaderHelper.showLoader();
-    //keyWord
-    if (search.keyWord)
-      this.advertService.getAdverts().subscribe({
-        next: (adverts) => {
-          this.filtered = adverts.filter((advert) => advert.headlineText.toLowerCase().indexOf(search.keyWord.toLowerCase()) !== -1);
-          this.searchEvent.emit(this.filtered);
-        },
-      });
+    this.advertService.getAdverts().subscribe({
+      next: (data) => {
+        this.advertsCollection = data;
 
-    //province
-    if (search.province && !search.city)
-      this.advertService.getAdverts().subscribe({
-        next: (adverts) => {
-          this.searchEvent.emit(adverts.filter((advert) => advert.province.id === Number(search.province)));
-        },
-      });
+        //keyWord
+        if (search.keyWord) {
+          this.searchEvent.emit(
+            this.advertsCollection.filter(
+              (advert) =>
+                advert.headlineText
+                  .toLowerCase()
+                  .indexOf(search.keyWord.toLowerCase()) !== -1
+            )
+          );
+        }
 
-    //province and city
-    if (search.province && search.city)
-      this.advertService.getAdverts().subscribe({
-        next: (adverts) => {
-          this.searchEvent.emit(adverts.filter((advert) => advert.province.id === Number(search.province) && advert.city.id === Number(search.city)));
-        },
-      });
+        //province
+        if (search.province && !search.city) {
+          this.searchEvent.emit(
+            this.advertsCollection.filter(
+              (advert) => advert.province.id === Number(search.province)
+            )
+          );
+        }
 
-    //province, Min ,City
-    if (search.province && search.city)
-      this.advertService.getAdverts().subscribe({
-        next: (adverts) => {
-          this.searchEvent.emit(adverts.filter((advert) => advert.province.id === Number(search.province) && advert.city.id === Number(search.city) && advert.price >= Number(search.minPrice)));
-        },
-      });
+        //province and city
+        if (search.province && search.city) {
+          this.searchEvent.emit(
+            this.advertsCollection.filter(
+              (advert) =>
+                advert.province.id === Number(search.province) &&
+                advert.city.id === Number(search.city)
+            )
+          );
+        }
 
-    //province, Min ,City and Max
-    if (search.province && search.city)
-      this.advertService.getAdverts().subscribe({
-        next: (adverts) => {
-          this.searchEvent.emit(adverts.filter((advert) => advert.province.id === Number(search.province) && advert.city.id === Number(search.city) && advert.price >= Number(search.minPrice) && advert.price <= Number(search.maxPrice)));
-        },
-      });
+        //province, Min ,City
+        if (search.province && search.city) {
+          this.searchEvent.emit(
+            this.advertsCollection.filter(
+              (advert) =>
+                advert.province.id === Number(search.province) &&
+                advert.city.id === Number(search.city) &&
+                advert.price >= Number(search.minPrice)
+            )
+          );
+        }
 
-    //province ,City and Max
-    if (search.province && search.city)
-      this.advertService.getAdverts().subscribe({
-        next: (adverts) => {
-          this.filtered = adverts.filter((advert) => advert.province.id === Number(search.province) && advert.city.id === Number(search.city) && advert.price <= Number(search.maxPrice));
-              this.searchEvent.emit(this.filtered);
-        },
-      });
+        //province, Min ,City and Max
+        if (search.province && search.city) {
+          this.searchEvent.emit(
+            this.advertsCollection.filter(
+              (advert) =>
+                advert.province.id === Number(search.province) &&
+                advert.city.id === Number(search.city) &&
+                advert.price >= Number(search.minPrice) &&
+                advert.price <= Number(search.maxPrice)
+            )
+          );
+        }
+
+        //province ,City and Max
+        if (search.province && search.city) {
+          this.searchEvent.emit(
+            this.advertsCollection.filter(
+              (advert) =>
+                advert.province.id === Number(search.province) &&
+                advert.city.id === Number(search.city) &&
+                advert.price <= Number(search.maxPrice)
+            )
+          );
+        }
+      },
+    });
   }
 }
