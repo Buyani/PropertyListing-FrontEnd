@@ -27,7 +27,11 @@ import { ProfileComponent } from './account/profile/profile.component';
 import { SellerprofileComponent } from './account/sellerprofile/sellerprofile.component';
 import { SearchComponent } from './shared/search/search.component';
 import { FeaturedHomesComponent } from './properties/featured-homes/featured-homes.component';
-import { CarouselModule } from 'ngx-owl-carousel-o';
+
+
+import {CarouselModule} from 'primeng/carousel';
+import {ButtonModule} from 'primeng/button';
+import {ToastModule} from 'primeng/toast';
 
 
 @NgModule({
@@ -64,6 +68,8 @@ import { CarouselModule } from 'ngx-owl-carousel-o';
     InMemoryWebApiModule.forRoot(UserData,{ put204: false }),
     NgbModule,
     CarouselModule,
+    ButtonModule,
+    ToastModule
   ],
   exports: [],
   providers: [
