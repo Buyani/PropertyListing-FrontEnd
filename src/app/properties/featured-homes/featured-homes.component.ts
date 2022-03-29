@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { NgbCarousel } from '@ng-bootstrap/ng-bootstrap';
 import { LoaderHelper } from 'src/app/helpers/loader.helper';
 import { Advert } from 'src/app/models/advert.model';
+import { Router } from '@angular/router';
 import { AdvertService } from 'src/app/services/advert.service';
 
 @Component({
@@ -14,7 +14,9 @@ export class FeaturedHomesComponent implements OnInit {
 
   responsiveOptions;
 
-  constructor(private advertService: AdvertService,
+  constructor(
+    private advertService: AdvertService,
+    private route: Router,
     private loaderHelper: LoaderHelper) {
     this.responsiveOptions = [
       {
@@ -39,8 +41,12 @@ export class FeaturedHomesComponent implements OnInit {
     Promise.resolve().then(() => this.loaderHelper.showLoader());
     this.advertService.getAdverts().subscribe({
       next: ads => {
-        this.adverts = ads;
+        this.adverts = ads.sort((low, high) => high.id - low.id);
       }
     })
+  }
+// featured advert click
+  onAdvertDetails(advert:Advert){
+    this.route.navigate(['/details', advert.id]);
   }
 }
