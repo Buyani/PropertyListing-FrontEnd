@@ -28,6 +28,7 @@ export class SearchComponent implements OnInit {
   cities: City[];
   pricelist: any;
   pronvinces: Province[];
+  adverts:Advert[];
 
 
   @Output() orderByEvent: EventEmitter<String> = new EventEmitter<String>();
@@ -87,10 +88,11 @@ export class SearchComponent implements OnInit {
     this.loaderHelper.showLoader();
     this.advertService.getAdverts().subscribe({
       next: (data) => {
+        this.adverts=data.sort((a,b)=> a.advertType-b.advertType)
         //if only key word is passed
         if (search.keyWord) {
           this.searchEvent.emit(
-            data.filter(
+            this.adverts.filter(
               (advert) =>
                 advert.headlineText
                   .toLowerCase()
@@ -102,7 +104,7 @@ export class SearchComponent implements OnInit {
         //if only the province is selected
         if (search.province && !search.city) {
           this.searchEvent.emit(
-            data.filter(
+            this.adverts.filter(
               (advert) => advert.province.id === Number(search.province)
             )
           );
@@ -111,7 +113,7 @@ export class SearchComponent implements OnInit {
         //if province and city selected
         if (search.province && search.city) {
           this.searchEvent.emit(
-            data.filter(
+            this.adverts.filter(
               (advert) =>
                 advert.province.id === Number(search.province) &&
                 advert.city.id === Number(search.city)
@@ -122,7 +124,7 @@ export class SearchComponent implements OnInit {
         //if province, MinPrice ,City is selected
         if (search.province && search.city) {
           this.searchEvent.emit(
-            data.filter(
+            this.adverts.filter(
               (advert) =>
                 advert.province.id === Number(search.province) &&
                 advert.city.id === Number(search.city) &&
@@ -134,7 +136,7 @@ export class SearchComponent implements OnInit {
         //if province, MinPrice ,City and MaxPrice is selected
         if (search.province && search.city) {
           this.searchEvent.emit(
-            data.filter(
+            this.adverts.filter(
               (advert) =>
                 advert.province.id === Number(search.province) &&
                 advert.city.id === Number(search.city) &&
@@ -147,7 +149,7 @@ export class SearchComponent implements OnInit {
         //if province ,City and MaxPrice is selected
         if (search.province && search.city) {
           this.searchEvent.emit(
-            data.filter(
+            this.adverts.filter(
               (advert) =>
                 advert.province.id === Number(search.province) &&
                 advert.city.id === Number(search.city) &&
