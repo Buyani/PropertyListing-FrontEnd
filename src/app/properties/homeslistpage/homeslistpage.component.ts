@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { LoaderHelper } from 'src/app/helpers/loader.helper';
 import { NotificationHelper } from 'src/app/helpers/notifications.helper';
+import { Status } from 'src/app/models/advert-status.model';
 import { Advert } from 'src/app/models/advert.model';
 import { Search } from 'src/app/models/search.mode.';
 import { User } from 'src/app/models/user.model';
@@ -43,7 +44,7 @@ export class HomesListPageComponent implements OnInit {
   }
 
   //get a list of adverts
-  getAdvertsList() {
+  getAdvertsList():void {
     this.advertService.getAdverts().subscribe({
       next: (adverts) => {
         this.advertsList = adverts.sort((low, high) => low.price - high.price);
@@ -52,11 +53,11 @@ export class HomesListPageComponent implements OnInit {
       error: (err) => this.notificatioHelper.setErrorMessage(err),
     });
   }
-  getAdvertDetails(advert: Advert) {
+  getAdvertDetails(advert: Advert):void{
     this.route.navigate(['/details', advert.id]);
   }
   // sorts/oders adverts by price high or price low
-  sort(event: any) {
+  sort(event: any):Advert[]{
     switch (event) {
       case 'Low': {
         this.advertsList = this.advertsList.sort(

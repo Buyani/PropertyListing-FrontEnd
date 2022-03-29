@@ -38,7 +38,23 @@
                               </p> 
                           </div>
                     </div>
-                    <div class="cpl-md-6"></div>
+                    <div class="col-md-4">
+                        <div class="mb-2">
+                            <label for="city" class="form-label lsp weig1 mt-5">Advert Type</label>
+                            <select class="form-select col-md-4" formControlName="city" >
+                                <option class="option" *ngFor="let cit of cities" [value]="cit.id">
+                                  {{ cit.Name }}
+                                </option>
+                              </select>
+                              <p class="small text-danger my-2" *ngIf="f['city'].invalid &&
+                              (f['city'].dirty ||
+                              f['city'].touched)">
+                              <span *ngIf="f['city'].errors['required']">
+                                city is a required field
+                              </span>               
+                              </p> 
+                          </div>
+                    </div>
                     <div class="col-md-6">
                         <div class="mb-2">
                             <label for="headlineText" class="form-label lsp weig1 mt-5">HeadLine Text</label>

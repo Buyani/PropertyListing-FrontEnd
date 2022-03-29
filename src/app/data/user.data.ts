@@ -1,5 +1,6 @@
 import { InMemoryDbService } from "angular-in-memory-web-api";
 import { Status } from "../models/advert-status.model";
+import { AdvertType } from "../models/advert-type.model";
 import { Role } from "../models/role.model";
 
 
@@ -84,7 +85,8 @@ export class UserData implements InMemoryDbService {
                     'id': 3,
                     'Name': 'Gauteng'
                 },
-                'status': Status.HIDE
+                'status': Status.HIDE,
+                'advertType':AdvertType.FEATURED           
             },
             {
                 'id': 2, 'headlineText': "Mension Durban North",
@@ -115,10 +117,11 @@ export class UserData implements InMemoryDbService {
                     'id': 8,
                     'Name': 'KwaZulu Natal'
                 },
-                'status': Status.LIVE
+                'status': Status.LIVE,
+                'advertType':AdvertType.FEATURED  
             },
             {
-                'id': 3, 'headlineText': "4 Bedroom House for Sale in Heuwelsig",
+                'id': 3, 'headlineText': "2 And Half Bedroom ",
                 'details': `Family Home - Why Rent when you can buy
 
                 This home is ideally situated on the border of Westville North and Reservoir Hills and is above road level.
@@ -146,10 +149,11 @@ export class UserData implements InMemoryDbService {
                     'id': 1,
                     'Name': 'Free State'
                 },
-                'status': Status.HIDE
+                'status': Status.HIDE,
+                'advertType':AdvertType.FEATURED  
             },
             {
-                'id': 3, 'headlineText': "4 Bedroom House for Sale in Heuwelsig",
+                'id': 3, 'headlineText': "5 Bedroom House for Sale Sprate View",
                 'details': `Family Home - Why Rent when you can buy
 
                 This home is ideally situated on the border of Westville North and Reservoir Hills and is above road level.
@@ -169,17 +173,18 @@ export class UserData implements InMemoryDbService {
                 'price': 920000.00,
                 'user_id': 2,
                 'city': {
-                    "id": 3,
+                    "id": 2,
                     "province_id": 1,
-                    "Name": "Bethlehem"
+                    "Name": "Welkom"
                 },
                 'province': {
                     'id': 1,
                     'Name': 'Free State'
                 },
-                'status': Status.HIDE
+                'status': Status.HIDE,
+                'advertType':AdvertType.FEATURED  
             },          {
-                'id': 3, 'headlineText': "4 Bedroom House for Sale in Heuwelsig",
+                'id': 3, 'headlineText': "2 Bedroom House for Sale in West Lame",
                 'details': `Family Home - Why Rent when you can buy
 
                 This home is ideally situated on the border of Westville North and Reservoir Hills and is above road level.
@@ -199,18 +204,19 @@ export class UserData implements InMemoryDbService {
                 'price': 1000000.00,
                 'user_id': 2,
                 'city': {
-                    "id": 3,
+                    "id": 1,
                     "province_id": 1,
-                    "Name": "Bethlehem"
+                    "Name": "Harrismith"
                 },
                 'province': {
                     'id': 1,
                     'Name': 'Free State'
                 },
-                'status': Status.HIDE
+                'status': Status.HIDE,
+                'advertType':AdvertType.FEATURED  
             },
             {
-                'id': 3, 'headlineText': "4 Bedroom House for Sale in Heuwelsig",
+                'id': 3, 'headlineText': "6 Bedroom in Huston",
                 'details': `Family Home - Why Rent when you can buy
 
                 This home is ideally situated on the border of Westville North and Reservoir Hills and is above road level.
@@ -238,10 +244,11 @@ export class UserData implements InMemoryDbService {
                     'id': 1,
                     'Name': 'Free State'
                 },
-                'status': Status.HIDE
+                'status': Status.HIDE,
+                'advertType':AdvertType.NORMAL  
             },
             {
-                'id': 3, 'headlineText': "4 Bedroom House for Sale in Heuwelsig",
+                'id': 3, 'headlineText': "7 Bedroom House in Heuwelsig",
                 'details': `Family Home - Why Rent when you can buy
 
                 This home is ideally situated on the border of Westville North and Reservoir Hills and is above road level.
@@ -269,10 +276,11 @@ export class UserData implements InMemoryDbService {
                     'id': 1,
                     'Name': 'Free State'
                 },
-                'status': Status.HIDE
+                'status': Status.HIDE,
+                'advertType':AdvertType.NORMAL  
             },
             {
-                'id': 3, 'headlineText': "4 Bedroom House for Sale in Heuwelsig",
+                'id': 3, 'headlineText': "1/2 Bedroom Heuwelsig",
                 'details': `Family Home - Why Rent when you can buy
 
                 This home is ideally situated on the border of Westville North and Reservoir Hills and is above road level.
@@ -300,10 +308,11 @@ export class UserData implements InMemoryDbService {
                     'id': 1,
                     'Name': 'Free State'
                 },
-                'status': Status.HIDE
+                'status': Status.HIDE,
+                'advertType':AdvertType.NORMAL  
             },
             {
-                'id': 3, 'headlineText': "4 Bedroom House for Sale in Heuwelsig",
+                'id': 3, 'headlineText': "6 BedRoom House",
                 'details': `Family Home - Why Rent when you can buy
 
                 This home is ideally situated on the border of Westville North and Reservoir Hills and is above road level.
@@ -331,7 +340,8 @@ export class UserData implements InMemoryDbService {
                     'id': 1,
                     'Name': 'Free State'
                 },
-                'status': Status.HIDE
+                'status': Status.HIDE,
+                'advertType':AdvertType.NORMAL  
             }
         ]
         return { users, adverts };

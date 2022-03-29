@@ -3,6 +3,7 @@ import { LoaderHelper } from 'src/app/helpers/loader.helper';
 import { Advert } from 'src/app/models/advert.model';
 import { Router } from '@angular/router';
 import { AdvertService } from 'src/app/services/advert.service';
+import { AdvertType } from 'src/app/models/advert-type.model';
 
 @Component({
   selector: 'app-featured-homes',
@@ -41,12 +42,13 @@ export class FeaturedHomesComponent implements OnInit {
     Promise.resolve().then(() => this.loaderHelper.showLoader());
     this.advertService.getAdverts().subscribe({
       next: ads => {
-        this.adverts = ads.sort((low, high) => high.id - low.id);
+        this.adverts = ads.sort((low, high) => high.id - low.id).filter(adv=> adv.advertType===AdvertType.FEATURED);
+        console.log(this.adverts);
       }
     })
   }
 // featured advert click
-  onAdvertDetails(advert:Advert){
+  onAdvertDetails(advert:Advert):void{
     this.route.navigate(['/details', advert.id]);
   }
 }

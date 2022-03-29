@@ -32,6 +32,7 @@ import { FeaturedHomesComponent } from './properties/featured-homes/featured-hom
 import {CarouselModule} from 'primeng/carousel';
 import {ButtonModule} from 'primeng/button';
 import {ToastModule} from 'primeng/toast';
+import { TypePipe } from './pipes/type.pipe';
 
 
 @NgModule({
@@ -48,6 +49,7 @@ import {ToastModule} from 'primeng/toast';
     AdminComponent,
     AdverteditComponent,
     StatusPipe,
+    TypePipe,
     ConfirmationdialogComponent,
     AdvertdetailComponent,
     SellerComponent,

@@ -19,6 +19,21 @@ h2::after {
 	right: 0;
 	bottom: -20px;
 }
+.price{
+color: #218329;
+font-size: 20px;
+font-family: "Segoe UI";
+src: local("Segoe UI Bold");
+}
+
+.featuredes {
+    font-size: 14px;
+    font-family: "Segoe UI";
+    font-weight: 700;
+    src: local("Segoe UI Bold");
+    letter-spacing: 2px;
+    color: #999999;
+  }
 
 .item-img  {	
 	max-width: 250px;
@@ -29,6 +44,8 @@ h2::after {
 	border: 1px solid var(--surface-d);
 	border-radius: 25px;
 	margin: .3rem;
+	margin-top: 50px;
+	margin-bottom: 50px;
 	text-align: center;
 	padding: 2rem 0;
 	cursor: pointer;
@@ -37,4 +54,8 @@ h2::after {
 .product-image {
 	width: 50%;
 	box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23)
+}
+.product-item{
+	margin-top: 30px;
+
 }

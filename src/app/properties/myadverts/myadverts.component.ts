@@ -39,9 +39,13 @@ export class MyadvertsComponent implements OnInit {
     if (this.currentUser) {
 
       this.advertService.getUserAdverts(Number(this.currentUser.id)).subscribe({
-        next: adverts => this.myAdverts = adverts,
+        next: adverts =>{
+          this.myAdverts = adverts
+        },
         error: err => this.notificationHelper.setErrorMessage(err)
       })
+
+     
     }
   }
 
@@ -53,7 +57,11 @@ export class MyadvertsComponent implements OnInit {
     if (advert) {
       advert.status = status;
       this.advertService.updateAdvert(advert).subscribe({
-        next:adv=>this.onComplete(advert),
+        next:adv=>{
+          this.updatingStatus = false;
+          this.deleting = false;
+          this.loaderHelper.hideLoader();
+        },
         error:err=>this.notificationHelper.setErrorMessage(err)
       })
     }
@@ -67,7 +75,12 @@ export class MyadvertsComponent implements OnInit {
           this.loaderHelper.showLoader();
 
           this.advertService.deleteAdvert(advert.id).subscribe({
-            next: () => this.onComplete(advert),
+            next: () =>{
+              this.myAdverts = this.myAdverts.filter(adv => adv != advert);
+              this.updatingStatus = false;
+              this.deleting = false;
+              this.loaderHelper.hideLoader();
+            },
             error: err => this.notificationHelper.setErrorMessage(err)
           })
         }
@@ -82,12 +95,5 @@ export class MyadvertsComponent implements OnInit {
   //when edit button is clicked ,pass id and navigate
   onAdvertEdit(advertid: number) {
     this.router.navigate(['/adverts', advertid])
-  }
-
-  onComplete(advert:Advert): void {
-    this.myAdverts = this.myAdverts.filter(adv => adv != advert);
-    this.updatingStatus = false;
-    this.deleting = false;
-    this.loaderHelper.hideLoader();
   }
 }

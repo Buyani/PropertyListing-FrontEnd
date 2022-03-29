@@ -16,6 +16,7 @@ import {
 import { LoaderHelper } from '../helpers/loader.helper';
 import { NotificationHelper } from '../helpers/notifications.helper';
 import { Status } from '../models/advert-status.model';
+import { AdvertType } from '../models/advert-type.model';
 import { Advert } from '../models/advert.model';
 
 @Injectable({
@@ -135,7 +136,8 @@ export class AdvertService {
       details: '',
       price: 0,
       user_id: 0,
-      status: Status.HIDE
+      status: Status.HIDE,
+      advertType:AdvertType.NORMAL
     };
   }
 }
