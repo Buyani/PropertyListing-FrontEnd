@@ -88,7 +88,7 @@ export class SearchComponent implements OnInit {
     this.loaderHelper.showLoader();
     this.advertService.getAdverts().subscribe({
       next: (data) => {
-        this.adverts=data.sort((a,b)=> a.advertType-b.advertType)
+        this.adverts=data.sort((a,b)=> b.advertType- a.advertType)
         //if only key word is passed
         if (search.keyWord) {
           this.searchEvent.emit(
