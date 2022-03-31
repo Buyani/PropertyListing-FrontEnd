@@ -1,22 +1,42 @@
-<div class="fresh-table full-color-orange full-screen-table">
-      <table id="fresh-table" class="table">
+<div class="container">
+  <div class="table-responsive">
+    <div class="table-wrapper">
+      <div class="table-title">
+        <div class="row">
+          <div class="col-md-12">
+            <h2 class="text-center">User <b>Management</b></h2>
+          </div>
+          <div class="col-md-12 searchbox">
+              <input type="text" class="form-control" placeholder="search by surname">
+          </div>
+        </div>
+      </div>
+      <table *ngIf="users" class="table table-striped table-hover">
         <thead>
           <th data-field="id">ID</th>
           <th data-field="name" data-sortable="true">Fore Name</th>
           <th data-field="salary" data-sortable="true">Surname</th>
           <th data-field="country" data-sortable="true">Cellphone</th>
           <th data-field="country" data-sortable="true">Email</th>
-          <th data-field="actions" data-formatter="operateFormatter" data-events="operateEvents">Actions</th>
+          <th
+            data-field="actions"
+            data-formatter="operateFormatter"
+            data-events="operateEvents"
+          >
+            Actions
+          </th>
         </thead>
         <tbody>
           <tr *ngFor="let user of users">
-            <td>{{user.id}}</td>
-            <td>{{user.forename}}</td>
-            <td>{{user.surname}}</td>
-            <td>{{user.cellphone}}</td>
-            <td>{{user.email}}</td>
+            <td>{{ user.id }}</td>
+            <td><img src="../../assets/user.jpg" class="avatar" alt="Avatar">{{ user.forename }}</td>
+            <td>{{ user.surname }}</td>
+            <td>{{ user.cellphone }}</td>
+            <td>{{ user.email }}</td>
             <td></td>
           </tr>
         </tbody>
       </table>
     </div>
+  </div>
+</div>

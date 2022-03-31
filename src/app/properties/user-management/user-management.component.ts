@@ -18,6 +18,7 @@ export class UserManagementComponent implements OnInit {
     private notificationHelper:NotificationHelper) { }
 
   ngOnInit(): void {
+    Promise.resolve().then(()=>this.loaderHelper.showLoader());
     this.getUsers();
   }
 
@@ -26,7 +27,8 @@ export class UserManagementComponent implements OnInit {
   getUsers():void{
     this.userManager.getUsers().subscribe({
       next:data=>{
-        this.users=data
+        this.users=data;
+        this.loaderHelper.hideLoader();
       },
       error:err=>{
         this.notificationHelper.setErrorMessage(err)
