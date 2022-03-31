@@ -1,0 +1,22 @@
+<div class="fresh-table full-color-orange full-screen-table">
+      <table id="fresh-table" class="table">
+        <thead>
+          <th data-field="id">ID</th>
+          <th data-field="name" data-sortable="true">Fore Name</th>
+          <th data-field="salary" data-sortable="true">Surname</th>
+          <th data-field="country" data-sortable="true">Cellphone</th>
+          <th data-field="country" data-sortable="true">Email</th>
+          <th data-field="actions" data-formatter="operateFormatter" data-events="operateEvents">Actions</th>
+        </thead>
+        <tbody>
+          <tr *ngFor="let user of users">
+            <td>{{user.id}}</td>
+            <td>{{user.forename}}</td>
+            <td>{{user.surname}}</td>
+            <td>{{user.cellphone}}</td>
+            <td>{{user.email}}</td>
+            <td></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>

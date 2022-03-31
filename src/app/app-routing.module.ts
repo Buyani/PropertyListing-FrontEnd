@@ -13,6 +13,7 @@ import { HomeComponent } from './properties/home/home.component';
 import { HomesListPageComponent } from './properties/homeslistpage/homeslistpage.component';
 import { ListPropertyPageComponent } from './properties/listpropertypage/listpropertypage.component';
 import { MyadvertsComponent } from './properties/myadverts/myadverts.component';
+import { UserManagementComponent } from './properties/user-management/user-management.component';
 
 const routes: Routes = [
   {path:'', component:HomeComponent },
@@ -27,7 +28,8 @@ const routes: Routes = [
   { path :'adverts/:id', component:AdverteditComponent,canActivate:[AuthGuard]},
   { path :'details/:advertId', component:AdvertdetailComponent},
   { path :'myprofile', component:ProfileComponent,canActivate:[AuthGuard]},
-  { path :'sellerprofile', component:SellerprofileComponent,canActivate:[AuthGuard]}
+  { path :'sellerprofile', component:SellerprofileComponent,canActivate:[AuthGuard]},
+  { path :'users', component:UserManagementComponent,canActivate:[AuthGuard]}
 ];
 
 @NgModule({

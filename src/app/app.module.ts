@@ -33,6 +33,7 @@ import {CarouselModule} from 'primeng/carousel';
 import {ButtonModule} from 'primeng/button';
 import {ToastModule} from 'primeng/toast';
 import { TypePipe } from './pipes/type.pipe';
+import { UserManagementComponent } from './properties/user-management/user-management.component';
 
 
 @NgModule({
@@ -56,7 +57,8 @@ import { TypePipe } from './pipes/type.pipe';
     ProfileComponent,
     SellerprofileComponent,
     SearchComponent,
-    FeaturedHomesComponent
+    FeaturedHomesComponent,
+    UserManagementComponent
     
 
   ],
