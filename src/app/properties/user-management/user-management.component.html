@@ -7,7 +7,7 @@
             <h2 class="text-center">User <b>Management</b></h2>
           </div>
           <div class="col-md-12 searchbox">
-              <input type="text" class="form-control" placeholder="search by surname">
+              <input type="text" class="form-control" placeholder="search by surname" [(ngModel)]="searchTerm">
           </div>
         </div>
       </div>
@@ -27,7 +27,7 @@
           </th>
         </thead>
         <tbody>
-          <tr *ngFor="let user of users">
+          <tr *ngFor="let user of filteredUsers">
             <td>{{ user.id }}</td>
             <td><img src="../../assets/user.jpg" class="avatar" alt="Avatar">{{ user.forename }}</td>
             <td>{{ user.surname }}</td>
