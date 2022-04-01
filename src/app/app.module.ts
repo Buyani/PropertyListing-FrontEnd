@@ -34,6 +34,7 @@ import {ButtonModule} from 'primeng/button';
 import {ToastModule} from 'primeng/toast';
 import { TypePipe } from './pipes/type.pipe';
 import { UserManagementComponent } from './properties/user-management/user-management.component';
+import { AccountStatusDisplayPipe } from './pipes/account-status.pipe';
 
 
 @NgModule({
@@ -51,6 +52,7 @@ import { UserManagementComponent } from './properties/user-management/user-manag
     AdverteditComponent,
     StatusPipe,
     TypePipe,
+    AccountStatusDisplayPipe,
     ConfirmationdialogComponent,
     AdvertdetailComponent,
     SellerComponent,

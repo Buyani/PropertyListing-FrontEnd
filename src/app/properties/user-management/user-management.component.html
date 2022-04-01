@@ -18,6 +18,7 @@
           <th data-field="salary" data-sortable="true">Surname</th>
           <th data-field="country" data-sortable="true">Cellphone</th>
           <th data-field="country" data-sortable="true">Email</th>
+          <th data-field="country" data-sortable="true">Status</th>
           <th
             data-field="actions"
             data-formatter="operateFormatter"
@@ -32,6 +33,10 @@
             <td>{{ user.surname }}</td>
             <td>{{ user.cellphone }}</td>
             <td>{{ user.email }}</td>
+            <td [ngSwitch]="user.locked">
+              <b class="text-danger" *ngSwitchCase="0"> {{user.locked |accountStatusDisplayPipe}}</b>
+              <b class="text-success" *ngSwitchCase="1"> {{user.locked |accountStatusDisplayPipe}}</b>
+          </td>
             <td data-label="" class="text-end">
               <div ngbDropdown class="body btn button1 my-3 me-3 px-4 py-3">
                   <button class="btn btn-outline-primary " ngbDropdownToggle>Actions</button>
