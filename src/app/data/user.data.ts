@@ -1,6 +1,6 @@
 import { InMemoryDbService } from "angular-in-memory-web-api";
+import { AccountStatus } from "../models/account-status.model";
 import { Status } from "../models/advert-status.model";
-import { AdvertType } from "../models/advert-type.model";
 import { Role } from "../models/role.model";
 
 
@@ -15,7 +15,8 @@ export class UserData implements InMemoryDbService {
                 "email": "buyanimhlongo@gmail.com",
                 "password": "BSmhlongo91",
                 "role": Role.User,
-                "cellphone":"0763432298"
+                "cellphone":"0763432298",
+                "locked":AccountStatus.ACTIVE
             },
             {
                 "id": 2,
@@ -24,7 +25,8 @@ export class UserData implements InMemoryDbService {
                 "email": "sabeloshezi@gmail.com",
                 "password": "SabeloMhlongo91",
                 "role": Role.User,
-                "cellphone":"0763432298"
+                "cellphone":"0763432298",
+                "locked":AccountStatus.ACTIVE
             },
             {
                 "id": 3,
@@ -33,7 +35,8 @@ export class UserData implements InMemoryDbService {
                 "email": "nokuthula@gmail.com",
                 "password": "Nokwe91",
                 "role": Role.User,
-                "cellphone":""
+                "cellphone":"",
+                "locked":AccountStatus.LOCKED
             },
             {
                 "id": 4,
@@ -42,7 +45,8 @@ export class UserData implements InMemoryDbService {
                 "email": "admin@admin.com",
                 "password": "Admin",
                 "role": Role.Admin,
-                "cellphone":""
+                "cellphone":"",
+                "locked":AccountStatus.ACTIVE
             },
             {
                 "id": 5,
@@ -51,7 +55,8 @@ export class UserData implements InMemoryDbService {
                 "email": "admin1@admin1.com",
                 "password": "Admin",
                 "role": Role.Admin,
-                "cellphone":""
+                "cellphone":"",
+                "locked":AccountStatus.ACTIVE
             },
         ]
 
@@ -85,8 +90,7 @@ export class UserData implements InMemoryDbService {
                     'id': 3,
                     'Name': 'Gauteng'
                 },
-                'status': Status.HIDE,
-                'advertType':AdvertType.FEATURED           
+                'status': Status.HIDE
             },
             {
                 'id': 2, 'headlineText': "Mension Durban North",
@@ -117,11 +121,10 @@ export class UserData implements InMemoryDbService {
                     'id': 8,
                     'Name': 'KwaZulu Natal'
                 },
-                'status': Status.LIVE,
-                'advertType':AdvertType.FEATURED  
+                'status': Status.LIVE
             },
             {
-                'id': 3, 'headlineText': "2 And Half Bedroom ",
+                'id': 3, 'headlineText': "4 Bedroom House for Sale in Heuwelsig",
                 'details': `Family Home - Why Rent when you can buy
 
                 This home is ideally situated on the border of Westville North and Reservoir Hills and is above road level.
@@ -138,7 +141,7 @@ export class UserData implements InMemoryDbService {
                 
                 Call Ebrahim to view.
                 `,
-                'price': 1205668.00,
+                'price': 1800000.00,
                 'user_id': 2,
                 'city': {
                     "id": 3,
@@ -149,199 +152,7 @@ export class UserData implements InMemoryDbService {
                     'id': 1,
                     'Name': 'Free State'
                 },
-                'status': Status.HIDE,
-                'advertType':AdvertType.FEATURED  
-            },
-            {
-                'id': 3, 'headlineText': "5 Bedroom House for Sale Sprate View",
-                'details': `Family Home - Why Rent when you can buy
-
-                This home is ideally situated on the border of Westville North and Reservoir Hills and is above road level.
-                
-                The garden is manageable and neat, there is also a swimming pool for those hot summer days.
-                
-                This house is neat and move in ready.
-                
-                Security is taken care of in the form of an alarm, burglar bars and a motorized gate.
-                
-                Added bonus is the 1 bedroom cottage which is seperate from the main house and is at the back of the property. A rental income of around R 4000 could be achieved.
-                
-                There is also a servants quarters.
-                
-                Call Ebrahim to view.
-                `,
-                'price': 920000.00,
-                'user_id': 2,
-                'city': {
-                    "id": 2,
-                    "province_id": 1,
-                    "Name": "Welkom"
-                },
-                'province': {
-                    'id': 1,
-                    'Name': 'Free State'
-                },
-                'status': Status.HIDE,
-                'advertType':AdvertType.FEATURED  
-            },          {
-                'id': 3, 'headlineText': "2 Bedroom House for Sale in West Lame",
-                'details': `Family Home - Why Rent when you can buy
-
-                This home is ideally situated on the border of Westville North and Reservoir Hills and is above road level.
-                
-                The garden is manageable and neat, there is also a swimming pool for those hot summer days.
-                
-                This house is neat and move in ready.
-                
-                Security is taken care of in the form of an alarm, burglar bars and a motorized gate.
-                
-                Added bonus is the 1 bedroom cottage which is seperate from the main house and is at the back of the property. A rental income of around R 4000 could be achieved.
-                
-                There is also a servants quarters.
-                
-                Call Ebrahim to view.
-                `,
-                'price': 1000000.00,
-                'user_id': 2,
-                'city': {
-                    "id": 1,
-                    "province_id": 1,
-                    "Name": "Harrismith"
-                },
-                'province': {
-                    'id': 1,
-                    'Name': 'Free State'
-                },
-                'status': Status.HIDE,
-                'advertType':AdvertType.FEATURED  
-            },
-            {
-                'id': 3, 'headlineText': "6 Bedroom in Huston",
-                'details': `Family Home - Why Rent when you can buy
-
-                This home is ideally situated on the border of Westville North and Reservoir Hills and is above road level.
-                
-                The garden is manageable and neat, there is also a swimming pool for those hot summer days.
-                
-                This house is neat and move in ready.
-                
-                Security is taken care of in the form of an alarm, burglar bars and a motorized gate.
-                
-                Added bonus is the 1 bedroom cottage which is seperate from the main house and is at the back of the property. A rental income of around R 4000 could be achieved.
-                
-                There is also a servants quarters.
-                
-                Call Ebrahim to view.
-                `,
-                'price': 600000.00,
-                'user_id': 2,
-                'city': {
-                    "id": 3,
-                    "province_id": 1,
-                    "Name": "Bethlehem"
-                },
-                'province': {
-                    'id': 1,
-                    'Name': 'Free State'
-                },
-                'status': Status.HIDE,
-                'advertType':AdvertType.NORMAL  
-            },
-            {
-                'id': 3, 'headlineText': "7 Bedroom House in Heuwelsig",
-                'details': `Family Home - Why Rent when you can buy
-
-                This home is ideally situated on the border of Westville North and Reservoir Hills and is above road level.
-                
-                The garden is manageable and neat, there is also a swimming pool for those hot summer days.
-                
-                This house is neat and move in ready.
-                
-                Security is taken care of in the form of an alarm, burglar bars and a motorized gate.
-                
-                Added bonus is the 1 bedroom cottage which is seperate from the main house and is at the back of the property. A rental income of around R 4000 could be achieved.
-                
-                There is also a servants quarters.
-                
-                Call Ebrahim to view.
-                `,
-                'price': 700000.00,
-                'user_id': 2,
-                'city': {
-                    "id": 3,
-                    "province_id": 1,
-                    "Name": "Bethlehem"
-                },
-                'province': {
-                    'id': 1,
-                    'Name': 'Free State'
-                },
-                'status': Status.HIDE,
-                'advertType':AdvertType.NORMAL  
-            },
-            {
-                'id': 3, 'headlineText': "1/2 Bedroom Heuwelsig",
-                'details': `Family Home - Why Rent when you can buy
-
-                This home is ideally situated on the border of Westville North and Reservoir Hills and is above road level.
-                
-                The garden is manageable and neat, there is also a swimming pool for those hot summer days.
-                
-                This house is neat and move in ready.
-                
-                Security is taken care of in the form of an alarm, burglar bars and a motorized gate.
-                
-                Added bonus is the 1 bedroom cottage which is seperate from the main house and is at the back of the property. A rental income of around R 4000 could be achieved.
-                
-                There is also a servants quarters.
-                
-                Call Ebrahim to view.
-                `,
-                'price': 500000.00,
-                'user_id': 2,
-                'city': {
-                    "id": 3,
-                    "province_id": 1,
-                    "Name": "Bethlehem"
-                },
-                'province': {
-                    'id': 1,
-                    'Name': 'Free State'
-                },
-                'status': Status.HIDE,
-                'advertType':AdvertType.NORMAL  
-            },
-            {
-                'id': 3, 'headlineText': "6 BedRoom House",
-                'details': `Family Home - Why Rent when you can buy
-
-                This home is ideally situated on the border of Westville North and Reservoir Hills and is above road level.
-                
-                The garden is manageable and neat, there is also a swimming pool for those hot summer days.
-                
-                This house is neat and move in ready.
-                
-                Security is taken care of in the form of an alarm, burglar bars and a motorized gate.
-                
-                Added bonus is the 1 bedroom cottage which is seperate from the main house and is at the back of the property. A rental income of around R 4000 could be achieved.
-                
-                There is also a servants quarters.
-                
-                Call Ebrahim to view.
-                `,
-                'price': 14000000.00,
-                'user_id': 2,
-                'city': {
-                    "id": 3,
-                    "province_id": 1,
-                    "Name": "Bethlehem"
-                },
-                'province': {
-                    'id': 1,
-                    'Name': 'Free State'
-                },
-                'status': Status.HIDE,
-                'advertType':AdvertType.NORMAL  
+                'status': Status.HIDE
             }
         ]
         return { users, adverts };

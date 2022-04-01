@@ -1,3 +1,4 @@
+import { AccountStatus } from "./account-status.model";
 import { Role } from "./role.model";
 
 export class User{
@@ -8,4 +9,5 @@ export class User{
     role:Role;
     password:string;
     cellphone?:string;
+    locked:AccountStatus;
 }
