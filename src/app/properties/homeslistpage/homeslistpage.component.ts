@@ -47,6 +47,7 @@ export class HomesListPageComponent implements OnInit {
   getAdvertsList():void {
     this.advertService.getAdverts().subscribe({
       next: (adverts) => {
+        console.log("LIST",adverts)
         this.advertsList = adverts.sort((low, high) => low.price - high.price);
         this.collectionSize = this.advertsList.length;
       },

@@ -1,6 +1,7 @@
 import { InMemoryDbService } from "angular-in-memory-web-api";
 import { AccountStatus } from "../models/account-status.model";
 import { Status } from "../models/advert-status.model";
+import { AdvertType } from "../models/advert-type.model";
 import { Role } from "../models/role.model";
 
 
@@ -90,7 +91,8 @@ export class UserData implements InMemoryDbService {
                     'id': 3,
                     'Name': 'Gauteng'
                 },
-                'status': Status.HIDE
+                'status': Status.HIDE,
+                'advertType':AdvertType.FEATURED
             },
             {
                 'id': 2, 'headlineText': "Mension Durban North",
@@ -121,7 +123,8 @@ export class UserData implements InMemoryDbService {
                     'id': 8,
                     'Name': 'KwaZulu Natal'
                 },
-                'status': Status.LIVE
+                'status': Status.LIVE,
+                'advertType':AdvertType.FEATURED
             },
             {
                 'id': 3, 'headlineText': "4 Bedroom House for Sale in Heuwelsig",
@@ -152,7 +155,8 @@ export class UserData implements InMemoryDbService {
                     'id': 1,
                     'Name': 'Free State'
                 },
-                'status': Status.HIDE
+                'status': Status.HIDE,
+                'advertType':AdvertType.FEATURED
             }
         ]
         return { users, adverts };
