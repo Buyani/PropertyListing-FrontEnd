@@ -16,6 +16,8 @@ export class LoginComponent implements OnInit {
   submitted: boolean = false;
   returnUrl: string;
   user: RegisterDto;
+  errorMessage: string = '';
+  loading = false;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -58,13 +60,17 @@ export class LoginComponent implements OnInit {
     //map form values to object values
     const login = { ...this.user, ...this.loginForm.value };
     this.loaderHelper.showLoader();
+
     this.userService.userLogin(login).subscribe({
-      next:response=>{
-        console.log(response)
+      next:results=>{
+        console.log("RESULTS",results)
       },
       error:err=>{
-        console.log(err)
+        this.errorMessage=err.error.errors;
+        this.loaderHelper.hideLoader();
+        this.submitted=false;
       }
     })
+    
   }
 }

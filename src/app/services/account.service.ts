@@ -45,10 +45,12 @@ export class UserManager {
 
 //register user
 registerUser(body: RegisterDto): Observable<RegistrationResponseDto> {
-  return this.http.post<RegistrationResponseDto> ('https://localhost:7075/api/accounts/Registration',body);
+  return this.http.post<RegistrationResponseDto> (
+    'https://localhost:7075/api/accounts/Registration',
+    body);
 }
-userLogin(body: LogInDto):Observable<LogInResponseDto>{
-  return this.http.post<LogInResponseDto>('https://localhost:7075/api/accounts/Login',body);
+userLogin(body: LogInDto):Observable<any>{
+  return this.http.post<any>('https://localhost:7075/api/accounts/Login',body);
 }
 //login user
 login(username: string, password: string): Observable < boolean > {

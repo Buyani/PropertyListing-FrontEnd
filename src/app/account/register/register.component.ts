@@ -112,11 +112,11 @@ export class RegisterComponent implements OnInit {
       //call register service to save new user
       this.userService.registerUser(newaccount).subscribe({
         next:response=>{
+          console.log(response);
           this.continue();
         },
         error:err=>{
           this.errorMessage=err.error.errors;
-          this.loaderHelper.hideLoader();
           this.loading=false;
         }
       })
@@ -124,7 +124,6 @@ export class RegisterComponent implements OnInit {
   }
 
   continue(): void {
-    this.loaderHelper.hideLoader();
     this.router.navigate(['/login']);
   }
 }

@@ -35,6 +35,7 @@ import { UserManagementComponent } from './properties/user-management/user-manag
 import { AccountStatusDisplayPipe } from './pipes/account-status.pipe';
 import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { UserData } from './data/user.data';
+import { httpInterceptorProviders } from './interceptors';
 
 
 @NgModule({
@@ -71,7 +72,7 @@ import { UserData } from './data/user.data';
     HttpClientModule,
     ReactiveFormsModule,
     FormsModule,
-    InMemoryWebApiModule.forRoot(UserData,{ put204: false }),
+    //InMemoryWebApiModule.forRoot(UserData,{ put204: false }),
     NgbModule,
     CarouselModule,
     ButtonModule,
@@ -79,7 +80,8 @@ import { UserData } from './data/user.data';
   ],
   exports: [],
   providers: [
-    ConfirmationDialogHelper
+    ConfirmationDialogHelper,
+    httpInterceptorProviders
   ],
   bootstrap: [AppComponent],
   entryComponents: [ ConfirmationdialogComponent ],
