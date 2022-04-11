@@ -8,14 +8,19 @@ import { Router } from '@angular/router';
 import { BehaviorSubject, catchError, delay, Observable, tap, throwError } from 'rxjs';
 import { LoaderHelper } from '../helpers/loader.helper';
 import { NotificationHelper } from '../helpers/notifications.helper';
+import { LogInDto } from '../models/logInDto';
+import { LogInResponseDto } from '../models/logInResponseDto';
+import { RegisterDto } from '../models/registerDto';
+import { RegistrationResponseDto } from '../models/registrationResponseDto';
 import { User } from '../models/user.model';
+
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserManager {
-  private userUrl = 'api/users';
+  private userUrl = 'https://localhost:7075/api/Account';
   private currentUserSubject: BehaviorSubject<User | null>;
   public currentUser: Observable<User>;
 
@@ -39,15 +44,12 @@ export class UserManager {
   }
 
 //register user
-register(user: User): Observable < User > {
-  const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-  return this.http.post<User>(this.userUrl, user, { headers }).pipe(
-    delay(2000),
-    tap(() => this.notificationHelper.setSuccessMessage("Account succesfully created...")),
-    catchError(this.handleError)
-  );
+registerUser(body: RegisterDto): Observable<RegistrationResponseDto> {
+  return this.http.post<RegistrationResponseDto> ('https://localhost:7075/api/accounts/Registration',body);
 }
-
+userLogin(body: LogInDto):Observable<LogInResponseDto>{
+  return this.http.post<LogInResponseDto>('https://localhost:7075/api/accounts/Login',body);
+}
 //login user
 login(username: string, password: string): Observable < boolean > {
   return new Observable(observer => {

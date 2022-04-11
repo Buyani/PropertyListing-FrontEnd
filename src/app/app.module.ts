@@ -8,8 +8,6 @@ import { FooterComponent } from './shared/footer/footer.component';
 import { HomesListPageComponent } from './properties/homeslistpage/homeslistpage.component';
 import { ListPropertyPageComponent } from './properties/listpropertypage/listpropertypage.component';
 import { HomeComponent } from './properties/home/home.component';
-import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
-import { UserData } from './data/user.data';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { MyadvertsComponent } from './properties/myadverts/myadverts.component';
@@ -35,6 +33,8 @@ import {ToastModule} from 'primeng/toast';
 import { TypePipe } from './pipes/type.pipe';
 import { UserManagementComponent } from './properties/user-management/user-management.component';
 import { AccountStatusDisplayPipe } from './pipes/account-status.pipe';
+import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
+import { UserData } from './data/user.data';
 
 
 @NgModule({

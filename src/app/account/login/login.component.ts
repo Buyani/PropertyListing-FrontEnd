@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { LoaderHelper } from 'src/app/helpers/loader.helper';
 import { NotificationHelper } from 'src/app/helpers/notifications.helper';
 import { LogIn } from 'src/app/models/login.model';
+import { RegisterDto } from 'src/app/models/registerDto';
 import { UserManager } from 'src/app/services/account.service';
 
 @Component({
@@ -14,7 +15,7 @@ export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   submitted: boolean = false;
   returnUrl: string;
-  user: LogIn;
+  user: RegisterDto;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -55,13 +56,15 @@ export class LoginComponent implements OnInit {
       return;
     }
     //map form values to object values
-    const s = { ...this.user, ...this.loginForm.value };
+    const login = { ...this.user, ...this.loginForm.value };
     this.loaderHelper.showLoader();
-    this.userService.login(s.username, s.password).subscribe({
-      next: value => {
-        if (!value)
-          this.submitted = false;
+    this.userService.userLogin(login).subscribe({
+      next:response=>{
+        console.log(response)
+      },
+      error:err=>{
+        console.log(err)
       }
-    });
+    })
   }
 }

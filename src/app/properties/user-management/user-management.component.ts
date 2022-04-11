@@ -5,6 +5,7 @@ import { NotificationHelper } from 'src/app/helpers/notifications.helper';
 import { AccountStatus } from 'src/app/models/account-status.model';
 import { User } from 'src/app/models/user.model';
 import { UserManager } from 'src/app/services/account.service';
+import * as $ from "jquery";
 
 @Component({
   selector: 'app-user-management',
@@ -13,7 +14,10 @@ import { UserManager } from 'src/app/services/account.service';
 })
 export class UserManagementComponent implements OnInit {
 
-  @ViewChild('closebutton') closebutton:ElementRef;
+  @ViewChild('completeModal') completeModal: ElementRef;
+
+
+
 
   usersList: User[];
   filtredUsers: User[];
@@ -95,20 +99,15 @@ export class UserManagementComponent implements OnInit {
         return;
       }
       this.userToUpdate.email = this.f['email'].value;
+     
       this.userManager.updateUser(this.userToUpdate).subscribe({
         next: user => {
           this.updating = false;
           this.loaderHelper.hideLoader();
-          this.close();
         },
         error: err => this.notificatioHelper.setErrorMessage(err)
       })
     }
-  }
-  //close the modal pop up
-  close(){
-    this.closebutton.nativeElement.click();
-    this.emailUpdateForm.reset();
   }
 
   // convenience getter for easy access to form fields

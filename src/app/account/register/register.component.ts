@@ -1,15 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import {
-  AbstractControl,
   FormBuilder,
   FormGroup,
   Validators,
 } from '@angular/forms';
 import { Router } from '@angular/router';
 import { LoaderHelper } from 'src/app/helpers/loader.helper';
-import { NotificationHelper } from 'src/app/helpers/notifications.helper';
 import Validation from 'src/app/helpers/validators.helper';
-import { User } from 'src/app/models/user.model';
+import { RegisterDto } from 'src/app/models/registerDto';
 import { UserManager } from 'src/app/services/account.service';
 
 @Component({
@@ -22,14 +20,13 @@ export class RegisterComponent implements OnInit {
   packageForm: FormGroup;
   loading = false;
   submitted = false;
-  user: User;
+  user: RegisterDto;
   errorMessage: string = '';
 
   constructor(
     private fb: FormBuilder,
     private router: Router,
     private userService: UserManager,
-    private notificationHelper: NotificationHelper,
     private loaderHelper: LoaderHelper
   ) {}
 
@@ -106,20 +103,23 @@ export class RegisterComponent implements OnInit {
       return;
     } else {
       //map form values to object values
-      const s = { ...this.user, ...this.registerForm.value };
+      const newaccount = { ...this.user, ...this.registerForm.value };
       //show loader while posting to api
       this.loaderHelper.showLoader();
       this.loading = true;
 
       //call register service to save new user
-      this.userService.register(s).subscribe({
-        next: () => this.continue(),
-        error: (err) => (this.errorMessage = err),
-      });
-
-      this.userService.getUsers().subscribe({
-        next: (data) => console.log(data),
-      });
+      //call register service to save new user
+      this.userService.registerUser(newaccount).subscribe({
+        next:response=>{
+          this.continue();
+        },
+        error:err=>{
+          this.errorMessage=err.error.errors;
+          this.loaderHelper.hideLoader();
+          this.loading=false;
+        }
+      })
     }
   }
 

@@ -10,6 +10,11 @@
         <div class="col-lg-5 mb-2">
             <h2 class="h2 mb-lg-2 d-lg-none">Sign Up to Start And Start Listing Homes</h2>
             <h4 class="h2 text-center d-none d-lg-block">Sign Up</h4>
+            <h6 class="text-danger" *ngFor="let err of errorMessage">
+                <ul>
+                    <li>{{err}}</li>
+                </ul>
+            </h6>
             <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
                 <div class="mb-4">
                     <label for="first-name" class="form-label lsp weig1 mt-5">ForeName</label>
